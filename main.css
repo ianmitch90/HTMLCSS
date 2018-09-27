@@ -14,7 +14,7 @@ font-family: 'Monoton', cursive;
 
 body {
     font-family: 'Bubbler One', sans-serif;
-    height: 100vh;
+    height: 100%;
     display: grid;
     grid-template-columns: minmax(150px, 200px) 1fr;
     grid-template-rows: 1fr;
@@ -22,7 +22,6 @@ body {
 
 }
 
-h1 {}
 
 header {
 
@@ -62,7 +61,7 @@ nav ul {
     max-width: 100%;
     display: grid;
     grid-gap: 5px;
-    grid-template-rows: repeat(auto-fill, minmax(80px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(80px, 1fr));
     grid-template-columns: auto;
     grid-auto-flow: dense;
     justify-self: center;
@@ -111,7 +110,7 @@ nav a:hover {
 nav span {
     grid-area: title;
     font-family: 'Monoton', cursive;
-    color: #bdf3db;
+    color: #f2f2f2;
     font-size: 3vh;
     align-self: center;
     justify-self: center;
@@ -119,7 +118,7 @@ nav span {
 
 }
 
-main {
+.homeMain {
     grid-area: main;
     background: url('./assets/mainbg.jpeg'), linear-gradient(225deg, #FEE140 0%, #FA709A 100%);
     background-blend-mode: multiply;
@@ -129,8 +128,8 @@ main {
     background-position: center;
     display: grid;
     height: 100%;
-    grid-template-columns: .3fr 1fr 1fr .3fr;
-    grid-template-rows: .5fr 1fr 1fr .5fr;
+    grid-template-columns: .2fr 1fr 1fr .2fr;
+    grid-template-rows: .2fr 1fr 1fr .2fr;
     grid-gap: 10px;
     grid-template-areas:
         ". .         About     ."
@@ -267,18 +266,18 @@ only screen and (max-device-width: 480px) {}
 
 @-webkit-keyframes tracking-out-expand {
     0% {
-        -webkit-box-shadow: -0.5em .5em rgba(44, 62, 80, 0.8);
-        -moz-box-shadow: -0.5em .5em rgba(44, 62, 80, 0.8);
-        box-shadow: -0.5em .5em rgba(44, 62, 80, 0.8);
+        -webkit-box-shadow: -0.5em .5em rgba(15, 124, 170, 0.8);
+        -moz-box-shadow: -0.5em .5em rgba(15, 124, 170, 0.8);
+        box-shadow: -0.5em .5em rgba(15, 124, 170, 0.8);
 
         -webkit-transform: translateX(0) translateY(0);
         transform: translateX(0) translateY(0);
     }
 
     100% {
-        -webkit-box-shadow: -1em 1em .15em rgba(44, 62, 80, 0.8);
-        -moz-box-shadow: -1em 1em .15em rgba(44, 62, 80, 0.8);
-        box-shadow: -1em 1em .15em rgba(44, 62, 80, 0.8);
+        -webkit-box-shadow: -1em 1em .15em rgba(15, 124, 170, 0.8);
+        -moz-box-shadow: -1em 1em .15em rgba(15, 124, 170, 0.8);
+        box-shadow: -1em 1em .15em rgba(15, 124, 170, 0.8);
         -webkit-transform: translateX(5px) translateY(-5px);
         transform: translateX(5px) translateY(-5px);
         letter-spacing: .5em;
@@ -287,18 +286,18 @@ only screen and (max-device-width: 480px) {}
 
 @keyframes tracking-out-expand {
     0% {
-        -webkit-box-shadow: -0.5em .5em rgba(44, 62, 80, 0.8);
-        -moz-box-shadow: -0.5em .5em rgba(44, 62, 80, 0.8);
-        box-shadow: -0.5em .5em rgba(44, 62, 80, 0.8);
+        -webkit-box-shadow: -0.5em .5em rgba(15, 124, 170, 0.8);
+        -moz-box-shadow: -0.5em .5em rgba(15, 124, 170, 0.8);
+        box-shadow: -0.5em .5em rgba(15, 124, 170, 0.8);
 
         -webkit-transform: translateX(0) translateY(0);
         transform: translateX(0) translateY(0);
     }
 
     100% {
-        -webkit-box-shadow: -1em 1em .15em rgba(44, 62, 80, 0.8);
-        -moz-box-shadow: -1em 1em .15em rgba(44, 62, 80, 0.8);
-        box-shadow: -1em 1em .15em rgba(44, 62, 80, 0.8);
+        -webkit-box-shadow: -1em 1em .15em rgba(15, 124, 170, 0.8);
+        -moz-box-shadow: -1em 1em .15em rgba(15, 124, 170, 0.8);
+        box-shadow: -1em 1em .15em rgba(15, 124, 170, 0.8);
         -webkit-transform: translateX(5px) translateY(-5px);
         transform: translateX(5px) translateY(-5px);
         letter-spacing: .5em;
