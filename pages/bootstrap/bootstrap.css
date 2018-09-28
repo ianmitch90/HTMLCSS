@@ -28,7 +28,9 @@ header {
 header:hover {
     background: linear-gradient(70deg, var(--darkpink) 0%, var(--darkblue) 100%);
 }
+.docsSection {
 
+}
 .card-group {
   margin: 1em;
 
