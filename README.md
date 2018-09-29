@@ -4,7 +4,8 @@
 
 ![](https://media.giphy.com/media/wzXEreXcmyDZe/giphy.gif)
 
-Live Version: https://ianmitch90.github.io/HTMLCSS/
+
+ :white_check_mark: Live Version: https://ianmitch90.github.io/HTMLCSS/
 
 
 ## Getting Started :runner:
@@ -26,7 +27,7 @@ atom .
 
 ```
 
-# The Goal
+# The Goal :sparkles:
 
 Really this is just to view, hopefully it serves you as an example of how to design websites and web applications.
 
@@ -38,7 +39,7 @@ That property:  :hover
 ![](https://media.giphy.com/media/ruHx7nLAmQMbm/giphy.gif)
 
 
-# CSS is Hard :sparkles:
+# CSS is Hard :sob: :sob: :sob:
 
 ##However it gets better.... i promise
 
@@ -63,12 +64,12 @@ The end goal is for you to have fun, you don't need to be the best programmer to
 
 ![](https://media.giphy.com/media/26BRAp3nfSePXd8He/giphy.gif)
 
-## Who this is for?
+## Who this is for? :ok_hand:
 
 Really this is for a Beginner who has a basic understanding of How HTML and CSS. Even though this project is particularly easy for more experienced users there are some hidden gems that you may have overlooked! Take your time! Run it, Change it, Break it!
 
 
-## Requirements
+## Requirements :rocket:
 
 Understanding Of Basic HTML & CSS
 A love of coding! No fear in Breaking This!
