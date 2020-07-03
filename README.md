@@ -4,9 +4,7 @@
 
 ![](https://media.giphy.com/media/wzXEreXcmyDZe/giphy.gif)
 
-
- :white_check_mark: Live Version: https://ianmitch90.github.io/HTMLCSS/
-
+:white_check_mark: Live Version: https://ianmitch90.github.io/HTMLCSS/
 
 ## Getting Started :runner:
 
@@ -33,11 +31,9 @@ Really this is just to view, hopefully it serves you as an example of how to des
 
 Here I focus on one CSS property and use it in various layout incarnations.
 
-That property:  :hover
-
+That property: :hover
 
 ![](https://media.giphy.com/media/ruHx7nLAmQMbm/giphy.gif)
-
 
 # CSS is Hard :sob: :sob: :sob:
 
@@ -57,7 +53,6 @@ This is broken up in diffrent pages to highlight advantages of layout and design
 
 ![](https://media.giphy.com/media/xZqycRHIQkKNa/giphy.gif)
 
-
 # Design is :fire:
 
 The end goal is for you to have fun, you don't need to be the best programmer to make great things! Have fun and create something wonderful!
@@ -68,7 +63,6 @@ The end goal is for you to have fun, you don't need to be the best programmer to
 
 Really this is for a Beginner who has a basic understanding of How HTML and CSS. Even though this project is particularly easy for more experienced users there are some hidden gems that you may have overlooked! Take your time! Run it, Change it, Break it!
 
-
 ## Requirements :rocket:
 
 Understanding Of Basic HTML & CSS
@@ -76,8 +70,7 @@ A love of coding! No fear in Breaking This!
 
 ## Authors
 
-* **Ian Mitchell** - *Initial work* - [ianmitch90](https://github.com/ianmitch90)
-
+- **Ian Mitchell** - _Initial work_ - [ianmitch90](https://github.com/ianmitch90)
 
 ## License
 
@@ -85,7 +78,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Google Fonts
-* Unsplash.com (Stock images)
-* http://flatuicolors.com/palette/au (color palette)
-* http://animista.net/ (Simple CSS Animation generator)
+- Google Fonts
+- Unsplash.com (Stock images)
+- http://flatuicolors.com/palette/au (color palette)
+- http://animista.net/ (Simple CSS Animation generator)

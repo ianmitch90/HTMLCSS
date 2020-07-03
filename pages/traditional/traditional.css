@@ -1,96 +1,92 @@
 header {
-    grid-area: header;
-    background: linear-gradient(44deg, var(--yellow) 0%, var(--green) 100%);
-    text-align: center;
-    color: white;
-
+  grid-area: header;
+  background: linear-gradient(44deg, var(--yellow) 0%, var(--green) 100%);
+  text-align: center;
+  color: white;
 }
 
 header:hover {
-    background: linear-gradient(70deg, var(--yellow) 0%, var(--green) 100%);
+  background: linear-gradient(70deg, var(--yellow) 0%, var(--green) 100%);
 }
 
 main {
-    height: 100vh;
-    background-image: url('https://images.pexels.com/photos/531972/pexels-photo-531972.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'),
-        linear-gradient(45deg, var(--green) 0%, var(--yellow) 100%);
-    background-blend-mode: multiply;
-    background-attachment: fixed;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+  height: 100vh;
+  background-image: url("https://images.pexels.com/photos/531972/pexels-photo-531972.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"),
+    linear-gradient(45deg, var(--green) 0%, var(--yellow) 100%);
+  background-blend-mode: multiply;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-
-
 .frame {
-    background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/41114/plan1.png');
-    border-radius: 3px;
-    box-shadow: 0 0 50px black;
-    height: 698px;
-    left: 50%;
-    margin-bottom: 300px;
-    overflow: hidden;
-    position: relative;
-    top: 100px;
-    transform: translateX(-50%);
-    width: 550px;
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/41114/plan1.png");
+  border-radius: 3px;
+  box-shadow: 0 0 50px black;
+  height: 698px;
+  left: 50%;
+  margin-bottom: 300px;
+  overflow: hidden;
+  position: relative;
+  top: 100px;
+  transform: translateX(-50%);
+  width: 550px;
 }
 
 img {
-    position: absolute;
-    transform-origin: 50%;
-    width: 100%;
-    transition: 2s ease;
-
+  position: absolute;
+  transform-origin: 50%;
+  width: 100%;
+  transition: 2s ease;
 }
 
 .frame:hover .pic1 {
-    transform: scale(1.2);
-    -webkit-filter: blur(4px);
+  transform: scale(1.2);
+  -webkit-filter: blur(4px);
 }
 
 .frame:hover .pic2 {
-    transform: scale(1.4);
-    -webkit-filter: blur(2px);
+  transform: scale(1.4);
+  -webkit-filter: blur(2px);
 }
 
 .frame:hover .pic3 {
-    transform: scale(1.6);
-    -webkit-filter: blur(1px);
+  transform: scale(1.6);
+  -webkit-filter: blur(1px);
 }
 
 .frame:hover .pic4 {
-    transform: scale(1.8);
+  transform: scale(1.8);
 }
 
 .frame:hover .pic5 {
-    transform: scale(2);
+  transform: scale(2);
 }
 
 .frame:hover .mist {
-    transform: translateX(-100%);
+  transform: translateX(-100%);
 }
 
 .frame:hover .mist2 {
-    transform: translateX(100%);
+  transform: translateX(100%);
 }
 
 .mist {
-    height: 200px;
-    position: absolute;
-    top: 500px;
-    width: 2000px;
-    -webkit-filter: blur(2px);
-    transition: 60s linear;
+  height: 200px;
+  position: absolute;
+  top: 500px;
+  width: 2000px;
+  -webkit-filter: blur(2px);
+  transition: 60s linear;
 }
 
 .mist2 {
-    height: 200px;
-    position: absolute;
-    top: 300px;
-    left: -100%;
-    width: 2000px;
-    -webkit-filter: blur(2px);
-    transition: 60s linear;
+  height: 200px;
+  position: absolute;
+  top: 300px;
+  left: -100%;
+  width: 2000px;
+  -webkit-filter: blur(2px);
+  transition: 60s linear;
 }
