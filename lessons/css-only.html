@@ -13,18 +13,38 @@
 <nav class="studio-toc" aria-label="Jump to an experiment"><a href="#cards">Luminous cards</a><a href="#svg">Animated SVG</a><a href="#chart">Data visualization</a><a href="#game">Mini-game</a><a href="#decisions">When not to use CSS alone</a></nav></header>
 <section id="cards" class="studio-section" aria-labelledby="cards-title">
 <div class="studio-section-head"><p class="section-kicker">01 / LIGHT WITHOUT SHADERS</p><h2 id="cards-title">An ambient halo has a job.</h2>
-<p>These generic product and editorial cards combine an ambient color field, thin illuminated edge and brief one-shot traveling highlight. Their glow is optional feedback, not the only way to understand or activate a card. Try them with a mouse and with the Tab key.</p></div>
+<p>Three original material studies show a quiet ambient card, a double-rim editorial card and a glassier bronze surface. They combine an ambient color field, a stationary edge and a brief traveling highlight. Their glow is optional feedback, not the only way to understand or activate a card. Try them with a mouse and with the Tab key.</p></div>
 <div class="studio-badges"><span>CSS gradients</span><span>Pseudo-elements</span><span>Mask compositing</span><span>:focus-within</span><span>Reduced motion</span></div>
 <div class="studio-card-stage"><p class="stage-topline">STUDIO SCENE / LIGHT AS CONTEXT</p><label class="ambient-toggle"><input id="ambient-enabled" type="checkbox"> Illuminate the surrounding field</label>
 <div class="ambient-shelf">
 <article class="luminous-card"><span class="edge-track" aria-hidden="true"></span><span class="card-kicker">OBJECT STUDY / 001</span>
 <div class="card-symbol"><svg viewBox="0 0 150 115" role="img" aria-labelledby="lamp-title lamp-desc"><title id="lamp-title">Geometric lamp</title><desc id="lamp-desc">A simple cream-colored desk lamp standing in a warm cone of light</desc><path d="M75 15 L110 55 H40Z" fill="#dae0c5"/><path d="M75 55V98" stroke="#e9e2c7" stroke-width="7"/><path d="M47 101Q75 86 103 101Z" fill="#e9e2c7"/><path d="M52 56 36 94H116L100 56" fill="#dfa36c" opacity=".2"/></svg></div>
 <h3>The Ember Desk Light</h3><p>An imagined product concept. Focus the link to trigger a restrained edge treatment.</p><a class="card-action" href="#decisions">Inspect the design principles →</a></article>
-<article class="luminous-card alt"><span class="edge-track" aria-hidden="true"></span><span class="card-kicker">EDITORIAL STUDY / 002</span>
+<article class="luminous-card alt dual-edge"><span class="edge-track" aria-hidden="true"></span><span class="inner-edge" aria-hidden="true"></span><span class="card-kicker">EDITORIAL STUDY / 002</span>
 <div class="card-symbol"><svg viewBox="0 0 150 115" role="img" aria-labelledby="folio-title folio-desc"><title id="folio-title">Layered papers</title><desc id="folio-desc">Overlapping warm paper rectangles with three horizontal lines</desc><rect x="37" y="17" width="64" height="82" rx="7" transform="rotate(-10 37 17)" fill="#b2bbb7"/><rect x="49" y="17" width="64" height="82" rx="7" transform="rotate(7 49 17)" fill="#e9c8aa"/><path d="M62 39H95M62 51H103M62 63H92" stroke="#8f6955" stroke-width="4" stroke-linecap="round"/></svg></div>
 <h3>Notes from the Studio</h3><p>An imagined reading card with a different accent and exactly the same semantic contract.</p><a class="card-action" href="#svg">Explore vector animation →</a></article>
+
+<article class="luminous-card glass-study"><span class="edge-track" aria-hidden="true"></span>
+  <span class="card-kicker">MATERIAL STUDY / 003 · GLASS + COPPER</span>
+  <div class="card-symbol glass-symbol">
+    <svg viewBox="0 0 260 125" role="img" aria-labelledby="glass-title glass-desc">
+      <title id="glass-title">Translucent sculptural layers</title>
+      <desc id="glass-desc">Bronze-tinted translucent curved planes rise from a dark teal ground, framed by delicate arcs and a soft light</desc>
+      <defs><linearGradient id="glass-arc" x1="0" x2="1"><stop stop-color="#f3d3a5" stop-opacity=".2"/><stop offset=".5" stop-color="#ffd8a7"/><stop offset="1" stop-color="#96dad0" stop-opacity=".25"/></linearGradient></defs>
+      <path d="M26 108 Q85 -2 144 108" fill="none" stroke="url(#glass-arc)" stroke-width="2"/>
+      <path d="M85 108 Q154 -30 226 108" fill="none" stroke="#7ebeb9" stroke-opacity=".65" stroke-width="1.5"/>
+      <path d="M68 110 L115 34 Q132 20 147 43 L198 110Z" fill="#b9805c" fill-opacity=".55" stroke="#e8b994" stroke-opacity=".85"/>
+      <path d="M104 110 L145 18 Q159 5 170 24 L207 110Z" fill="#c5ddd1" fill-opacity=".23" stroke="#c4e8df" stroke-opacity=".7"/>
+      <path d="M35 112 H234" stroke="#fac18b" stroke-opacity=".65"/>
+      <circle cx="181" cy="35" r="12" fill="#f2c38e" opacity=".72"/>
+    </svg>
+  </div>
+  <h3>Glass on the waterfront</h3>
+  <p>A more reflective, architectural surface. Separate rim light, inner highlight, and material sheen create depth without changing the semantic card or adding JavaScript.</p>
+  <a class="card-action" href="#decisions">Study the material layers →</a>
+</article>
 </div></div>
-<div class="studio-code-grid"><div><h3>Why layered light works</h3><p>A radial gradient provides the quiet atmospheric glow. A masked conic gradient becomes a perimeter edge. A separately painted edge track keeps the border stationary while a short light segment travels its perimeter once when you hover or focus within the card.</p>
+<div class="studio-code-grid"><div><h3>Why layered light works</h3><p>A radial gradient provides the quiet atmospheric glow. The second card adds a separate interior hairline, and the glass study introduces a reflective inset layer. A masked conic gradient becomes the running perimeter light. A separately painted edge track keeps the border stationary while a short light segment travels its perimeter once when you hover or focus within the card.</p>
 <pre><code>.card::before { /* ambient field */ }
 .card .edge-track { /* a stationary masked border surface */ }
 .card:is(:hover, :focus-within) .edge-track {
@@ -33,7 +53,7 @@
 <pre><code>@media (prefers-reduced-motion: reduce) {
   .card .edge-track { animation: none; }
 }</code></pre></div></div>
-<div class="studio-note"><strong>Try it:</strong><p>Enable the environmental light, then move focus between links. Use the site's “Reduce site motion” control and verify that the cards remain understandable when the flourish stops.</p></div></section>
+<div class="studio-note"><strong>Try it:</strong><p>Enable the environmental light, then move focus between the three card links. Use the site's “Reduce site motion” control and verify that the cards remain understandable when the flourish stops.</p></div></section>
 <section id="svg" class="studio-section" aria-labelledby="svg-heading"><div class="studio-section-head"><p class="section-kicker">02 / VECTORS AS LIVE DOCUMENTS</p><h2 id="svg-heading">An SVG doesn't need a video timeline.</h2><p>SVG describes shapes and paths. CSS can animate a path's stroke without a video file, canvas renderer or JavaScript animation loop. This original orbital composition is a decorative learning study, not a live loading indicator.</p></div>
 <div class="studio-badges"><span>Inline SVG</span><span>Stroke-dashoffset</span><span>Keyframes</span><span>Semantic alternative</span></div>
 <div class="svg-exhibit"><div class="svg-illustration"><svg viewBox="0 0 300 255" role="img" aria-labelledby="orbit-title orbit-desc"><title id="orbit-title">An abstract orbital illustration</title><desc id="orbit-desc">Concentric copper and mint rings, a diamond at the center and a curved orbit stroke</desc>
