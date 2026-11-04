@@ -1,0 +1,23 @@
+# No runtime dependencies. These tests are structural, not WCAG certification.
+name: Prototype structural checks
+on:
+  push:
+    branches:
+      - prototype/**
+  pull_request:
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check JavaScript syntax
+        run: |
+          node --check scripts/site.js
+          node --check scripts/catalogue.js
+          node --check scripts/labs.js
+          node --check scripts/grid-responsive.js
+      - name: Check document routes, asset independence and learning content
+        run: node --test tests/site.test.mjs

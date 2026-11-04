@@ -1,103 +1,56 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Bubbler+One|Monoton|Rozha+One"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./reset.css" />
-    <link rel="stylesheet" href="./main.css" />
-
-    <title>HTML & CSS</title>
-  </head>
-
-  <body>
-    <header class="navigation">
-      <nav>
-        <div class="logo">
-          <span>HOME</span>
-        </div>
-        <span>
-          HTML & CSS
-          <br />
-          ONLY
-        </span>
-        <ul class="links">
-          <li>
-            <a href="./index.html" class="navlink">Home</a>
-          </li>
-          <li>
-            <a href="./pages/grid/grid.html" class="navlink">CSS Grid</a>
-          </li>
-          <li>
-            <a href="./pages/flex/flex.html" class="navlink">Flex/Media</a>
-          </li>
-          <li>
-            <a href="./pages/bootstrap/bootstrap.html" class="navlink"
-              >Bootstrap</a
-            >
-          </li>
-          <li>
-            <a href="./pages/traditional/traditional.html" class="navlink"
-              >Traditional</a
-            >
-          </li>
-        </ul>
-      </nav>
-    </header>
-    <main class="homeMain">
-      <section class="Overview">
-        <h1>Overview:</h1>
-        <article>
-          <h2>Objective:</h2>
-          <p>
-            This is a project to show my ability to make diffrent types of
-            layouts on the web.
-          </p>
-        </article>
-        <article>
-          <h2>Style of Organiziation:</h2>
-          <p>
-            I have chosen to demo CSS Grids, Flex Box, Bootstrap, and
-            Traditional methods of trying to organize content for the browser in
-            a responsive way.
-          </p>
-        </article>
-        <article>
-          <h2>Design Choices:</h2>
-          <p>
-            other than the Bootstrap example, my goal is to showcase a media
-            rich experience to liven up an otherwise straight forward excercise.
-          </p>
-        </article>
-      </section>
-      <section class="About">
-        <h1>About</h1>
-        <p>
-          This project primarily a resource for those starting out in
-          developement who want to explore diffrent approaches to web design,
-          with HTML and CSS only. In this example I use a lot of "on hover
-          effects". <br />
-          I am aware there are tons of css methods, however here im focusing on
-          only one effect and representing that same effect in diffrent forms. I
-          hope you enjoy and take your time and explore the resources. click my
-          name for the CODE.
-        </p>
-      </section>
-      <section class="Selection">
-        <figure class="badge badgeText">
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://github.com/ianmitch90/HTMLCSS"
-          >
-            Ian Mitchell</a
-          >
-        </figure>
-      </section>
-    </main>
-  </body>
-</html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A playful, accessible, interactive field guide to HTML, CSS and why browsers work the way they do.">
+  <meta name="theme-color" content="#f5f2e9">
+  <title>Discover · The Web Is a Material</title>
+  <!-- Direct document routes are a lesson in themselves: this page works with no router.
+       Shared CSS is cached across navigation; lab CSS and JS load only when needed. -->
+  <link rel="stylesheet" href="./styles/site.css">
+  
+  <script type="module" src="./scripts/site.js"></script>
+  <script type="module" src="./scripts/catalogue.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header"><div class="header-inner">
+  <a class="brand" href="./index.html" aria-label="The Web Is a Material, home"><span class="brand-mark" aria-hidden="true">h<span>/</span>c</span><span class="brand-copy">THE WEB IS<br>A MATERIAL<span class="brand-period">.</span></span></a>
+  <nav class="main-nav" aria-label="Main navigation"><a href="./index.html">Discover</a><a href="./index.html#explore">Lessons</a><a href="./lessons/css-only.html">CSS-only studio</a><a href="./lessons/toolkit.html">Tools &amp; libraries</a><a href="./accessibility.html">Accessibility</a><a href="./archive.html">Origins</a></nav>
+  <button class="motion-button" type="button" data-motion-toggle aria-pressed="false">Reduce site motion</button>
+</div></header>
+<main id="main">
+<section class="hero section-wrap" aria-labelledby="hero-heading"><div class="hero-copy">
+<p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> A creative field guide to the browser <span class="eyebrow-no">EST. 2018 · REIMAGINED</span></p>
+<h1 id="hero-heading">The web is<br>a living <em>material.</em></h1>
+<p class="hero-lead">HTML gives things meaning. CSS gives them form. The browser brings them together. Come discover not only <em>how</em> the web works, but <em>why</em> it was designed this way.</p>
+<div class="hero-actions"><a class="button button-primary" href="./lessons/browser.html">Start at the beginning <span aria-hidden="true">↗</span></a><a class="button button-outline" href="#explore">Follow your curiosity <span aria-hidden="true">↓</span></a></div>
+<p class="hero-note">No experience needed. No account. Learn by changing things.</p></div><div class="hero-art" role="img" aria-label="A geometric grid illustration of warm yellow, coral, teal and cream blocks labeled HTML, CSS and WEB."><div class="art-topline"><span>EXPERIMENT NO. 001</span><span>LAYOUT IS A RELATIONSHIP</span></div><div class="mosaic" aria-hidden="true"><div class="tile tile-a"><span>HTML</span></div><div class="tile tile-b"><span>CSS</span></div><div class="tile tile-c"></div><div class="tile tile-d"><span>:)</span></div><div class="tile tile-e"></div><div class="tile tile-f"><span>YOU</span></div><div class="tile tile-g"></div><div class="tile tile-h"></div><div class="tile tile-i"><span>WEB</span></div></div><div class="art-footer"><span>01 / Change one thing, change the whole picture</span><span aria-hidden="true">✳</span></div></div></section>
+<section class="manifesto section-wrap" aria-labelledby="manifesto-heading"><div><p class="section-kicker">THE BIG IDEA / 001</p><h2 id="manifesto-heading">Don't memorize.<br><em>Make sense of it.</em></h2></div><div class="manifesto-copy"><p>Ever followed a tutorial, copied a snippet, and wondered why it worked? This is a different kind of learning space—part studio, part playground, part field guide.</p><p>Every experiment starts with something you can see. Change it. Notice what happens. Then uncover the code, the browser behavior, the tradeoffs, and the decisions behind it.</p><p>No magic tricks. No assumption that you already speak developer.</p></div></section>
+<div class="process-band"><div class="section-wrap process-inner"><span class="process-label">THE LEARNING LOOP</span><ol class="process-steps"><li>See</li><li>Manipulate</li><li>Explain</li><li>Break</li><li>Rebuild</li><li>Apply</li></ol></div></div>
+<section class="section-wrap pathways" aria-labelledby="pathways-heading"><div class="section-head"><div><p class="section-kicker">CHOOSE YOUR ENTRY POINT / 002</p><h2 id="pathways-heading">Start with a question.</h2></div><p>Learn in order, or open the door that interests you. There's no wrong starting point.</p></div>
+<div class="pathway-grid">
+<a class="pathway-card pathway-structure" href="./lessons/browser.html"><span class="pathway-no">PATH 01 · THE BASICS</span><span class="pathway-icon" aria-hidden="true">⌘</span><h3>What does a browser actually do?</h3><p>From document meaning to pixels. Start here if the whole thing feels mysterious.</p><span class="pathway-link">Understand the foundations ↗</span></a>
+<a class="pathway-card pathway-layout" href="./lessons/grid.html"><span class="pathway-no">PATH 02 · MAKE SOMETHING</span><span class="pathway-icon" aria-hidden="true">▦</span><h3>Why won't this layout behave?</h3><p>Play with Flexbox, Grid, spacing and containers until the pieces click.</p><span class="pathway-link">Enter the layout studio ↗</span></a>
+<a class="pathway-card pathway-expressive" href="./lessons/spatial.html"><span class="pathway-no">PATH 03 · GET CURIOUS</span><span class="pathway-icon" aria-hidden="true">◈</span><h3>Can HTML and CSS make 3D?</h3><p>Yes—sometimes surprisingly far. Explore depth, perspective and the limits of the DOM.</p><span class="pathway-link">Explore the unexpected ↗</span></a></div></section>
+<section class="toolkit-spotlight section-wrap" aria-labelledby="toolkit-spotlight-heading"><div><p class="section-kicker">THE TOOLS BEHIND THE CRAFT / NEW</p><h2 id="toolkit-spotlight-heading">You don't have to <em>reinvent the wheel.</em></h2><p>Learn the browser's fundamentals, then decide when a toolkit, component library or design system earns its place. There are two paths: a simple overview for the curious and a deeper guide for developers.</p></div><div class="toolkit-spotlight-links"><a class="button button-primary" href="./lessons/toolkit.html">Find the right library <span aria-hidden="true">↗</span></a><a class="button button-outline" href="./lessons/growing.html">Go beyond a static page <span aria-hidden="true">↗</span></a><p>Nothing to install to read or try these lessons.</p></div></section>
+<section class="section-wrap catalogue" id="explore" aria-labelledby="catalogue-heading"><div class="section-head"><div><p class="section-kicker">THE OPEN STUDIO / 003</p><h2 id="catalogue-heading">An experiment for every idea.</h2></div><p>Hands-on lessons, thoughtful explanations, practical decisions. Each one works as its own web page.</p></div>
+<div class="filter-bar"><div class="search-wrap"><label for="lesson-search">Find an experiment</label><input type="search" id="lesson-search" placeholder="Try “focus”, “responsive”, “3D”…" autocomplete="off"></div><div class="select-wrap"><label for="lesson-category">Subject</label><select id="lesson-category"><option value="all">All subjects</option><option>Foundations</option><option>Layout</option><option>Interaction</option><option>Graphics</option><option>The edge</option><option>Tools &amp; systems</option></select></div></div><p id="results-count" class="results-count" role="status" aria-live="polite">13 experiments to explore</p>
+<div class="lesson-grid"><a class="lesson-card" data-lesson-card data-category="Foundations" href="./lessons/browser.html"><span class="card-meta">01 · FIRST PRINCIPLES / Foundations</span><h3>Why does a browser need HTML?</h3><p>Discover documents, meaning, style, rendering and the accessibility tree.</p><span class="card-cta">Open experiment <span aria-hidden="true">↗</span></span></a>
+<a class="lesson-card" data-lesson-card data-category="Foundations" href="./lessons/structure.html"><span class="card-meta">02 · PROJECT CRAFT / Foundations</span><h3>How should I organize a small website?</h3><p>Real HTML pages, relative links, shared assets and splitting code by page.</p><span class="card-cta">Open experiment <span aria-hidden="true">↗</span></span></a>
+<a class="lesson-card" data-lesson-card data-category="Layout" href="./lessons/grid.html"><span class="card-meta">03 · LIVE LAB / Layout</span><h3>When should I reach for Grid?</h3><p>Change columns and gaps. Understand two-dimensional placement.</p><span class="card-cta">Open experiment <span aria-hidden="true">↗</span></span></a>
+<a class="lesson-card" data-lesson-card data-category="Layout" href="./lessons/flex.html"><span class="card-meta">04 · LIVE LAB / Layout</span><h3>Why are Flexbox and Grid different?</h3><p>Experiment with flexible one-dimensional relationships.</p><span class="card-cta">Open experiment <span aria-hidden="true">↗</span></span></a>
+<a class="lesson-card" data-lesson-card data-category="Interaction" href="./lessons/interaction.html"><span class="card-meta">05 · NATIVE WEB / Interaction</span><h3>Why isn't hover enough?</h3><p>Native buttons, keyboard focus, disclosures, popovers and dialogs.</p><span class="card-cta">Open experiment <span aria-hidden="true">↗</span></span></a>
+<a class="lesson-card" data-lesson-card data-category="Graphics" href="./lessons/color.html"><span class="card-meta">06 · LIVE LAB / Graphics</span><h3>How does a browser think in color?</h3><p>Mix colors, explore modern CSS and discover why contrast matters.</p><span class="card-cta">Open experiment <span aria-hidden="true">↗</span></span></a>
+<a class="lesson-card" data-lesson-card data-category="Graphics" href="./lessons/media.html"><span class="card-meta">07 · MEDIA DECISIONS / Graphics</span><h3>SVG, image or video?</h3><p>Choose the right representation, loading strategy and accessible alternative.</p><span class="card-cta">Open experiment <span aria-hidden="true">↗</span></span></a>
+<a class="lesson-card" data-lesson-card data-category="Graphics" href="./lessons/effects.html"><span class="card-meta">08 · LIVE LAB / Graphics</span><h3>Clipping, masking or filtering?</h3><p>Try shape and blur effects, then look at rendering costs.</p><span class="card-cta">Open experiment <span aria-hidden="true">↗</span></span></a>
+<a class="lesson-card" data-lesson-card data-category="The edge" href="./lessons/spatial.html"><span class="card-meta">09 · LIVE LAB / The edge</span><h3>Can HTML and CSS become 3D?</h3><p>Move a real DOM surface in perspective. Know when to choose a 3D engine.</p><span class="card-cta">Open experiment <span aria-hidden="true">↗</span></span></a>
+<a class="lesson-card" data-lesson-card data-category="The edge" href="./lessons/modern.html"><span class="card-meta">10 · WHAT'S NEW / The edge</span><h3>What changed in modern CSS?</h3><p>Container queries, subgrid, nesting, layers, :has() and progressive enhancement.</p><span class="card-cta">Open experiment <span aria-hidden="true">↗</span></span></a>
+<a class="lesson-card" data-lesson-card data-category="Tools &amp; systems" href="./lessons/toolkit.html"><span class="card-meta">11 · LIBRARY LANDSCAPE / Tools &amp; systems</span><h3>Do I have to build everything from scratch?</h3><p>Bootstrap, Tailwind, Material, Fluent and the value of well-chosen tools.</p><span class="card-cta">Explore the toolkit <span aria-hidden="true">↗</span></span></a>
+<a class="lesson-card" data-lesson-card data-category="Tools &amp; systems" href="./lessons/growing.html"><span class="card-meta">12 · THE NEXT CHAPTER / Tools &amp; systems</span><h3>How does a static page become an app?</h3><p>Meet browser JavaScript, server languages, frameworks and gradual growth.</p><span class="card-cta">Plan the next step <span aria-hidden="true">↗</span></span></a>
+<a class="lesson-card" data-lesson-card data-category="The edge" href="./lessons/css-only.html"><span class="card-meta">13 · CREATIVE CSS / The edge</span><h3>What can CSS do without JavaScript?</h3><p>Luminous cards, ambient halos, SVG animation, small charts and a CSS-only game.</p><span class="card-cta">Explore the creative studio <span aria-hidden="true">↗</span></span></a></div></section>
+<section class="ethos-band" aria-labelledby="ethos-heading"><div class="section-wrap ethos-inner"><div><p class="section-kicker">A DIFFERENT KIND OF SHOW-AND-TELL / 004</p><h2 id="ethos-heading">Beautiful is good.<br><em>Usable is better.</em></h2></div><div><p>Design decisions are never only visual. Every lesson asks what happens when you use a keyboard, zoom in, request less motion, or load the page on a slower connection.</p><p>We don't save accessibility and performance for the last page. We make them part of the way we see.</p><a class="light-link" href="./accessibility.html">Explore the accessible web ↗</a></div></div></section>
+<section class="section-wrap roots" aria-labelledby="roots-heading"><div class="roots-art" role="img" aria-label="A small nine-cell geometric composition recalling the original 2018 CSS Grid experiments"><div class="roots-grid" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="roots-stamp">2018 → NOW</span></div><div class="roots-copy"><p class="section-kicker">FROM THE ARCHIVE / 005</p><h2 id="roots-heading">A little history,<br>a lot of curiosity.</h2><p>This began in 2018 as a handmade set of HTML and CSS experiments: a Grid composition, Flexbox cards, hover states, Bootstrap and an atmospheric layered scene. The point was simple: run it, change it, break it.</p><p>The original source remains in Git history. Familiar page URLs now lead to responsive, self-contained reinterpretations, with their techniques explained in the modern lessons.</p><a class="button button-outline" href="./archive.html">Enter the origins studio ↗</a></div></section>
+</main><footer class="site-footer"><div class="section-wrap footer-inner"><div><a class="footer-brand" href="./index.html">HTML<span>/</span>CSS</a><p>A field guide for curious people.<br>Built with the web platform itself.</p></div><div><p class="footer-label">GO EXPLORE</p><a href="./index.html#explore">Lessons</a><a href="./accessibility.html">Accessibility</a><a href="./archive.html">Origins studio</a><a href="https://github.com/ianmitch90/HTMLCSS">Source on GitHub</a></div><div><p class="footer-label">A NOTE TO LEARNERS</p><p>There is more than one right way to build the web. Learn the reasons, test the assumptions, and stay curious.</p><small>MIT licensed · An independent educational experiment</small></div></div></footer>
+</body></html>
