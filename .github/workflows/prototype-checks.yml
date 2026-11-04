@@ -1,8 +1,9 @@
 # No runtime dependencies. These tests are structural, not WCAG certification.
-name: Prototype structural checks
+name: Site structural checks
 on:
   push:
     branches:
+      - master
       - prototype/**
   pull_request:
 jobs:
