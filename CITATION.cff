@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this learning resource in teaching, research, or further work, please cite the project and its original creator."
+type: software
+title: "The Web Is a Material: An Interactive HTML/CSS Field Guide"
+abstract: "A free, multi-page resource for learning browser fundamentals, responsive CSS, visual experiments, accessibility, and practical library choices. Originally begun in 2018 and revived in 2026 with AI-assisted engineering under human project direction and review."
+authors:
+  - family-names: "Mitchell"
+    given-names: "Ian"
+repository-code: "https://github.com/ianmitch90/HTMLCSS"
+url: "https://ianmitch90.github.io/HTMLCSS/"
+license: "MIT"
+keywords:
+  - HTML
+  - CSS
+  - web-platform
+  - accessibility
+  - responsive-design
+  - learning-resource

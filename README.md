@@ -190,6 +190,10 @@ Want to explore the code or make a change? A good first experiment is to:
 
 For a proposed contribution, keep the educational goals in mind: **teach the reason, use the platform appropriately, preserve accessibility, state tradeoffs clearly, and avoid adding a dependency without a specific benefit.** Fixes, clarifications, accessible examples, and maintenance improvements are all useful.
 
+## Publication history and citation
+
+The project maintains a [publication and provenance record](PROVENANCE.md) documenting its 2018 origin, the AI-assisted 2026 revival, dated GitHub merges and Pages deployments, and a repeatable preservation process for future releases. GitHub's **Cite this repository** feature uses the [citation metadata](CITATION.cff). The historical source remains separately accessible.
+
 ## The original project is preserved
 
 The original project explored CSS at a time when many of today's layout and interaction capabilities were still new or less widely used. Among its goals were:
