@@ -261,3 +261,19 @@ test('CSS atmosphere has staggered cloud wisps and motion-safe fallbacks', async
   assert.match(css,/data-reduce-motion="true"/);
   assert.match(css,/:has\(#depth-toggle:checked\)/);
 });
+
+
+test('hero motes add subtle background and foreground motion without moving Mondrian tiles', async () => {
+  const html=await read('index.html');
+  const css=await read('styles/site.css');
+  const mosaic=html.match(/<div class="mosaic"[^>]*>([\s\S]*?)<\/div><div class="art-footer">/);
+  assert.ok(mosaic,'original Mondrian artwork remains in the hero');
+  assert.equal((mosaic[1].match(/class="tile tile-/g)||[]).length,9);
+  assert.match(css,/\.hero::after\s*\{/);
+  assert.match(css,/\.hero-art::after\s*\{/);
+  assert.match(css,/@keyframes hero-motes-back/);
+  assert.match(css,/@keyframes hero-motes-front/);
+  assert.match(css,/\.hero::after,\.hero-art::after \{ animation:none!important/);
+  assert.match(css,/data-reduce-motion="true"\] \.hero::after/);
+  assert.doesNotMatch(css,/@keyframes hero-mosaic-drift/);
+});

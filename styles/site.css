@@ -385,3 +385,45 @@
   .hero{padding-inline:clamp(1rem,4vw,1.45rem);margin-top:.7rem}
   .hero-art{max-width:100%}
 }
+
+/* Subtle depth notes around the *original* Mondrian Grid. The painted tiles,
+   content, and layout do not move: independent decorative light motes do. */
+@layer components {
+  .hero::after {
+    content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(circle at 13% 24%,#f2c997 0 2px,transparent 3px),
+      radial-gradient(circle at 61% 11%,#9cccb8 0 2px,transparent 3px),
+      radial-gradient(circle at 77% 84%,#e7ba86 0 1.5px,transparent 3px),
+      radial-gradient(circle at 27% 87%,#c0ddd2 0 1.5px,transparent 3px);
+    opacity:.4;
+    animation:hero-motes-back 26s ease-in-out infinite alternate;
+  }
+  .hero-art::after {
+    content:""; position:absolute; inset:0; z-index:2; pointer-events:none;
+    background:
+      radial-gradient(circle at 93% 12%,#f4d2a5 0 2px,transparent 3px),
+      radial-gradient(circle at 9% 90%,#b2dfcb 0 1.5px,transparent 3px),
+      radial-gradient(circle at 91% 89%,#e8b688 0 1.5px,transparent 3px);
+    opacity:.5;
+    animation:hero-motes-front 19s ease-in-out infinite alternate;
+  }
+  @keyframes hero-motes-back {
+    from { transform:translate3d(-1.1%,.6%,0); opacity:.25; }
+    to { transform:translate3d(1.2%,-.7%,0); opacity:.48; }
+  }
+  @keyframes hero-motes-front {
+    from { transform:translate3d(.7%,-.5%,0); opacity:.2; }
+    to { transform:translate3d(-.9%,.7%,0); opacity:.5; }
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  .hero::after,.hero-art::after { animation:none!important;transform:none!important; }
+}
+:root[data-reduce-motion="true"] .hero::after,
+:root[data-reduce-motion="true"] .hero-art::after {
+  animation:none!important;transform:none!important;
+}
+@media(forced-colors:active) {
+  .hero::after,.hero-art::after { display:none; }
+}
