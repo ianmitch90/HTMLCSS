@@ -1,156 +1,266 @@
 # The Web Is a Material
-### Learn the browser. Make something. Choose your tools.
 
-> See → manipulate → explain → break → rebuild → apply.
+**Learn how the browser works. Make something. Understand why.**
+
+A free, interactive field guide to HTML, CSS, responsive design, accessibility, visual effects, and choosing the tools that belong in a project.
+
+**[Explore the live guide](https://ianmitch90.github.io/HTMLCSS/)** · **[Start with the first lesson](lessons/browser.html)** · **[Browse the experiments](index.html#explore)** · **[See the original project](https://github.com/ianmitch90/HTMLCSS/tree/archive/original-2018-2020)**
+
+> **See → manipulate → explain → break → rebuild → apply.**
 >
-> Run it. Change it. Break it. The original idea, continued.
+> *Run it. Change it. Break it.* An invitation from the original project, continued.
 
-This project began in 2018 as an experimental HTML/CSS teaching resource. The revival makes those visual explorations part of a coherent, accessible, multi-page field guide: learners discover **why** web features exist, try them in practical experiments, and learn when to use a library rather than building from scratch.
+## What is this?
 
-## Start exploring
+This project began in **2018** as a small collection of experiments in what HTML and CSS could do. It explored CSS Grid, Flexbox, framework styling, and even the illusion of complex interactive effects without requiring a JavaScript application.
 
-The published `master` branch remains untouched until this draft prototype is approved and merged. To view the current work, clone the `prototype/learn-the-web-2026` branch and run a local static server.
+The modern version turns that same curiosity into a cohesive learning resource. Each lesson begins with a question, invites you to inspect or change something, and explains the browser behavior and tradeoffs behind the result. The aim is to help people **develop intuition**, not merely memorize properties.
 
-- [Discovery homepage](index.html) — guided learning paths and searchable lesson catalogue
-- [Accessibility guide](accessibility.html) — meaningful HTML, keyboard focus, motion, contrast, zoom and testing
-- [Origins studio](archive.html) — four visually unified, self-contained reinterpretations of the historical experiments
-- [Why does a browser need HTML?](lessons/browser.html) — semantics, DOM and rendering
-- [How should I organize a small website?](lessons/structure.html) — direct .html routes and source structure
-- [CSS Grid lab](lessons/grid.html) — tracks, two-dimensional layout, ordering
-- [Responsive Grid composition viewer](pages/grid/grid.html) — original composition plus actual desktop, tablet and mobile viewport previews, including a desktop width slider
-- [Flexbox lab](lessons/flex.html) — flexible sizing, main/cross axes, wrapping
-- [Native interaction](lessons/interaction.html) — focus, details, popover and dialog
-- [Color systems](lessons/color.html) — CSS variables, OKLCH, color-mix and contrast
-- [SVG, image or video?](lessons/media.html) — format decisions and media accessibility
-- [Clipping, masking, filtering](lessons/effects.html) — shape, rendering, filters and blend modes
-- [CSS 3D](lessons/spatial.html) — perspective vs WebGL/WebGPU and experimental model
-- [Modern CSS](lessons/modern.html) — container queries, subgrid, nesting, layers, :has
-- [Do I have to build everything from scratch?](lessons/toolkit.html) — **Bootstrap, Tailwind, Material UI, Fluent UI, Carbon, Radix, React Aria, Web Components, jQuery, and smaller tools**
-- [How does a static page become an app?](lessons/growing.html) — **browser JavaScript, static generators, Node and Python backend options, progressive growth**
-- [How far can CSS go without JavaScript?](lessons/css-only.html) — **original luminous cards, one-shot ambient halos, SVG animation, a small chart and a keyboard-friendly mini-game**
-- [Actual Bootstrap starter](examples/bootstrap-live.html) — an **isolated, version-pinned live Bootstrap CSS/JS example** showing responsive cards and a working accordion
+You do **not** have to know how to code to explore it. You also do **not** have to build everything from scratch to benefit from understanding it.
 
-Every core lesson explains the problem, a visual example, the browser's behavior, tradeoffs, accessibility/performance considerations, an exercise and maintained references. Toolkit lessons explicitly support both casually curious learners and developers evaluating real-world stack choices.
+This repository's **`master` branch is the current, canonical version**, and it is the source of the public site. The pre-revival project is preserved separately in **[`archive/original-2018-2020`](https://github.com/ianmitch90/HTMLCSS/tree/archive/original-2018-2020)**. You do not need that branch to use, modify, or run the new guide.
 
-## Run locally
+## Get started in under a minute
+
+**Option A — No installation:** Open the **[live learning site](https://ianmitch90.github.io/HTMLCSS/)**. Choose a lesson and experiment in your browser.
+
+**Option B — Explore the source locally:**
 
 ```bash
-git clone --branch prototype/learn-the-web-2026 https://github.com/ianmitch90/HTMLCSS.git
+git clone https://github.com/ianmitch90/HTMLCSS.git
 cd HTMLCSS
+
+# Serve the current master branch with any local HTTP server:
 python3 -m http.server 8000
-# Open http://localhost:8000/
 ```
 
-The Python command is **only a development HTTP file server**. It is not the app's programming language or deployment dependency. Any static HTTP server can serve these files. GitHub Pages can serve them with no server-side Python process and no build step. Modern browser JavaScript powers only optional search, motion preferences and interactive labs.
+Open **http://localhost:8000/**. Edit `index.html`, a lesson in `lessons/`, or a stylesheet in `styles/` and reload the browser to see your changes.
 
-## Source structure is a lesson too
+You can use a different static file server or an editor's local-server extension. **Python is only one convenient way to serve the files locally; the site does not use Python to render pages.** There are no `npm install` steps, application credentials, database, runtime packages, React hydration, or bundler required to run the main guide.
+
+If you already have an earlier clone, switch back to the canonical branch and update it:
+
+```bash
+git switch master
+git pull --ff-only origin master
+```
+
+The educational site is intentionally a collection of real HTML documents. If opening `index.html` directly with a `file://` URL causes module or origin restrictions, use the local HTTP server above.
+
+## Choose your own learning path
+
+There is no required order. These suggested paths are just ways to find the next useful question.
+
+| If you are… | Start here | Then explore |
+| --- | --- | --- |
+| **Curious, but not a developer** | [Why browsers need HTML](lessons/browser.html) | [Native interactions](lessons/interaction.html) → [Do I need a library?](lessons/toolkit.html) |
+| **Learning to make websites** | [Project structure and URLs](lessons/structure.html) | [Grid](lessons/grid.html) → [Flexbox](lessons/flex.html) → [Responsive composition](pages/grid/grid.html) |
+| **A designer or visual explorer** | [CSS color](lessons/color.html) | [Media decisions](lessons/media.html) → [CSS-only creative studio](lessons/css-only.html) → [Visual effects](lessons/effects.html) |
+| **A developer evaluating architecture** | [Native vs reusable tools](lessons/toolkit.html) | [Modern CSS](lessons/modern.html) → [Growing a static site](lessons/growing.html) |
+| **Interested in inclusive design** | [Accessibility guide](accessibility.html) | [Native interactions](lessons/interaction.html) → [Media alternatives](lessons/media.html) |
+| **Interested in the project's history** | [Origins studio](archive.html) | [Original pre-revival branch](https://github.com/ianmitch90/HTMLCSS/tree/archive/original-2018-2020) |
+
+### How to use a lesson
+
+Most lessons repeat the same learning loop:
+
+1. **See** — start with an idea or working example.
+2. **Manipulate** — adjust an input, change a layout, or inspect what the browser is displaying.
+3. **Explain** — learn what the HTML/CSS means and what the browser is doing.
+4. **Break** — intentionally challenge an assumption: narrow the width, remove a style, try a keyboard, or change a value.
+5. **Rebuild** — apply the principle to a small exercise of your own.
+6. **Apply** — decide when the technique is appropriate, when it isn't, and what accessibility or performance tradeoffs it introduces.
+
+For example, in the [Grid composition viewer](pages/grid/grid.html), start with the original artwork, switch to Desktop/Tablet/Mobile, and adjust the desktop width slider. Those frames use **real embedded HTML documents and CSS media queries**; they are not just screenshots scaled down to resemble devices. Then open [the Grid lesson](lessons/grid.html) to experiment with tracks and gaps directly.
+
+If a code example seems mysterious, use your browser's **View Source** or **Developer Tools**. This guide is meant to be taken apart.
+
+## Explore the curriculum
+
+There are **13 standalone lessons**, plus four modernized origin exhibits and one isolated, real Bootstrap example.
+
+| Area | Lessons and experiments | What you'll understand |
+| --- | --- | --- |
+| **Foundations** | [The browser and HTML](lessons/browser.html) · [Project structure and routing](lessons/structure.html) | Semantic documents, the DOM, real links, relative paths, shared assets, and progressive enhancement |
+| **Layout** | [CSS Grid](lessons/grid.html) · [Flexbox](lessons/flex.html) · [Responsive composition](pages/grid/grid.html) | One-dimensional versus two-dimensional layout, tracks, alignment, resizing and responsive reflow |
+| **Interaction** | [Native HTML interactions](lessons/interaction.html) | Links versus buttons, keyboard focus, disclosure widgets, popovers and dialogs |
+| **Graphics and media** | [Modern CSS color](lessons/color.html) · [SVG, image or video?](lessons/media.html) · [Clipping and effects](lessons/effects.html) | Color spaces, file-format choices, masks, filters, blending, rendering costs and accessible alternatives |
+| **Creative CSS** | [CSS 3D](lessons/spatial.html) · [CSS-only studio](lessons/css-only.html) | Perspective, luminous cards, a traveling-edge glow, animated SVG, simple charting and state-driven mini-games |
+| **The evolving platform** | [Modern CSS](lessons/modern.html) | Container queries, subgrid, nesting, cascade layers, relational selectors and feature maturity |
+| **Tools and growth** | [Libraries and design systems](lessons/toolkit.html) · [From static site to application](lessons/growing.html) | Bootstrap versus Tailwind, component systems, JavaScript, server frameworks, maintenance and deciding what to reuse |
+
+**[The accessibility guide](accessibility.html)** is its own track *and* a recurring consideration in every technical lesson. Its goal is to make inclusive design part of the first decision, not a last-minute checklist.
+
+### Do I need to learn every library?
+
+No. The [toolkit lesson](lessons/toolkit.html) explains the difference between native web features, CSS frameworks, utility-first CSS, styled component libraries, headless primitives, Web Components, design systems, and templates.
+
+It introduces established options such as Bootstrap, Tailwind, Material UI, Fluent UI, Carbon, React Aria, and jQuery, along with more situational choices. The purpose isn't to pick a fashionable winner. It's to understand **what problem a library solves, what you still own, and what you must maintain**.
+
+For a practical demonstration, [this isolated Bootstrap starter](examples/bootstrap-live.html) loads an actual, version-pinned Bootstrap distribution. The main site itself does not depend on Bootstrap. That separation is intentional: learn how to use a real library without making every lesson depend on its CDN.
+
+## How this repository works
+
+This project is intentionally a **multi-page static website**, not a client-side routed application.
 
 ```text
 HTMLCSS/
-├── index.html                  # Direct .html routing and catalogue
-├── accessibility.html          # Dedicated inclusive-design guide
-├── archive.html                # Origins studio
-├── lessons/
+├── index.html                  # Landing page and lesson catalogue
+├── accessibility.html          # Inclusive design track
+├── archive.html                # Modern origins studio and history links
+├── lessons/                    # 13 individually addressable .html lessons
 │   ├── browser.html
-│   ├── structure.html
+│   ├── structure.html          # Explains this architecture
 │   ├── grid.html
-│   ├── toolkit.html            # CSS/component/design-system choices
-│   ├── growing.html            # Static-to-dynamic application choices
-│   └── ...                     # Each lesson is a real HTML document
-├── pages/
-│   ├── grid/grid.html            # Original + desktop/tablet/phone viewing modes
-│   ├── grid/preview.html         # Standalone embedded responsive document
+│   ├── css-only.html
+│   ├── toolkit.html
+│   ├── growing.html
+│   └── ...
+├── pages/                      # Reimagined origin experiments
+│   ├── grid/
+│   │   ├── grid.html           # Original, desktop, tablet and phone views
+│   │   └── preview.html        # Embedded document with actual @media rules
 │   ├── flex/flex.html
 │   ├── bootstrap/bootstrap.html
 │   └── traditional/traditional.html
-├── styles/
-│   ├── site.css                # Shared, cacheable design system
-│   ├── labs.css                # Loaded only by interactive lessons
-│   ├── exhibits.css            # Loaded only by origins exhibits
-│   ├── css-only.css            # Loaded only by advanced CSS studio
-│   ├── grid-responsive.css     # Viewing controls and simulated device shells
-│   └── grid-preview.css        # Actual media queries of the embedded document
 ├── examples/
-│   └── bootstrap-live.html     # Isolated actual Bootstrap demo, pinned CDN
+│   └── bootstrap-live.html     # Optional real library integration
+├── styles/
+│   ├── site.css                # Shared typography, navigation and tokens
+│   ├── labs.css                # Interactive lessons only
+│   ├── exhibits.css            # Origins exhibits only
+│   ├── css-only.css            # Creative CSS studio only
+│   ├── grid-preview.css        # Media queries inside embedded viewport
+│   └── grid-responsive.css     # Viewing-mode controls and device frames
 ├── scripts/
-│   ├── site.js                 # Optional site motion toggle
-│   ├── catalogue.js            # Homepage only
-│   ├── labs.js                 # Interactive lesson pages only
-│   └── grid-responsive.js      # Viewing controls; Grid rules stay in CSS
-└── tests/site.test.mjs         # Dependency-free structural checks
+│   ├── site.js                 # Optional motion preference
+│   ├── catalogue.js            # Homepage filtering
+│   ├── labs.js                 # Adjustable experiment controls
+│   └── grid-responsive.js      # Viewing tabs, slider and frame scaling
+├── tests/site.test.mjs         # Dependency-free structural smoke tests
+└── .github/workflows/          # Automated checks
 ```
 
-The [responsive composition viewer](pages/grid/grid.html) starts with the original full-width artwork, then offers accessible Desktop, Tablet and Mobile viewing tabs. The desktop browser shell has a width slider. Each mode displays a **real embedded document** whose `@media` rules use the embedded CSS viewport width. On narrow physical screens the device frame is scaled visually to fit; the iframe still uses the intended layout width, unlike a screenshot or a simply resized container. With JavaScript disabled, the original artwork remains visible.\n\nA route like `lessons/grid.html` is a real document, not an instruction to a client-side router. The browser handles bookmarks, refresh, navigation history and relative URLs. Shared CSS is cached across pages, while the lab CSS and JS are explicitly included only where needed: **page-level resource splitting without a bundler**. A build tool or content generator may become useful later if duplicated editorial layouts become costly to maintain.
+### Why separate HTML pages?
 
-## Origins studio: preserving history, not stale dependencies
+Because **URLs and navigation are part of the curriculum**. A link from `lessons/grid.html` back to `../index.html` is a normal document navigation. Deep links, bookmarks, refresh, back/forward history, and meaningful content all work without a JavaScript router.
 
-The original four exhibit URLs are still valid. They are now modern interpretations of their original teaching goals:
+Each page links to the shared stylesheet, which browsers can cache across navigation. Extra CSS and JavaScript load on the pages that use them. That's a straightforward example of **page-level resource splitting**—not an attempt to imitate a bundler-generated chunk system.
 
-- [CSS Grid composition](pages/grid/grid.html)
-- [Flexbox resource cards](pages/flex/flex.html)
-- [Bootstrap to design systems](pages/bootstrap/bootstrap.html)
-- [Layered atmospheric scene](pages/traditional/traditional.html)
+A static site generator or framework could make larger-scale content maintenance easier later. For now, the simplest architecture is also one of the things this project teaches.
 
-They were **rebuilt as responsive, accessible, self-contained interpretations** using the same design system as the rest of the site. They no longer request Google Fonts, dynamic Unsplash/third-party image endpoints, old CDPN/S3 imagery, Pexels photos, or Bootstrap 4 from a CDN. The exhibits use native HTML/CSS and no unreviewed third-party runtime dependency. The Bootstrap exhibit retains its original purpose of teaching how to actually include and use Bootstrap. Its optional [working Bootstrap starter](examples/bootstrap-live.html) pins a genuine Bootstrap 5 release with official SRI hashes. **Only that isolated example** relies on a third-party CDN. The rest of the educational site remains independent of it.
+### Does “CSS-only” mean no JavaScript anywhere?
 
-The original versions remain permanently reviewable in the repository's historical Git commit:
-[Open the pre-revival source snapshot](https://github.com/ianmitch90/HTMLCSS/tree/3f31dbedf70553d919d1a55de04cf175d8d75372).
+No. Some learning controls use small JavaScript modules, and the optional motion-preference control is implemented in `site.js`. But the **visual effects and interaction state in the [CSS-only studio](lessons/css-only.html)**—including the card edge, SVG path, chart mode and mini-game choices—use HTML and CSS themselves.
 
-Unused original images and legacy CSS were pruned from this prototype's working tree to reduce download/bloat and maintenance surface. Their history is preserved in Git; they were not simply overwritten or lost.
+That distinction matters. CSS can express a surprising amount of visual behavior, but it is not a replacement for secure validation, complex game rules, data transformations, persistence or reliable live announcements to assistive technologies.
 
-The landscape in the revised atmospheric exhibit recreates the original **CSS-only illusion of a zoom into the mountains and a cloud fade**, followed by a reversible zoom out. A native checkbox drives the effect via CSS selectors; reduced-motion preferences preserve a still version. The geometric composition and Flexbox cards require no remote illustrations, fonts or images.
+### What dependencies are required?
 
-## Libraries are choices, not prerequisites
+**For the main site:** none beyond a modern browser and an HTTP file server when working locally.
 
-See [the toolkit lesson](lessons/toolkit.html) for approachable and developer-focused comparisons:
+The visual lessons and rebuilt origin exhibits do not need external fonts, image hosting, component packages or animation services to render. Links to documentation, reference sites, and the original source naturally lead to external resources. The standalone Bootstrap example is an explicit exception: it uses a pinned CDN distribution with Subresource Integrity to demonstrate how a real library is imported.
 
-- **Native browser primitives:** zero extra dependency, but the team owns consistency and custom accessibility.
-- **Bootstrap:** an established CSS/UI toolkit usable with static HTML. Its modern JavaScript plugins no longer require jQuery; the repo includes a genuine separate Bootstrap demonstration.
-- **Tailwind:** utility-first styling generally compiled into production CSS; the browser Play CDN is for experimentation only.
-- **Material Design vs Material UI:** Google's design language vs a React component implementation.
-- **Fluent, Carbon and Spectrum:** long-lived organization-level design systems with particular implementation libraries.
-- **Radix and React Aria:** accessibility-focused components/primitives for appropriate framework stacks.
-- **Web Components:** reusable custom elements, with framework-independent offerings available.
-- **jQuery:** valuable for existing ecosystems and compatibility, not an automatic requirement for new work.
-- **Alpine.js, htmx, component galleries:** situational explorations whose releases and integrations should be reviewed before adoption.
+## Test, experiment and contribute
 
-The guide intentionally avoids fragile version-number promises. Tools evolve; learners should consult the linked official docs, release/support policies, licenses, security information and actual bundle output when choosing a dependency. No framework automatically makes the finished site accessible.
-
-## Quality checks
+The repository includes structural checks using Node's built-in test runner. No package installation is required:
 
 ```bash
 node --test tests/site.test.mjs
+
 node --check scripts/site.js
 node --check scripts/catalogue.js
 node --check scripts/labs.js
+node --check scripts/grid-responsive.js
 ```
 
-The GitHub Actions workflow runs these checks on the prototype branch and pull requests. The tests verify real routes, local asset references, site navigation, focus/skip-link foundations, staged-exhibit independence from remote assets and the presence of the new toolkit curriculum.
+These tests cover direct document routes, local paths and anchors, navigation, markup conventions, the independent responsive Grid layouts, and certain accessibility foundations. They are **not** a substitute for browser rendering, visual comparison, performance testing or a complete accessibility audit.
 
-**WCAG 2.2 Level AA is the target, not a claim of completed compliance.** Structural tests cannot replace real browser and assistive-technology audits. Before release, validate keyboard-only paths, screen readers, zoom/reflow, contrast, reduced-motion, forced-colors, browser interoperability and performance. Automated axe/Playwright, visual regression and ongoing link health checks are potential future improvements.
+**Accessibility target:** WCAG 2.2 Level AA. This is an engineering and design goal, **not a claim of verified conformance**. Before treating a change as production-ready, test keyboard navigation, visible focus, zoom and reflow, reduced motion, contrast, relevant screen readers, and the browsers/devices your audience uses.
 
-## Content longevity principles
+Want to explore the code or make a change? A good first experiment is to:
 
-1. Teach `why`, not only `how`; favor browser fundamentals that outlive current frameworks.
-2. Use real links, semantic HTML and progressive enhancement.
-3. Keep the required teaching experience independent of external fonts, images, CDN scripts and transient APIs. Isolate external library examples and pin their versions with integrity.
-4. Distinguish widely supported features from progressive enhancement and experimental APIs using [Web Platform Baseline](https://web.dev/baseline).
-5. Prefer official, maintained documentation to personal blogs that might disappear.
-6. Cover when not to use a feature or library, what it costs, and who must maintain it.
-7. Make accessible behavior and performance part of the initial implementation.
-8. Preserve the original project source through a pinned history reference while keeping current URLs useful.
+- Change a design token in `styles/site.css` and see where it appears.
+- Adjust an exercise in `lessons/`, keeping its semantic HTML intact.
+- Explore the real CSS media queries in `styles/grid-preview.css`.
+- Compare a simple effect in `styles/css-only.css` against the same outcome built with JavaScript.
+- Run the tests, then check the result with your keyboard and browser inspector.
 
-## Editorial and design references
+For a proposed contribution, keep the educational goals in mind: **teach the reason, use the platform appropriately, preserve accessibility, state tradeoffs clearly, and avoid adding a dependency without a specific benefit.** Fixes, clarifications, accessible examples, and maintenance improvements are all useful.
+
+## The original project is preserved
+
+The original project explored CSS at a time when many of today's layout and interaction capabilities were still new or less widely used. Among its goals were:
+
+- Showing the expressive possibilities of Grid and Flexbox.
+- Demonstrating how to include and use Bootstrap directly.
+- Creating the *illusion* of scripted zoom and atmospheric effects with HTML and CSS.
+- Encouraging readers to inspect the source instead of treating a visual effect as magic.
+
+The modern Origins studio revisits those ideas as self-contained examples. **It is not a verbatim reproduction of the 2018 site.**
+
+If you want the original code as it stood immediately before the revival, go directly to:
+
+**[Original project archive branch: `archive/original-2018-2020`](https://github.com/ianmitch90/HTMLCSS/tree/archive/original-2018-2020)**
+
+That branch points to the historical pre-revival commit `3f31dbedf70553d919d1a55de04cf175d8d75372`. It preserves the old structure, assets and dependencies for reference. Some of those remote resources may no longer work, which is part of the reason the current version was made more self-contained.
+
+You can inspect or locally check out the archive without changing the primary installation instructions:
+
+```bash
+git fetch origin
+git switch --detach origin/archive/original-2018-2020
+# To return to the current project:
+git switch master
+```
+
+Please use `master` for the modern learning experience and new contributions. The archive is there to make the evolution visible.
+
+## Why I revived this project
+
+*An author's note*
+
+I originally built this project out of curiosity: I wanted to understand what the browser could do with HTML and CSS alone, and I wanted other people to be able to run the code, change it, and discover things for themselves.
+
+Revisiting it years later felt especially relevant because of how quickly software development is changing. AI-assisted tools can now help produce an extraordinary amount of working code. That lowers the barrier for people who aren't developers, and it changes what experienced engineers spend their time doing. I see that increased access as a good thing.
+
+**I used AI assistance extensively to revive this project.** I'm not hiding that. The new curriculum, design and implementation grew through an iterative conversation: research, generating code, examining the results, identifying mismatches, and making targeted corrections. I provided direction, reviewed the work and kept refining how the examples connected to the actual intent of the original project.
+
+That process also reinforced something I don't want to lose: **understanding the fundamentals matters even more when generating code becomes easier**.
+
+An assistant can create a plausible page quickly. It may also make reasonable-looking assumptions about things that weren't fully specified. Is this a single-page application or a collection of real HTML routes? Is a glowing border supposed to rotate, or should only the light travel around a stationary edge? Is an old Bootstrap example a history lesson, or is its real purpose to demonstrate using the actual library? Small distinctions like these change the implementation.
+
+Good review is not just noticing that something looks wrong. It is having enough context to explain **why** it is wrong, which constraint matters, and how to fix it without introducing unnecessary changes elsewhere.
+
+I don't think this needs to become an argument about “vibe coding” versus traditional engineering. People arrive with different levels of knowledge and different goals. AI tools can help all of us explore more. But accessibility, browser behavior, user experience, systems thinking, and thoughtful constraints are not made obsolete by automation. They are part of how we steer it.
+
+This is a small project, deliberately so. It offers a concrete, freely available example of what can happen when an older learning resource is revisited with new tools **and** an understanding of the platform underneath them.
+
+I want the project to be useful whether you're opening your first HTML file, exploring design, or reviewing the work of an AI coding agent. Learn the primitives; use libraries when they save you meaningful work; ask better questions as your understanding grows.
+
+The repository also preserves the pre-revival source and the [AI-assisted development pull request](https://github.com/ianmitch90/HTMLCSS/pull/2), so the process is visible rather than presented as a mysterious finished artifact.
+
+— **Ian Mitchell**
+
+## Keeping the guide useful over time
+
+This is meant to be a **free, open educational resource**, not a course that requires an account or an ongoing dependency on a proprietary service. Some examples explore newer CSS features, and browsers and libraries will continue to evolve. Where a feature is experimental, the lessons aim to say so; follow official documentation and [Web Platform Baseline](https://web.dev/baseline) when compatibility matters.
+
+Future improvements can be small: fix a misleading explanation, simplify a demo, improve keyboard support, update a standards reference, or add a new experiment. There's no requirement to chase every framework release or rebuild the site's architecture for each trend.
+
+### Recommended references
 
 - [MDN Curriculum](https://developer.mozilla.org/en-US/curriculum/)
 - [WHATWG HTML Living Standard](https://html.spec.whatwg.org/)
-- [W3C WCAG 2.2](https://www.w3.org/TR/WCAG22/)
-- [W3C ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/)
+- [W3C Web Content Accessibility Guidelines 2.2](https://www.w3.org/TR/WCAG22/)
+- [W3C WAI Authoring Practices](https://www.w3.org/WAI/ARIA/apg/)
 - [Web Platform Baseline](https://web.dev/baseline)
 - [web.dev Learn](https://web.dev/learn/)
 
-Visual-gallery ideas, including patterns on 21st.dev, informed this independently authored design. No third-party gallery component was copied or introduced without code, license, accessibility and support review.
-
 ## License
 
-MIT, as in the original [LICENSE.md](LICENSE.md).
+[MIT](LICENSE.md), consistent with the original project.
+
+---
+
+**[Explore the live guide](https://ianmitch90.github.io/HTMLCSS/)** · **[Browse the source](index.html)** · **[Study the original branch](https://github.com/ianmitch90/HTMLCSS/tree/archive/original-2018-2020)**
