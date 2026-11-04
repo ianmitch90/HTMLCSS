@@ -13,7 +13,7 @@
 <nav class="studio-toc" aria-label="Jump to an experiment"><a href="#cards">Luminous cards</a><a href="#svg">Animated SVG</a><a href="#chart">Data visualization</a><a href="#game">Mini-game</a><a href="#decisions">When not to use CSS alone</a></nav></header>
 <section id="cards" class="studio-section" aria-labelledby="cards-title">
 <div class="studio-section-head"><p class="section-kicker">01 / LIGHT WITHOUT SHADERS</p><h2 id="cards-title">An ambient halo has a job.</h2>
-<p>These generic product and editorial cards combine an ambient color field, thin illuminated edge and brief one-shot traveling highlight. Their glow is optional feedback, not the only way to understand or activate a card. Try them with a mouse and with the Tab key.</p></div>
+<p>The original product and editorial cards combine an ambient color field, thin edge and brief one-shot traveling highlight. Two additive variations below explore a double-edge runner and a polished, glassy surface. Their glow remains optional feedback, never the only way to understand an action.</p></div>
 <div class="studio-badges"><span>CSS gradients</span><span>Pseudo-elements</span><span>Mask compositing</span><span>:focus-within</span><span>Reduced motion</span></div>
 <div class="studio-card-stage"><p class="stage-topline">STUDIO SCENE / LIGHT AS CONTEXT</p><label class="ambient-toggle"><input id="ambient-enabled" type="checkbox"> Illuminate the surrounding field</label>
 <div class="ambient-shelf">
@@ -23,7 +23,40 @@
 <article class="luminous-card alt"><span class="edge-track" aria-hidden="true"></span><span class="card-kicker">EDITORIAL STUDY / 002</span>
 <div class="card-symbol"><svg viewBox="0 0 150 115" role="img" aria-labelledby="folio-title folio-desc"><title id="folio-title">Layered papers</title><desc id="folio-desc">Overlapping warm paper rectangles with three horizontal lines</desc><rect x="37" y="17" width="64" height="82" rx="7" transform="rotate(-10 37 17)" fill="#b2bbb7"/><rect x="49" y="17" width="64" height="82" rx="7" transform="rotate(7 49 17)" fill="#e9c8aa"/><path d="M62 39H95M62 51H103M62 63H92" stroke="#8f6955" stroke-width="4" stroke-linecap="round"/></svg></div>
 <h3>Notes from the Studio</h3><p>An imagined reading card with a different accent and exactly the same semantic contract.</p><a class="card-action" href="#svg">Explore vector animation →</a></article>
-</div></div>
+
+</div>
+<section class="luminous-variant-series" aria-labelledby="luminous-variants-heading">
+  <div class="variant-series-heading">
+    <div><p class="stage-topline">TWO MORE SURFACE STUDIES / SAME BROWSER PRIMITIVES</p>
+      <h3 id="luminous-variants-heading">Two ways to build on the light.</h3></div>
+    <p>The original cards above stay unchanged. These additive studies isolate a <strong>double-edge runner</strong> and a <strong>glossy glass surface</strong> so the difference is easy to inspect.</p>
+  </div>
+  <div class="luminous-variant-grid">
+    <article class="luminous-variant variant-dual">
+      <span class="variant-inner-stroke" aria-hidden="true"></span>
+      <span class="variant-runner" aria-hidden="true"></span>
+      <div class="variant-content">
+        <span class="variant-kicker">LIGHT SYSTEM / 003</span>
+        <div class="variant-ornament variant-ornament-rings" aria-hidden="true"><span></span><span></span><span></span></div>
+        <h4>Double-edge runner</h4>
+        <p>Two fixed outlines give the object structure. A separate copper highlight makes one short pass around the outer perimeter on hover or focus.</p>
+        <a href="#decisions">Why separate the layers? <span aria-hidden="true">↗</span></a>
+      </div>
+    </article>
+    <article class="luminous-variant variant-gloss">
+      <span class="variant-inner-stroke" aria-hidden="true"></span>
+      <span class="variant-runner" aria-hidden="true"></span>
+      <div class="variant-content">
+        <span class="variant-kicker">MATERIAL SYSTEM / 004</span>
+        <div class="variant-ornament variant-ornament-bars" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+        <h4>Prismatic glass</h4>
+        <p>A cool translucent layer, restrained bronze glints and a fixed internal line make a data-preview surface feel dimensional without a WebGL renderer.</p>
+        <a href="#chart">Compare a CSS visualization <span aria-hidden="true">↗</span></a>
+      </div>
+    </article>
+  </div>
+</section>
+</div>
 <div class="studio-code-grid"><div><h3>Why layered light works</h3><p>A radial gradient provides the quiet atmospheric glow. A masked conic gradient becomes a perimeter edge. A separately painted edge track keeps the border stationary while a short light segment travels its perimeter once when you hover or focus within the card.</p>
 <pre><code>.card::before { /* ambient field */ }
 .card .edge-track { /* a stationary masked border surface */ }

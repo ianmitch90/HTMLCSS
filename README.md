@@ -12,6 +12,8 @@ A free, interactive field guide to HTML, CSS, responsive design, accessibility, 
 
 ## What is this?
 
+The visual language is deliberately restrained: deep teal, warm bronze, and cream. The refreshed landing hero uses an editorial browser-art treatment, and the CSS-only studio includes extra double-edge and glass material studies. The atmospheric landscape is still browser-drawn CSS, with gentle staggered cloud movement and reduced-motion support.
+
 This project began in **2018** as a small collection of experiments in what HTML and CSS could do. It explored CSS Grid, Flexbox, framework styling, and even the illusion of complex interactive effects without requiring a JavaScript application.
 
 The modern version turns that same curiosity into a cohesive learning resource. Each lesson begins with a question, invites you to inspect or change something, and explains the browser behavior and tradeoffs behind the result. The aim is to help people **develop intuition**, not merely memorize properties.

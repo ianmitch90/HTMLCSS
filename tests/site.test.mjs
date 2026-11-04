@@ -223,3 +223,45 @@ test('Grid preview rearranges all nine tiles without overlap at each breakpoint'
     assert.ok(slots.every(count=>count===1),name+' fills all cells without holes');
   }
 });
+
+
+test('editorial bronze grading keeps the homepage hero and all direct routes', async () => {
+  const page=await read('index.html');
+  const css=await read('styles/site.css');
+  assert.match(page, /id="hero-heading"/);
+  assert.match(page, /class="browser-dots"/);
+  assert.match(page, /href="\.\/lessons\/browser\.html"/);
+  assert.match(page, /href="#explore"/);
+  assert.match(css, /--paper: #eee8de/);
+  assert.match(css, /--surface: #faf4e9/);
+  assert.match(css, /\.hero \.hero-art/);
+  assert.match(css, /radial-gradient\(ellipse at 88% 8%/);
+});
+
+test('two additive luminous studies preserve the original CSS-only cards', async () => {
+  const html=await read('lessons/css-only.html');
+  const css=await read('styles/css-only.css');
+  assert.equal((html.match(/<article class="luminous-card(?: alt)?">/g)??[]).length,2);
+  assert.equal((html.match(/class="luminous-variant variant-/g)??[]).length,2);
+  assert.match(html,/id="luminous-variants-heading"/);
+  assert.match(html,/class="variant-inner-stroke"/);
+  assert.match(html,/class="variant-runner"/);
+  assert.match(css,/\.luminous-variant \.variant-inner-stroke/);
+  assert.match(css,/\.luminous-variant \.variant-runner/);
+  assert.match(css,/\.luminous-variant:is\(:hover,:focus-within\) \.variant-runner/);
+  assert.match(css,/\.luminous-variant \.variant-runner \{animation:none!important\}/);
+});
+
+test('atmospheric landscape keeps a reversible CSS zoom and accessible motion fallback', async () => {
+  const html=await read('pages/traditional/traditional.html');
+  const css=await read('styles/exhibits.css');
+  assert.match(html,/id="depth-toggle"/);
+  assert.equal((html.match(/class="cloud cloud-/g)??[]).length,3);
+  assert.equal((html.match(/class="swell-/g)??[]).length,2);
+  assert.match(css,/@keyframes cloud-wisp/);
+  assert.match(css,/animation-delay:-6s/);
+  assert.match(css,/animation-delay:-14s/);
+  assert.match(css,/:has\(#depth-toggle:checked\) \.depth-scene \.cloud-bank \{ opacity:0; \}/);
+  assert.match(css,/\.depth-scene \.cloud \{ animation:none!important;opacity:.38; \}/);
+  assert.doesNotMatch(html,/<(?:script|img)\b[^>]*(?:src)="https?:\/\//i);
+});
