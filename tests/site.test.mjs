@@ -223,3 +223,41 @@ test('Grid preview rearranges all nine tiles without overlap at each breakpoint'
     assert.ok(slots.every(count=>count===1),name+' fills all cells without holes');
   }
 });
+
+
+test('bronze color grade preserves home hero content and established lesson structure', async () => {
+  const css=await read('styles/site.css');
+  const home=await read('index.html');
+  assert.match(css,/Bronze & deep-teal polish/);
+  assert.match(css,/\.hero h1 em\{color:#efc28f/);
+  assert.match(css,/\.hero-art::before/);
+  assert.match(home,/The web is<br>a living <em>material\.<\/em>/);
+  assert.match(home,/href="\.\/lessons\/browser\.html"/);
+  assert.match(home,/href="#explore"/);
+});
+
+test('CSS studio provides three independent luminous material studies', async () => {
+  const html=await read('lessons/css-only.html');
+  const css=await read('styles/css-only.css');
+  assert.equal((html.match(/<article class="luminous-card/g)||[]).length,3);
+  assert.match(html,/The Ember Desk Light/);
+  assert.match(html,/class="luminous-card alt dual-edge"/);
+  assert.match(html,/class="luminous-card glass-study"/);
+  assert.match(css,/\.dual-edge \.inner-edge/);
+  assert.match(css,/\.glass-study::after/);
+  assert.match(css,/@keyframes edge-run/);
+  assert.doesNotMatch(css,/transform:rotate\(360deg\)/);
+});
+
+test('CSS atmosphere has staggered cloud wisps and motion-safe fallbacks', async () => {
+  const html=await read('pages/traditional/traditional.html');
+  const css=await read('styles/exhibits.css');
+  assert.match(html,/class="cloud cloud-far"/);
+  assert.match(html,/class="cloud cloud-near"/);
+  assert.match(html,/class="dune"/);
+  assert.match(css,/@keyframes cloud-traverse/);
+  assert.match(css,/@keyframes cloud-breathe/);
+  assert.match(css,/prefers-reduced-motion:reduce/);
+  assert.match(css,/data-reduce-motion="true"/);
+  assert.match(css,/:has\(#depth-toggle:checked\)/);
+});
