@@ -38,7 +38,7 @@
   .grid-responsive-primer pre{font-size:.78rem}
 }
 @media(max-width:750px){
-  .grid-responsive-primer{grid-template-columns:1fr}
+  .grid-responsive-primer{grid-template-columns:minmax(0,1fr)}
   .grid-view-tabs [role="tab"]{flex-basis:calc(50% - .5rem)}
 }
 @media(max-width:400px){.grid-view-tabs [role="tab"]{flex-basis:100%}}

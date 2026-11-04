@@ -88,7 +88,7 @@
   .mini-game summary{font-weight:750;cursor:pointer}
   .studio-footer-link{display:inline-block;margin-block:2rem;font-weight:800}
 }
-@media(max-width:800px){.ambient-shelf,.svg-exhibit,.studio-code-grid{grid-template-columns:1fr}.game-options{grid-template-columns:1fr}}
+@media(max-width:800px){.ambient-shelf,.svg-exhibit,.studio-code-grid{grid-template-columns:minmax(0,1fr)}.game-options{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){
  .luminous-card::before,.ambient-shelf::before,.luminous-card .edge-track,.chart-bar{animation:none!important;transition:none!important}
  .svg-exhibit .trace{stroke-dashoffset:0}
