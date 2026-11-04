@@ -1,0 +1,48 @@
+/* Responsive viewing studio for the Mondrian-inspired exhibit.
+   Device shells have fixed logical CSS viewport widths inside an iframe.
+   Only the visual representation is scaled to fit smaller physical screens.
+   The parent page still has a working default composition without JS. */
+@layer components {
+  .grid-viewer{margin-block:2rem 1rem}
+  .grid-view-tabs{display:flex;gap:.45rem;flex-wrap:wrap;padding:.35rem;background:#e7ebe2;border:1px solid #b8c4b8;border-radius:.55rem;margin-bottom:1.3rem}
+  .grid-view-tabs [role="tab"]{min-height:44px;flex:1 1 130px;border:1px solid transparent;background:transparent;color:var(--accent);border-radius:.36rem;padding:.6rem .75rem;font-weight:750;font-size:.88rem;line-height:1.3}
+  .grid-view-tabs [role="tab"][aria-selected="true"]{background:#1c5048;color:white;border-color:#1c5048}
+  .grid-view-tabs [role="tab"]:hover:not([aria-selected="true"]){background:#f8f9f2}
+  .grid-view-tabs [role="tab"]:focus-visible{outline:3px solid #006d8f;outline-offset:2px}
+  .grid-view-panel{min-width:0}
+  .grid-view-panel[hidden]{display:none!important}
+  .grid-view-note{font-size:.92rem;color:#36554b;max-width:75ch;margin-top:1rem}
+  .grid-preview-tools{display:flex;justify-content:space-between;align-items:center;gap:1.3rem;flex-wrap:wrap;margin:1.3rem 0}
+  .grid-preview-tools label{font-size:.9rem;font-weight:750}
+  .grid-preview-tools .grid-slider{display:flex;flex:1 1 220px;align-items:center;gap:1rem}
+  .grid-preview-tools input[type="range"]{width:100%;accent-color:#1d6254;min-height:44px;cursor:pointer}
+  .grid-preview-tools output{font-size:.85rem;font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:800;color:#18483e}
+  .grid-preview-stage{padding:clamp(.5rem,2vw,1.3rem);display:flex;justify-content:center;align-items:start;overflow:hidden;min-width:0;background:repeating-linear-gradient(45deg,#f0f0e8 0px,#f0f0e8 12px,#e6ebe2 12px,#e6ebe2 24px);border:1px solid #b1c3b6;border-radius:.55rem}
+  .grid-preview-mount{width:100%;max-width:100%;position:relative;flex:none}
+  .grid-preview-device{display:block;transform-origin:top left;background:#fffdf7;border:2px solid #24483e;box-shadow:0 6px 22px #102f2c27;border-radius:12px;overflow:hidden}
+  .grid-preview-device[data-form="tablet"]{border-width:12px;border-radius:22px}
+  .grid-preview-device[data-form="phone"]{border-width:12px;border-radius:30px}
+  .grid-preview-chrome{height:44px;display:flex;align-items:center;gap:.75rem;border-bottom:1px solid #b4c0b6;background:#e7ece6;color:#284d41;padding:0 1rem;font-size:13px;white-space:nowrap}
+  .grid-preview-chrome .chrome-dots{letter-spacing:.15em;font-size:18px;color:#b56551}
+  .grid-preview-url{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;text-align:center;border:1px solid #bdc8bd;border-radius:6px;padding:.25rem .6rem;background:#f6f8f1;font-family:ui-monospace,monospace}
+  .grid-preview-chrome.device-only{height:30px;justify-content:center;background:#233d37;color:#e8f1e6}
+  .grid-preview-chrome.device-only .device-notch{display:block;width:90px;height:7px;background:#a4b9a7;border-radius:30px}
+  .grid-preview-iframe{display:block;border:0;background:#eee8da;max-width:none}
+  .grid-preview-metrics{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:1rem;font-size:.8rem;color:#435d51}
+  .grid-preview-metrics strong{color:#173f39}
+  .grid-responsive-primer{border-top:1px solid #cad5c9;margin-top:2rem;padding-top:1.6rem;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:1.8rem}
+  .grid-responsive-primer h3{font-family:var(--sans);font-size:1.15rem;font-weight:800;margin-bottom:.6rem}
+  .grid-responsive-primer p{color:var(--muted);font-size:.95rem}
+  .grid-responsive-primer ul{padding-left:1.25rem;margin:.7rem 0}
+  .grid-responsive-primer li{margin-block:.45rem}
+  .grid-responsive-primer pre{font-size:.78rem}
+}
+@media(max-width:750px){
+  .grid-responsive-primer{grid-template-columns:1fr}
+  .grid-view-tabs [role="tab"]{flex-basis:calc(50% - .5rem)}
+}
+@media(max-width:400px){.grid-view-tabs [role="tab"]{flex-basis:100%}}
+@media(forced-colors:active){
+  .grid-preview-device,.grid-view-tabs [role="tab"][aria-selected="true"]{border-color:CanvasText}
+  .grid-preview-stage{border:1px solid CanvasText}
+}

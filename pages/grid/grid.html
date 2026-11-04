@@ -1,11 +1,74 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="A modern, CSS-only reconstruction of the original Mondrian-inspired layout. The visual effect no longer depends on an external image host or a hover-only reveal."><title>Composition is a relationship. · The Web Is a Material</title><meta name="theme-color" content="#f5f2e9">
 <!-- No remote fonts, photos, animation assets, libraries or CDN dependencies. -->
-<link rel="stylesheet" href="../../styles/site.css"><link rel="stylesheet" href="../../styles/exhibits.css"><script type="module" src="../../scripts/site.js"></script></head><body>
+<link rel="stylesheet" href="../../styles/site.css"><link rel="stylesheet" href="../../styles/exhibits.css"><link rel="stylesheet" href="../../styles/grid-responsive.css"><script type="module" src="../../scripts/site.js"></script><script type="module" src="../../scripts/grid-responsive.js"></script></head><body>
 <a class="skip-link" href="#main">Skip to main content</a>
 <header class="site-header"><div class="header-inner"><a class="brand" href="../../index.html" aria-label="The Web Is a Material, home"><span class="brand-mark" aria-hidden="true">h<span>/</span>c</span><span class="brand-copy">THE WEB IS<br>A MATERIAL<span class="brand-period">.</span></span></a><nav class="main-nav" aria-label="Main navigation"><a href="../../index.html">Discover</a><a href="../../index.html#explore">Lessons</a><a href="../../lessons/css-only.html">CSS-only studio</a><a href="../../lessons/toolkit.html">Tools &amp; libraries</a><a href="../../accessibility.html">Accessibility</a><a href="../../archive.html">Origins</a></nav><button class="motion-button" type="button" data-motion-toggle aria-pressed="false">Reduce site motion</button></div></header><main id="main" class="section-wrap exhibit-page"><nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span aria-hidden="true">/</span><a href="../../archive.html">Origins studio</a><span aria-hidden="true">/</span>CSS Grid</nav><div class="exhibit-intro"><div><p class="section-kicker">ORIGINS STUDIO / CSS GRID</p><h1 class="exhibit-heading">Composition is a relationship.</h1><p class="exhibit-lead">A modern, CSS-only reconstruction of the original Mondrian-inspired layout. The visual effect no longer depends on an external image host or a hover-only reveal.</p></div><aside class="exhibit-side"><strong>Made new, not erased.</strong><p>This exhibit reinterprets one of the original experiments in native HTML and CSS. No external photos, fonts or runtime libraries are required.</p><p><a href="../../lessons/grid.html">Read the full modern lesson ↗</a></p><p><a href="https://github.com/ianmitch90/HTMLCSS/blob/3f31dbedf70553d919d1a55de04cf175d8d75372/pages/grid/grid.html">Inspect the original source ↗</a></p></aside></div>
-<section class="exhibit-studio" aria-labelledby="artwork-heading"><h2 id="artwork-heading">Nine fields. One grid.</h2><p>Each colored region is an HTML element occupying defined Grid tracks. There are no bitmap assets: resizing the page recalculates the composition rather than stretching a screenshot. The work is an original geometric interpretation, not a reproduction of a specific copyrighted image.</p>
-<div class="exhibit-artwork" role="img" aria-label="A nine-part geometric composition of cream, mustard, coral, sage and slate-blue rectangular fields separated by deep green lines"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<section class="exhibit-studio" aria-labelledby="artwork-heading"><h2 id="artwork-heading">Nine fields. One grid.</h2><p>Each colored region is an HTML element occupying defined Grid tracks. There are no bitmap assets. The original composition remains below, while the desktop, tablet and phone views let you see true CSS viewport breakpoints without manually resizing your browser. The work is an original geometric interpretation, not a reproduction of a specific copyrighted image.</p>
+
+<div class="grid-viewer" data-grid-viewer>
+  <div class="grid-view-tabs" role="tablist" aria-label="Preview responsive Grid layouts" data-grid-tabs hidden>
+    <button type="button" role="tab" id="grid-tab-original" aria-controls="grid-panel-original" aria-selected="true" tabindex="0">Original composition</button>
+    <button type="button" role="tab" id="grid-tab-desktop" aria-controls="grid-panel-desktop" aria-selected="false" tabindex="-1">Desktop</button>
+    <button type="button" role="tab" id="grid-tab-tablet" aria-controls="grid-panel-tablet" aria-selected="false" tabindex="-1">Tablet</button>
+    <button type="button" role="tab" id="grid-tab-mobile" aria-controls="grid-panel-mobile" aria-selected="false" tabindex="-1">Mobile</button>
+  </div>
+  <section class="grid-view-panel" id="grid-panel-original" role="tabpanel" aria-labelledby="grid-tab-original" tabindex="0">
+    <div class="exhibit-artwork" role="img" aria-label="A nine-part geometric composition of cream, mustard, coral, sage and slate-blue rectangular fields separated by deep green lines"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    <p class="grid-view-note"><strong>Original view:</strong> this full-width composition stays as the starting point. Resize your browser to see how the available space changes its proportions. The other modes let you study responsive Grid arrangements without resizing your own window.</p>
+  </section>
+  
+<section class="grid-view-panel" id="grid-panel-desktop" role="tabpanel" aria-labelledby="grid-tab-desktop" tabindex="0" hidden>
+  <div class="grid-preview-tools"><label for="grid-desktop-width">Adjust the browser viewport width</label><div class="grid-slider"><input id="grid-desktop-width" type="range" min="320" max="1360" step="20" value="1120" aria-describedby="grid-desktop-hint"><output id="grid-desktop-output" for="grid-desktop-width">1120px</output></div></div><p id="grid-desktop-hint" class="grid-view-note">Drag the slider to cross the tablet (900px) and phone (540px) breakpoints. The preview uses an actual embedded document viewport.</p>
+  <div class="grid-preview-stage" data-grid-stage data-device="desktop" data-viewport-width="1120" data-viewport-height="580">
+    <div class="grid-preview-mount" data-grid-mount>
+      <div class="grid-preview-device" data-grid-frame data-form="browser">
+        <div class="grid-preview-chrome device-only" aria-hidden="true"><span class="device-notch"></span></div>
+        <iframe class="grid-preview-iframe" src="preview.html" title="browser" width="1120" height="580" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+  <div class="grid-preview-metrics"><span>Simulated CSS viewport: <strong data-width-label="desktop">1120px</strong></span><span data-scaled-note>Scaled to fit your screen when needed.</span></div>
+  <p class="grid-view-note">The desktop frame behaves like a real browser viewport. Its slider can move from narrow phone widths to wide desktop widths while keeping the same HTML elements.</p>
+</section>
+  
+<section class="grid-view-panel" id="grid-panel-tablet" role="tabpanel" aria-labelledby="grid-tab-tablet" tabindex="0" hidden>
+  
+  <div class="grid-preview-stage" data-grid-stage data-device="tablet" data-viewport-width="768" data-viewport-height="700">
+    <div class="grid-preview-mount" data-grid-mount>
+      <div class="grid-preview-device" data-grid-frame data-form="tablet">
+        <div class="grid-preview-chrome device-only" aria-hidden="true"><span class="device-notch"></span></div>
+        <iframe class="grid-preview-iframe" src="preview.html" title="device" width="768" height="700" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+  <div class="grid-preview-metrics"><span>Simulated CSS viewport: <strong data-width-label="tablet">768px</strong></span><span data-scaled-note>Scaled to fit your screen when needed.</span></div>
+  <p class="grid-view-note">At 768px, the composition changes to six tracks and seven rows. Notice how the rectangles gain new positions rather than simply becoming smaller.</p>
+</section>
+  
+<section class="grid-view-panel" id="grid-panel-mobile" role="tabpanel" aria-labelledby="grid-tab-mobile" tabindex="0" hidden>
+  
+  <div class="grid-preview-stage" data-grid-stage data-device="mobile" data-viewport-width="390" data-viewport-height="740">
+    <div class="grid-preview-mount" data-grid-mount>
+      <div class="grid-preview-device" data-grid-frame data-form="phone">
+        <div class="grid-preview-chrome device-only" aria-hidden="true"><span class="device-notch"></span></div>
+        <iframe class="grid-preview-iframe" src="preview.html" title="device" width="390" height="740" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+  <div class="grid-preview-metrics"><span>Simulated CSS viewport: <strong data-width-label="mobile">390px</strong></span><span data-scaled-note>Scaled to fit your screen when needed.</span></div>
+  <p class="grid-view-note">At 390px, four tracks and a taller nine-row composition make better use of the available width. The same nine HTML elements remain in the same source order.</p>
+</section>
+</div>
+<div class="grid-responsive-primer"><div><h3>Responsive doesn't mean “shrink everything.”</h3><p>Responsive design means the layout adapts to the space and context available. This preview uses a separate document inside an iframe; its CSS <code>@media</code> rules respond to the embedded viewport width, even if you're browsing on your phone.</p><ul><li><strong>Desktop:</strong> eight columns, six rows (above 900px).</li><li><strong>Tablet:</strong> six columns, seven rows (541–900px).</li><li><strong>Mobile:</strong> four columns, nine rows (540px and below).</li></ul><p>The device frames are teaching aids, not pixel-perfect emulators of particular hardware or operating systems.</p></div><div><h3>One document, three arrangements.</h3><pre><code>/* Desktop is the base layout. */
+.mosaic { grid-template-columns: repeat(8, 1fr); }
+
+@media (max-width: 900px) {
+  .mosaic { grid-template-columns: repeat(6, 1fr); }
+}
+@media (max-width: 540px) {
+  .mosaic { grid-template-columns: repeat(4, 1fr); }
+}</code></pre><p>Explore the <a href="../../lessons/grid.html">interactive Grid lab</a> to change columns and gaps individually, or inspect <a href="../../styles/grid-preview.css">the responsive preview CSS</a> to see the actual track placement rules.</p></div></div>
 <details style="margin-top:1.4rem"><summary>How the art stays aligned</summary><p>CSS Grid defines eight equal column tracks and six row tracks. Individual spans use <code>grid-area: row-start / column-start / row-end / column-end</code>. This gives precise composition without positioning each tile absolutely.</p><pre><code>.artwork {
   display: grid;
   grid-template-columns: repeat(8, 1fr);

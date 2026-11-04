@@ -18,5 +18,6 @@ jobs:
           node --check scripts/site.js
           node --check scripts/catalogue.js
           node --check scripts/labs.js
+          node --check scripts/grid-responsive.js
       - name: Check document routes, asset independence and learning content
         run: node --test tests/site.test.mjs

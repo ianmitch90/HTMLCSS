@@ -17,6 +17,7 @@ The published `master` branch remains untouched until this draft prototype is ap
 - [Why does a browser need HTML?](lessons/browser.html) — semantics, DOM and rendering
 - [How should I organize a small website?](lessons/structure.html) — direct .html routes and source structure
 - [CSS Grid lab](lessons/grid.html) — tracks, two-dimensional layout, ordering
+- [Responsive Grid composition viewer](pages/grid/grid.html) — original composition plus actual desktop, tablet and mobile viewport previews, including a desktop width slider
 - [Flexbox lab](lessons/flex.html) — flexible sizing, main/cross axes, wrapping
 - [Native interaction](lessons/interaction.html) — focus, details, popover and dialog
 - [Color systems](lessons/color.html) — CSS variables, OKLCH, color-mix and contrast
@@ -57,7 +58,8 @@ HTMLCSS/
 │   ├── growing.html            # Static-to-dynamic application choices
 │   └── ...                     # Each lesson is a real HTML document
 ├── pages/
-│   ├── grid/grid.html
+│   ├── grid/grid.html            # Original + desktop/tablet/phone viewing modes
+│   ├── grid/preview.html         # Standalone embedded responsive document
 │   ├── flex/flex.html
 │   ├── bootstrap/bootstrap.html
 │   └── traditional/traditional.html
@@ -65,17 +67,20 @@ HTMLCSS/
 │   ├── site.css                # Shared, cacheable design system
 │   ├── labs.css                # Loaded only by interactive lessons
 │   ├── exhibits.css            # Loaded only by origins exhibits
-│   └── css-only.css            # Loaded only by advanced CSS studio
+│   ├── css-only.css            # Loaded only by advanced CSS studio
+│   ├── grid-responsive.css     # Viewing controls and simulated device shells
+│   └── grid-preview.css        # Actual media queries of the embedded document
 ├── examples/
 │   └── bootstrap-live.html     # Isolated actual Bootstrap demo, pinned CDN
 ├── scripts/
 │   ├── site.js                 # Optional site motion toggle
 │   ├── catalogue.js            # Homepage only
-│   └── labs.js                 # Interactive lesson pages only
+│   ├── labs.js                 # Interactive lesson pages only
+│   └── grid-responsive.js      # Viewing controls; Grid rules stay in CSS
 └── tests/site.test.mjs         # Dependency-free structural checks
 ```
 
-A route like `lessons/grid.html` is a real document, not an instruction to a client-side router. The browser handles bookmarks, refresh, navigation history and relative URLs. Shared CSS is cached across pages, while the lab CSS and JS are explicitly included only where needed: **page-level resource splitting without a bundler**. A build tool or content generator may become useful later if duplicated editorial layouts become costly to maintain.
+The [responsive composition viewer](pages/grid/grid.html) starts with the original full-width artwork, then offers accessible Desktop, Tablet and Mobile viewing tabs. The desktop browser shell has a width slider. Each mode displays a **real embedded document** whose `@media` rules use the embedded CSS viewport width. On narrow physical screens the device frame is scaled visually to fit; the iframe still uses the intended layout width, unlike a screenshot or a simply resized container. With JavaScript disabled, the original artwork remains visible.\n\nA route like `lessons/grid.html` is a real document, not an instruction to a client-side router. The browser handles bookmarks, refresh, navigation history and relative URLs. Shared CSS is cached across pages, while the lab CSS and JS are explicitly included only where needed: **page-level resource splitting without a bundler**. A build tool or content generator may become useful later if duplicated editorial layouts become costly to maintain.
 
 ## Origins studio: preserving history, not stale dependencies
 

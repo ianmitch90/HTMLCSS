@@ -166,3 +166,60 @@ test('luminous runner uses independent non-rotating edge surface', async () => {
   assert.match(html,/pathLength="100"/);
   assert.match(css,/stroke-dasharray:100/);
 });
+
+
+test('responsive Grid viewer has four accessible view modes and a real viewport document', async () => {
+  const page = await read('pages/grid/grid.html');
+  const preview = await read('pages/grid/preview.html');
+  const script = await read('scripts/grid-responsive.js');
+  const shellCSS = await read('styles/grid-responsive.css');
+  assert.match(page, /role="tablist" aria-label="Preview responsive Grid layouts"/);
+  for (const mode of ['original', 'desktop', 'tablet', 'mobile']) {
+    assert.match(page, new RegExp('id="grid-tab-' + mode + '"[^>]*aria-controls="grid-panel-' + mode + '"'),mode+' tab');
+    assert.match(page, new RegExp('id="grid-panel-' + mode + '"[^>]*role="tabpanel"'),mode+' panel');
+  }
+  assert.match(page, /id="grid-tab-original"[^>]*aria-selected="true"/);
+  assert.match(page, /id="grid-panel-original"[^>]*role="tabpanel"[^>]*>/);
+  assert.match(page, /id="grid-desktop-width"[^>]*type="range"/);
+  assert.match(page, /min="320" max="1360" step="20" value="1120"/);
+  assert.equal((page.match(/<iframe class="grid-preview-iframe"/g)||[]).length,3);
+  assert.match(page, /href="\.\.\/\.\.\/styles\/grid-preview\.css"/);
+  assert.match(preview, /class="specimen-grid" role="img"/);
+  assert.match(script, /ResizeObserver/);
+  assert.match(script, /ArrowRight/);
+  assert.match(script, /aria-selected/);
+  assert.match(script, /iframe\.style\.width=width\+'px'/);
+  assert.match(shellCSS, /max-width:750px/);
+});
+
+test('Grid preview rearranges all nine tiles without overlap at each breakpoint', async () => {
+  const css=await read('styles/grid-preview.css');
+  const tabletAt=css.indexOf('/* Tablet:');
+  const phoneAt=css.indexOf('/* Phone:');
+  const forcedAt=css.indexOf('@media(forced-colors:active)');
+  assert.ok(tabletAt>0 && phoneAt>tabletAt && forcedAt>phoneAt);
+  const variants=[
+    {name:'desktop',css:css.slice(0,tabletAt),rows:6,cols:8},
+    {name:'tablet',css:css.slice(tabletAt,phoneAt),rows:7,cols:6},
+    {name:'phone',css:css.slice(phoneAt,forcedAt),rows:9,cols:4}
+  ];
+  for (const {name,css:rules,rows,cols} of variants) {
+    const placements=[...rules.matchAll(/\.tile-(\d)\{grid-area:(\d+)\/(\d+)\/(\d+)\/(\d+)(?:;|\})/g)];
+    assert.equal(placements.length,9,name+' has nine tiles');
+    const slots=Array.from({length:rows*cols},()=>0);
+    const visited=new Set();
+    for (const [,id,rs,cs,re,ce] of placements) {
+      assert.ok(!visited.has(id),name+' duplicate tile '+id);
+      visited.add(id);
+      for(let r=Number(rs);r<Number(re);r++){
+        for(let c=Number(cs);c<Number(ce);c++){
+          assert.ok(r>=1&&r<=rows&&c>=1&&c<=cols,name+' tile outside bounds '+id);
+          const index=(r-1)*cols+c-1;
+          slots[index]++;
+          assert.equal(slots[index],1,name+' collision tile '+id+' at '+r+','+c);
+        }
+      }
+    }
+    assert.ok(slots.every(count=>count===1),name+' fills all cells without holes');
+  }
+});
