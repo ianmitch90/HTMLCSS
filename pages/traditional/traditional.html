@@ -6,7 +6,7 @@
 <header class="site-header"><div class="header-inner"><a class="brand" href="../../index.html" aria-label="The Web Is a Material, home"><span class="brand-mark" aria-hidden="true">h<span>/</span>c</span><span class="brand-copy">THE WEB IS<br>A MATERIAL<span class="brand-period">.</span></span></a><nav class="main-nav" aria-label="Main navigation"><a href="../../index.html">Discover</a><a href="../../index.html#explore">Lessons</a><a href="../../lessons/css-only.html">CSS-only studio</a><a href="../../lessons/toolkit.html">Tools &amp; libraries</a><a href="../../accessibility.html">Accessibility</a><a href="../../archive.html">Origins</a></nav><button class="motion-button" type="button" data-motion-toggle aria-pressed="false">Reduce site motion</button></div></header><main id="main" class="section-wrap exhibit-page"><nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span aria-hidden="true">/</span><a href="../../archive.html">Origins studio</a><span aria-hidden="true">/</span>Layered effects</nav><div class="exhibit-intro"><div><p class="section-kicker">ORIGINS STUDIO / LAYERED EFFECTS</p><h1 class="exhibit-heading">Layers create a world.</h1><p class="exhibit-lead">A self-contained reinterpretation of the old parallax experiment. Mountain contours, light and depth are created with inline SVG and CSS rather than a remote image or a JavaScript rendering engine.</p></div><aside class="exhibit-side"><strong>Made new, not erased.</strong><p>This exhibit reinterprets one of the original experiments in native HTML and CSS. No external photos, fonts or runtime libraries are required.</p><p><a href="../../lessons/effects.html">Read the full modern lesson ↗</a></p><p><a href="https://github.com/ianmitch90/HTMLCSS/blob/3f31dbedf70553d919d1a55de04cf175d8d75372/pages/traditional/traditional.html">Inspect the original source ↗</a></p></aside></div>
 <section class="exhibit-studio" aria-labelledby="scene-heading"><h2 id="scene-heading">A landscape made of CSS.</h2><p>Zoom into the mountains and watch the clouds disappear. Deselect to zoom back out—no JavaScript click handler is involved. Every layer is browser-drawn: smooth SVG curves produce overlapping mountain, dune and ocean-like contours, while CSS controls the reversible zoom. The narrow clouds drift at staggered intervals with no JavaScript. The warm sun and bright horizon are also vector shapes and gradients. There are no external image assets. The scene is decorative and is described for assistive technology.</p>
 <div class="depth-settings"><input type="checkbox" id="depth-toggle"><label for="depth-toggle"><span class="depth-label-in">Zoom into the mountains</span><span class="depth-label-out">Zoom back out</span></label></div>
-<div class="depth-scene" role="img" aria-label="Painterly teal landscape: a small warm sun above layered flowing mountain and ocean-like ribbons, luminous mist and slowly drifting clouds. Zooming moves the foreground closer and fades the clouds.">
+<div class="depth-scene" role="img" aria-label="Painterly teal landscape: a small warm sun above layered flowing mountain and ocean-like ribbons, luminous mist, a distant lookout light and slowly drifting clouds. Zooming moves the foreground closer, reveals the small fire lookout tower and fades the clouds.">
   <!-- Actual vector contours rather than a rasterized reference image. SVG draws
        the shapes; CSS alone handles the parallax, the clouds and the zoom. -->
   <svg class="scene-art" viewBox="0 0 1200 680" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
@@ -73,6 +73,19 @@
       <path d="M-80 246 Q73 188 157 251 Q231 303 305 243 Q360 195 416 226 Q493 276 559 244 Q633 213 708 247 Q789 288 872 217 Q938 159 1000 200 Q1115 267 1280 165 L1280 760 H-80Z" fill="url(#scene-ridge-blue)"/>
       <path d="M427 175 Q493 133 535 105 Q552 87 569 103 Q590 128 615 133 Q657 177 749 171 Q665 196 608 161 Q567 125 550 123 Q501 161 427 175Z" fill="url(#scene-facet)" opacity=".25"/>
       <path d="M600 248 Q770 270 872 217 Q938 159 1000 200 Q944 180 905 236 Q826 290 600 248Z" fill="#8fc3bd" opacity=".3"/>
+      <!-- A ridge-anchored landmark gives the CSS zoom a sense of scale.
+           Its steady light remains visible while the distant frame recedes. -->
+      <g transform="translate(551 100)">
+        <g class="scene-watchtower">
+          <g class="scene-watchtower-frame" fill="none" stroke="#082f38" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M-7 0 L-5 -18 M7 0 L5 -18 M-6 -2 L5 -16 M6 -2 L-5 -16"/>
+            <path d="M-8 -18 H8 M-6 -19 V-27 H6 V-19Z" fill="#16434a"/>
+            <path d="M-9 -28 L0 -33 L9 -28Z" fill="#10343d"/>
+          </g>
+          <circle cx="0" cy="-23" r="13" fill="url(#scene-sunlight)" opacity=".8"/>
+          <rect x="-3.5" y="-26" width="7" height="6" rx="1" fill="#ffdda1"/>
+        </g>
+      </g>
     </g>
     <g class="scene-cloud scene-cloud-back" filter="url(#scene-soft-cloud)">
       <path d="M105 255 Q270 224 453 267 Q575 285 751 255 Q581 307 411 283 Q258 258 105 273Z" fill="#d2efe2" opacity=".6"/>

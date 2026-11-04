@@ -86,6 +86,15 @@
     transform-origin:50% 75%;
     will-change:auto;
   }
+  /* The landmark stays anchored to its ridge. Only its scale and detail
+     change with the native checkbox; the lamp never flashes or flickers. */
+  .depth-scene .scene-watchtower {
+    transform-box:fill-box;transform-origin:50% 100%;transform:scale(.55);
+    transition:transform 1.45s cubic-bezier(.24,.68,.17,1);
+  }
+  .depth-scene .scene-watchtower-frame {opacity:.08;transition:opacity 1.45s ease;}
+  .exhibit-studio:has(#depth-toggle:checked) .scene-watchtower {transform:scale(1.25);}
+  .exhibit-studio:has(#depth-toggle:checked) .scene-watchtower-frame {opacity:1;}
   .depth-scene .scene-cloud {
     opacity:.8;
     transition:opacity 1.1s ease;
@@ -110,10 +119,10 @@
   .exhibit-studio:has(#depth-toggle:checked) .scene-cloud { opacity:0; animation:none; }
 }
 @media (prefers-reduced-motion:reduce) {
-  .depth-scene .scene-layer { transition:none!important; }
+  .depth-scene :is(.scene-layer,.scene-watchtower,.scene-watchtower-frame) { transition:none!important; }
   .depth-scene .scene-cloud { animation:none!important; transition:none!important; opacity:.5; }
 }
-:root[data-reduce-motion="true"] .depth-scene .scene-layer { transition:none!important; }
+:root[data-reduce-motion="true"] .depth-scene :is(.scene-layer,.scene-watchtower,.scene-watchtower-frame) { transition:none!important; }
 :root[data-reduce-motion="true"] .depth-scene .scene-cloud { animation:none!important; transition:none!important; opacity:.5; }
 @media (forced-colors:active) {
   .depth-scene { border:2px solid CanvasText; }
