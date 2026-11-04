@@ -66,9 +66,9 @@ test('interactive pages load lab assets; informational pages do not', async () =
   for (const name of lessonNames) {
     const html = await read('lessons/' + name + '.html');
     if (labRoutes.includes(name)) {
-      assert.match(html, /src="\.\.\/scripts\/labs\.js"/, name);
+      assert.match(html, /<script\b[^>]*src="\.\.\/scripts\/labs\.js"/, name);
     } else {
-      assert.doesNotMatch(html, /src="\.\.\/scripts\/labs\.js"/, name);
+      assert.doesNotMatch(html, /<script\b[^>]*src="\.\.\/scripts\/labs\.js"/, name);
     }
   }
 });
