@@ -13,7 +13,7 @@
 <nav class="studio-toc" aria-label="Jump to an experiment"><a href="#cards">Luminous cards</a><a href="#svg">Animated SVG</a><a href="#chart">Data visualization</a><a href="#game">Mini-game</a><a href="#decisions">When not to use CSS alone</a></nav></header>
 <section id="cards" class="studio-section" aria-labelledby="cards-title">
 <div class="studio-section-head"><p class="section-kicker">01 / LIGHT WITHOUT SHADERS</p><h2 id="cards-title">An ambient halo has a job.</h2>
-<p>Three original material studies show a quiet ambient card, a double-rim editorial card and a glassier bronze surface. They combine an ambient color field, a stationary edge and a brief traveling highlight. Their glow is optional feedback, not the only way to understand or activate a card. Try them with a mouse and with the Tab key.</p></div>
+<p>Three material studies show different responsibilities for light. The original Ember card still has its brief focus-and-hover runner. The second keeps two thicker, multicolor edge outlines visible with a gentle pulse. The larger glass card starts fully illuminated, with a native switch to disable or restore the light and shimmer. Try all three with a mouse and keyboard.</p></div>
 <div class="studio-badges"><span>CSS gradients</span><span>Pseudo-elements</span><span>Mask compositing</span><span>:focus-within</span><span>Reduced motion</span></div>
 <div class="studio-card-stage"><p class="stage-topline">STUDIO SCENE / LIGHT AS CONTEXT</p><label class="ambient-toggle"><input id="ambient-enabled" type="checkbox"> Illuminate the surrounding field</label>
 <div class="ambient-shelf">
@@ -22,10 +22,14 @@
 <h3>The Ember Desk Light</h3><p>An imagined product concept. Focus the link to trigger a restrained edge treatment.</p><a class="card-action" href="#decisions">Inspect the design principles →</a></article>
 <article class="luminous-card alt dual-edge"><span class="edge-track" aria-hidden="true"></span><span class="inner-edge" aria-hidden="true"></span><span class="card-kicker">EDITORIAL STUDY / 002</span>
 <div class="card-symbol"><svg viewBox="0 0 150 115" role="img" aria-labelledby="folio-title folio-desc"><title id="folio-title">Layered papers</title><desc id="folio-desc">Overlapping warm paper rectangles with three horizontal lines</desc><rect x="37" y="17" width="64" height="82" rx="7" transform="rotate(-10 37 17)" fill="#b2bbb7"/><rect x="49" y="17" width="64" height="82" rx="7" transform="rotate(7 49 17)" fill="#e9c8aa"/><path d="M62 39H95M62 51H103M62 63H92" stroke="#8f6955" stroke-width="4" stroke-linecap="round"/></svg></div>
-<h3>Notes from the Studio</h3><p>An imagined reading card with a different accent and exactly the same semantic contract.</p><a class="card-action" href="#svg">Explore vector animation →</a></article>
+<h3>Notes from the Studio</h3><p>Two luminous, stationary edge bands—one outside and one inside—slowly brighten and soften. No part of the card rotates or changes shape.</p><a class="card-action" href="#svg">Explore vector animation →</a></article>
 
 <article class="luminous-card glass-study"><span class="edge-track" aria-hidden="true"></span>
   <span class="card-kicker">MATERIAL STUDY / 003 · GLASS + COPPER</span>
+  <label class="glass-light-control" for="glass-glow-toggle">
+    <input id="glass-glow-toggle" type="checkbox" checked>
+    <span>Illuminate the glass surface</span>
+  </label>
   <div class="card-symbol glass-symbol">
     <svg viewBox="0 0 260 125" role="img" aria-labelledby="glass-title glass-desc">
       <title id="glass-title">Translucent sculptural layers</title>
@@ -40,16 +44,16 @@
     </svg>
   </div>
   <h3>Glass on the waterfront</h3>
-  <p>A more reflective, architectural surface. Separate rim light, inner highlight, and material sheen create depth without changing the semantic card or adding JavaScript.</p>
+  <p>A larger multicolor luminous rim and glossy reflection remain on by default. Toggle the light off to compare the same glass surface without the treatment—all with HTML and CSS.</p>
   <a class="card-action" href="#decisions">Study the material layers →</a>
 </article>
 </div></div>
-<div class="studio-code-grid"><div><h3>Why layered light works</h3><p>A radial gradient provides the quiet atmospheric glow. The second card adds a separate interior hairline, and the glass study introduces a reflective inset layer. A masked conic gradient becomes the running perimeter light. A separately painted edge track keeps the border stationary while a short light segment travels its perimeter once when you hover or focus within the card.</p>
+<div class="studio-code-grid"><div><h3>Why layered light works</h3><p>A radial gradient provides the quiet atmospheric glow. The first card uses a short edge runner on hover or focus. In the second card, two independent masked gradient rims stay in place and change brightness instead of rotating. The third card uses a wider, always-on prismatic rim and slowly moving gloss, with a checkbox controlling the decorative layers. All three retain ordinary, keyboard-focusable links.</p>
 <pre><code>.card::before { /* ambient field */ }
 .card .edge-track { /* a stationary masked border surface */ }
 .card:is(:hover, :focus-within) .edge-track {
   animation: edge-run 1.6s 1 both;
-}</code></pre></div><div><h3>Why it must remain optional</h3><p>Big animated blurs can be expensive, and glowing edges can disappear in forced colors. The link remains visible and has a browser-native focus outline even if gradients, transitions or animation are removed.</p>
+}</code></pre></div><div><h3>Why it must remain optional</h3><p>Gradients and blur can be expensive; the larger glass study uses only a few layers. The pulse and shimmer stop with reduced-motion preferences, and the explicit on/off control works without JavaScript. Every link remains usable and has a visible focus outline even if effects disappear in forced-colors mode.</p>
 <pre><code>@media (prefers-reduced-motion: reduce) {
   .card .edge-track { animation: none; }
 }</code></pre></div></div>
