@@ -1,0 +1,17 @@
+# Static checks only. Browser-level accessibility and performance audits are still needed.
+name: Prototype structural checks
+on:
+  push:
+    branches:
+      - prototype/**
+  pull_request:
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check static routes, document structure and resources
+        run: node --test tests/site.test.mjs
