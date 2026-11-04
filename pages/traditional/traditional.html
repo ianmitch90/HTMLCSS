@@ -6,11 +6,35 @@
 <header class="site-header"><div class="header-inner"><a class="brand" href="../../index.html" aria-label="The Web Is a Material, home"><span class="brand-mark" aria-hidden="true">h<span>/</span>c</span><span class="brand-copy">THE WEB IS<br>A MATERIAL<span class="brand-period">.</span></span></a><nav class="main-nav" aria-label="Main navigation"><a href="../../index.html">Discover</a><a href="../../index.html#explore">Lessons</a><a href="../../lessons/css-only.html">CSS-only studio</a><a href="../../lessons/toolkit.html">Tools &amp; libraries</a><a href="../../accessibility.html">Accessibility</a><a href="../../archive.html">Origins</a></nav><button class="motion-button" type="button" data-motion-toggle aria-pressed="false">Reduce site motion</button></div></header><main id="main" class="section-wrap exhibit-page"><nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span aria-hidden="true">/</span><a href="../../archive.html">Origins studio</a><span aria-hidden="true">/</span>Layered effects</nav><div class="exhibit-intro"><div><p class="section-kicker">ORIGINS STUDIO / LAYERED EFFECTS</p><h1 class="exhibit-heading">Layers create a world.</h1><p class="exhibit-lead">A self-contained reinterpretation of the old parallax experiment. Mountain contours, light and depth are created with inline SVG and CSS rather than a remote image or a JavaScript rendering engine.</p></div><aside class="exhibit-side"><strong>Made new, not erased.</strong><p>This exhibit reinterprets one of the original experiments in native HTML and CSS. No external photos, fonts or runtime libraries are required.</p><p><a href="../../lessons/effects.html">Read the full modern lesson ↗</a></p><p><a href="https://github.com/ianmitch90/HTMLCSS/blob/3f31dbedf70553d919d1a55de04cf175d8d75372/pages/traditional/traditional.html">Inspect the original source ↗</a></p></aside></div>
 <section class="exhibit-studio" aria-labelledby="scene-heading"><h2 id="scene-heading">A landscape made of CSS.</h2><p>Zoom into the mountains and watch the clouds disappear. Deselect to zoom back out—no JavaScript click handler is involved. Every layer is browser-drawn: smooth SVG curves produce overlapping mountain, dune and ocean-like contours, while CSS controls the reversible zoom. The narrow clouds drift at staggered intervals with no JavaScript. The warm sun and bright horizon are also vector shapes and gradients. There are no external image assets. The scene is decorative and is described for assistive technology.</p>
 <div class="depth-settings"><input type="checkbox" id="depth-toggle"><label for="depth-toggle"><span class="depth-label-in">Zoom into the mountains</span><span class="depth-label-out">Zoom back out</span></label></div>
-<div class="depth-scene" role="img" aria-label="Painterly teal landscape: a small warm sun above layered flowing mountain and ocean-like ribbons, luminous mist, a distant lookout light and slowly drifting clouds. Zooming moves the foreground closer, reveals the small fire lookout tower and fades the clouds.">
+<div class="depth-scene" role="img" aria-label="Painterly teal landscape: a small warm sun above layered flowing mountain and ocean-like ribbons, luminous mist, faint shimmering stars, a distant lookout light and slowly drifting clouds. Zooming moves the foreground closer, reveals the small fire lookout tower and fades the clouds.">
   <!-- Actual vector contours rather than a rasterized reference image. SVG draws
        the shapes; CSS alone handles the parallax, the clouds and the zoom. -->
   <svg class="scene-art" viewBox="0 0 1200 680" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
     <defs>
+      <!-- One mask describes the entire star field. A single moving gradient
+           lights only these fixed dots and crosses, never the sky behind them. -->
+      <mask id="scene-star-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="1200" height="240">
+        <g fill="white">
+          <circle cx="58" cy="47" r="1.4"/><circle cx="106" cy="126" r="1"/>
+          <circle cx="145" cy="72" r="1.8"/><circle cx="211" cy="29" r="1"/>
+          <circle cx="265" cy="83" r="1.2"/><circle cx="312" cy="43" r="1.6"/>
+          <circle cx="365" cy="136" r="1"/><circle cx="402" cy="65" r="1.3"/>
+          <circle cx="468" cy="30" r="1"/><circle cx="511" cy="57" r="1.2"/>
+          <circle cx="597" cy="34" r="1.4"/><circle cx="642" cy="92" r="1"/>
+          <circle cx="698" cy="52" r="1.7"/><circle cx="736" cy="126" r="1.1"/>
+          <circle cx="776" cy="30" r="1"/><circle cx="917" cy="38" r="1.4"/>
+          <circle cx="958" cy="79" r="1"/><circle cx="1036" cy="29" r="1.6"/>
+          <circle cx="1122" cy="54" r="1.2"/><circle cx="1171" cy="110" r="1.5"/>
+          <path d="M185 101 l1.4 4.6 4.6 1.4 -4.6 1.4 -1.4 4.6 -1.4 -4.6 -4.6 -1.4 4.6 -1.4Z"/>
+          <path d="M445 96 l1 3.5 3.5 1 -3.5 1 -1 3.5 -1 -3.5 -3.5 -1 3.5 -1Z"/>
+          <path d="M1087 92 l1.2 4 4 1.2 -4 1.2 -1.2 4 -1.2 -4 -4 -1.2 4 -1.2Z"/>
+        </g>
+      </mask>
+      <linearGradient id="scene-star-glint">
+        <stop stop-color="#fff2d5" stop-opacity="0"/>
+        <stop offset=".5" stop-color="#fff2d5" stop-opacity=".85"/>
+        <stop offset="1" stop-color="#fff2d5" stop-opacity="0"/>
+      </linearGradient>
       <!-- Light is concentrated at ridge crests, fading into the shaded face. -->
       <linearGradient id="scene-facet" x1="0" y1="0" x2=".35" y2="1">
         <stop stop-color="#e2efcf"/><stop offset=".4" stop-color="#a4d3c2"/>
@@ -63,6 +87,10 @@
     </defs>
 
     <rect width="1200" height="680" fill="url(#scene-sky)"/>
+    <g class="scene-stars" mask="url(#scene-star-mask)" aria-hidden="true">
+      <rect width="1200" height="240" fill="#b5d9d8" opacity=".38"/>
+      <rect class="scene-star-shimmer" x="-300" width="300" height="240" fill="url(#scene-star-glint)"/>
+    </g>
     <ellipse cx="850" cy="140" rx="450" ry="290" fill="url(#scene-sunlight)" opacity=".6"/>
     <circle cx="850" cy="92" r="43" fill="#ffdfb7"/>
 
@@ -95,6 +123,9 @@
       <path d="M-80 283 Q28 220 119 275 Q189 321 288 304 Q370 290 467 315 Q326 316 249 340 Q165 352 104 299 Q41 253 -80 314Z" fill="url(#scene-facet)" opacity=".65"/>
       <path d="M198 343 Q431 308 570 340 Q710 350 849 284 Q756 359 574 372 Q374 348 198 343Z" fill="url(#scene-haze)"/>
     </g>
+    <g class="scene-cloud scene-cloud-middle" filter="url(#scene-soft-cloud)">
+      <path d="M640 318 Q752 290 833 313 Q885 322 960 299 Q890 337 815 329 Q731 310 640 332Z" fill="#d1e7d0" opacity=".5"/>
+    </g>
     <g class="scene-layer scene-layer-wave-a">
       <path d="M-80 344 Q9 299 81 337 Q155 383 268 395 Q391 419 520 367 Q642 319 747 355 Q827 383 930 305 Q1012 247 1080 302 Q1158 361 1280 249 L1280 760 H-80Z" fill="url(#scene-wave-a)"/>
       <path d="M-80 344 Q9 299 81 337 Q155 383 268 395 Q391 419 520 367 Q431 433 302 439 Q173 420 86 376 Q17 333 -80 376Z" fill="url(#scene-facet)" opacity=".8"/>
@@ -126,4 +157,4 @@
 /* CSS alone drives the depth and cloud motion. */
 .scene:has(input:checked) .scene-layer-near {
   transform: scale(1.18) translateY(3%);
-}</code></pre><p>The actual page uses a native checkbox and <code>:has()</code> to control the CSS transitions. The inline SVG defines only the vector shapes; it does not run scripts. With an unsupported selector or reduced-motion setting, the illustration remains a useful static composition. CSS transforms alter the apparent depth without changing document structure.</p></details></section><section class="exhibit-footnotes" aria-label="What to learn"><article><h3>Why this experiment matters</h3><p>The original point was that a reversible zoom-and-clouds illusion could look like a JavaScript interaction even when it was entirely CSS-driven. This version preserves that intent without externally hosted assets.</p></article><article><h3>What to consider before using it</h3><p>Complex parallax and filters can affect comfort and performance. The foreground zoom remains opt-in; only two small decorative clouds drift slowly by default. Reduced-motion settings stop both effects and retain the full illustration.</p></article></section><nav class="exhibit-navigation" aria-label="More exhibits"><a href="../bootstrap/bootstrap.html">← Previous exhibit</a><a href="../grid/grid.html">Next exhibit →</a></nav></main><footer class="site-footer"><div class="section-wrap footer-inner"><div><a class="footer-brand" href="../../index.html">HTML<span>/</span>CSS</a><p>A field guide for curious people.</p></div><div><p class="footer-label">LEARN</p><a href="../../index.html#explore">All experiments</a><a href="../../lessons/toolkit.html">Tools &amp; libraries</a><a href="../../accessibility.html">Accessibility</a></div><div><p class="footer-label">THE ORIGINAL WORK</p><p>The archived 2018–2020 source is available in Git history. These exhibits are modern, self-contained reinterpretations.</p></div></div></footer></body></html>
+}</code></pre><p>The actual page uses a native checkbox and <code>:has()</code> to control the CSS transitions. The inline SVG defines only the vector shapes; it does not run scripts. With an unsupported selector or reduced-motion setting, the illustration remains a useful static composition. CSS transforms alter the apparent depth without changing document structure.</p></details></section><section class="exhibit-footnotes" aria-label="What to learn"><article><h3>Why this experiment matters</h3><p>The original point was that a reversible zoom-and-clouds illusion could look like a JavaScript interaction even when it was entirely CSS-driven. This version preserves that intent without externally hosted assets.</p></article><article><h3>What to consider before using it</h3><p>Complex parallax and filters can affect comfort and performance. The foreground zoom remains opt-in; only small decorative clouds drift and stars shimmer slowly by default. Reduced-motion settings stop both effects and retain the full illustration.</p></article></section><nav class="exhibit-navigation" aria-label="More exhibits"><a href="../bootstrap/bootstrap.html">← Previous exhibit</a><a href="../grid/grid.html">Next exhibit →</a></nav></main><footer class="site-footer"><div class="section-wrap footer-inner"><div><a class="footer-brand" href="../../index.html">HTML<span>/</span>CSS</a><p>A field guide for curious people.</p></div><div><p class="footer-label">LEARN</p><a href="../../index.html#explore">All experiments</a><a href="../../lessons/toolkit.html">Tools &amp; libraries</a><a href="../../accessibility.html">Accessibility</a></div><div><p class="footer-label">THE ORIGINAL WORK</p><p>The archived 2018–2020 source is available in Git history. These exhibits are modern, self-contained reinterpretations.</p></div></div></footer></body></html>
