@@ -26,6 +26,8 @@ The published `master` branch remains untouched until this draft prototype is ap
 - [Modern CSS](lessons/modern.html) — container queries, subgrid, nesting, layers, :has
 - [Do I have to build everything from scratch?](lessons/toolkit.html) — **Bootstrap, Tailwind, Material UI, Fluent UI, Carbon, Radix, React Aria, Web Components, jQuery, and smaller tools**
 - [How does a static page become an app?](lessons/growing.html) — **browser JavaScript, static generators, Node and Python backend options, progressive growth**
+- [How far can CSS go without JavaScript?](lessons/css-only.html) — **original luminous cards, one-shot ambient halos, SVG animation, a small chart and a keyboard-friendly mini-game**
+- [Actual Bootstrap starter](examples/bootstrap-live.html) — an **isolated, version-pinned live Bootstrap CSS/JS example** showing responsive cards and a working accordion
 
 Every core lesson explains the problem, a visual example, the browser's behavior, tradeoffs, accessibility/performance considerations, an exercise and maintained references. Toolkit lessons explicitly support both casually curious learners and developers evaluating real-world stack choices.
 
@@ -62,7 +64,10 @@ HTMLCSS/
 ├── styles/
 │   ├── site.css                # Shared, cacheable design system
 │   ├── labs.css                # Loaded only by interactive lessons
-│   └── exhibits.css            # Loaded only by origins exhibits
+│   ├── exhibits.css            # Loaded only by origins exhibits
+│   └── css-only.css            # Loaded only by advanced CSS studio
+├── examples/
+│   └── bootstrap-live.html     # Isolated actual Bootstrap demo, pinned CDN
 ├── scripts/
 │   ├── site.js                 # Optional site motion toggle
 │   ├── catalogue.js            # Homepage only
@@ -74,28 +79,28 @@ A route like `lessons/grid.html` is a real document, not an instruction to a cli
 
 ## Origins studio: preserving history, not stale dependencies
 
-The original four exhibit URLs are still valid:
+The original four exhibit URLs are still valid. They are now modern interpretations of their original teaching goals:
 
 - [CSS Grid composition](pages/grid/grid.html)
 - [Flexbox resource cards](pages/flex/flex.html)
 - [Bootstrap to design systems](pages/bootstrap/bootstrap.html)
 - [Layered atmospheric scene](pages/traditional/traditional.html)
 
-They were **rebuilt as responsive, accessible, self-contained interpretations** using the same design system as the rest of the site. They no longer request Google Fonts, dynamic Unsplash/third-party image endpoints, old CDPN/S3 imagery, Pexels photos, or Bootstrap 4 from a CDN. The exhibits use native HTML/CSS and no unreviewed third-party runtime dependency. The Bootstrap exhibit explains the *idea* of framework conventions without actually installing Bootstrap as a production dependency.
+They were **rebuilt as responsive, accessible, self-contained interpretations** using the same design system as the rest of the site. They no longer request Google Fonts, dynamic Unsplash/third-party image endpoints, old CDPN/S3 imagery, Pexels photos, or Bootstrap 4 from a CDN. The exhibits use native HTML/CSS and no unreviewed third-party runtime dependency. The Bootstrap exhibit retains its original purpose of teaching how to actually include and use Bootstrap. Its optional [working Bootstrap starter](examples/bootstrap-live.html) pins a genuine Bootstrap 5 release with official SRI hashes. **Only that isolated example** relies on a third-party CDN. The rest of the educational site remains independent of it.
 
 The original versions remain permanently reviewable in the repository's historical Git commit:
 [Open the pre-revival source snapshot](https://github.com/ianmitch90/HTMLCSS/tree/3f31dbedf70553d919d1a55de04cf175d8d75372).
 
 Unused original images and legacy CSS were pruned from this prototype's working tree to reduce download/bloat and maintenance surface. Their history is preserved in Git; they were not simply overwritten or lost.
 
-The landscape in the revised atmospheric exhibit uses an opt-in CSS depth toggle and honors reduced-motion preferences. The geometric composition and Flexbox cards require no remote illustrations, fonts or images.
+The landscape in the revised atmospheric exhibit recreates the original **CSS-only illusion of a zoom into the mountains and a cloud fade**, followed by a reversible zoom out. A native checkbox drives the effect via CSS selectors; reduced-motion preferences preserve a still version. The geometric composition and Flexbox cards require no remote illustrations, fonts or images.
 
 ## Libraries are choices, not prerequisites
 
 See [the toolkit lesson](lessons/toolkit.html) for approachable and developer-focused comparisons:
 
 - **Native browser primitives:** zero extra dependency, but the team owns consistency and custom accessibility.
-- **Bootstrap:** an established CSS/UI toolkit usable with static HTML. Its modern JavaScript plugins no longer require jQuery.
+- **Bootstrap:** an established CSS/UI toolkit usable with static HTML. Its modern JavaScript plugins no longer require jQuery; the repo includes a genuine separate Bootstrap demonstration.
 - **Tailwind:** utility-first styling generally compiled into production CSS; the browser Play CDN is for experimentation only.
 - **Material Design vs Material UI:** Google's design language vs a React component implementation.
 - **Fluent, Carbon and Spectrum:** long-lived organization-level design systems with particular implementation libraries.
@@ -123,7 +128,7 @@ The GitHub Actions workflow runs these checks on the prototype branch and pull r
 
 1. Teach `why`, not only `how`; favor browser fundamentals that outlive current frameworks.
 2. Use real links, semantic HTML and progressive enhancement.
-3. Keep the required teaching experience independent of external fonts, images, CDN scripts and transient APIs.
+3. Keep the required teaching experience independent of external fonts, images, CDN scripts and transient APIs. Isolate external library examples and pin their versions with integrity.
 4. Distinguish widely supported features from progressive enhancement and experimental APIs using [Web Platform Baseline](https://web.dev/baseline).
 5. Prefer official, maintained documentation to personal blogs that might disappear.
 6. Cover when not to use a feature or library, what it costs, and who must maintain it.

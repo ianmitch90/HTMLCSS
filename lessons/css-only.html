@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Pure HTML/CSS experiments: ambient halo cards, animated SVG, a tiny chart and a mini-game.">
+<title>What can CSS do without JavaScript? · The Web Is a Material</title>
+<link rel="stylesheet" href="../styles/site.css"><link rel="stylesheet" href="../styles/css-only.css"><script type="module" src="../scripts/site.js"></script>
+</head><body><a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header"><div class="header-inner"><a class="brand" href="../index.html" aria-label="The Web Is a Material, home"><span class="brand-mark" aria-hidden="true">h<span>/</span>c</span><span class="brand-copy">THE WEB IS<br>A MATERIAL<span class="brand-period">.</span></span></a><nav class="main-nav" aria-label="Main navigation"><a href="../index.html">Discover</a><a href="../index.html#explore">Lessons</a><a href="toolkit.html">Tools &amp; libraries</a><a href="../accessibility.html">Accessibility</a><a href="../archive.html">Origins</a></nav><button class="motion-button" type="button" data-motion-toggle aria-pressed="false">Reduce site motion</button></div></header>
+<main id="main"><div class="section-wrap studio-layout">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="../index.html#explore">Experiments</a><span aria-hidden="true">/</span>CSS-only studio</nav>
+<header class="studio-intro"><p class="section-kicker">EXPERIMENTS / BROWSER-NATIVE INTERACTION</p><h1>What can CSS do <em>without JavaScript?</em></h1>
+<p class="editorial-lead">Quite a lot. Light can respond to focus. A vector can draw itself. A simple chart can change appearance, and even a miniature game can have choices. These are original, generic experiments that prove how far native HTML and CSS can go—not copies of a product interface.</p>
+<div class="notice"><strong>What does “CSS-only” mean?</strong> The examples below use HTML inputs and CSS selectors for their visual effects and state. The shared site script supports only the optional global motion-preference toggle; no experiment uses JavaScript for its own interaction. CSS does not replace secure logic, live data handling or reliable screen-reader announcements of dynamic content.</div>
+<nav class="studio-toc" aria-label="Jump to an experiment"><a href="#cards">Luminous cards</a><a href="#svg">Animated SVG</a><a href="#chart">Data visualization</a><a href="#game">Mini-game</a><a href="#decisions">When not to use CSS alone</a></nav></header>
+<section id="cards" class="studio-section" aria-labelledby="cards-title">
+<div class="studio-section-head"><p class="section-kicker">01 / LIGHT WITHOUT SHADERS</p><h2 id="cards-title">An ambient halo has a job.</h2>
+<p>These generic product and editorial cards combine an ambient color field, thin illuminated edge and brief one-shot traveling highlight. Their glow is optional feedback, not the only way to understand or activate a card. Try them with a mouse and with the Tab key.</p></div>
+<div class="studio-badges"><span>CSS gradients</span><span>Pseudo-elements</span><span>Mask compositing</span><span>:focus-within</span><span>Reduced motion</span></div>
+<div class="studio-card-stage"><p class="stage-topline">STUDIO SCENE / LIGHT AS CONTEXT</p><label class="ambient-toggle"><input id="ambient-enabled" type="checkbox"> Illuminate the surrounding field</label>
+<div class="ambient-shelf">
+<article class="luminous-card"><span class="card-kicker">OBJECT STUDY / 001</span>
+<div class="card-symbol"><svg viewBox="0 0 150 115" role="img" aria-labelledby="lamp-title lamp-desc"><title id="lamp-title">Geometric lamp</title><desc id="lamp-desc">A simple cream-colored desk lamp standing in a warm cone of light</desc><path d="M75 15 L110 55 H40Z" fill="#dae0c5"/><path d="M75 55V98" stroke="#e9e2c7" stroke-width="7"/><path d="M47 101Q75 86 103 101Z" fill="#e9e2c7"/><path d="M52 56 36 94H116L100 56" fill="#dfa36c" opacity=".2"/></svg></div>
+<h3>The Ember Desk Light</h3><p>An imagined product concept. Focus the link to trigger a restrained edge treatment.</p><a class="card-action" href="#decisions">Inspect the design principles →</a></article>
+<article class="luminous-card alt"><span class="card-kicker">EDITORIAL STUDY / 002</span>
+<div class="card-symbol"><svg viewBox="0 0 150 115" role="img" aria-labelledby="folio-title folio-desc"><title id="folio-title">Layered papers</title><desc id="folio-desc">Overlapping warm paper rectangles with three horizontal lines</desc><rect x="37" y="17" width="64" height="82" rx="7" transform="rotate(-10 37 17)" fill="#b2bbb7"/><rect x="49" y="17" width="64" height="82" rx="7" transform="rotate(7 49 17)" fill="#e9c8aa"/><path d="M62 39H95M62 51H103M62 63H92" stroke="#8f6955" stroke-width="4" stroke-linecap="round"/></svg></div>
+<h3>Notes from the Studio</h3><p>An imagined reading card with a different accent and exactly the same semantic contract.</p><a class="card-action" href="#svg">Explore vector animation →</a></article>
+</div></div>
+<div class="studio-code-grid"><div><h3>Why layered light works</h3><p>A radial gradient provides the quiet atmospheric glow. A masked conic gradient becomes a perimeter edge. A short CSS animation travels once when you hover or focus within the card.</p>
+<pre><code>.card::before { /* ambient field */ }
+.card::after  { /* masked edge light */ }
+.card:is(:hover, :focus-within)::after {
+  animation: perimeter-pass 1.15s 1 both;
+}</code></pre></div><div><h3>Why it must remain optional</h3><p>Big animated blurs can be expensive, and glowing edges can disappear in forced colors. The link remains visible and has a browser-native focus outline even if gradients, transitions or animation are removed.</p>
+<pre><code>@media (prefers-reduced-motion: reduce) {
+  .card::after { animation: none; }
+}</code></pre></div></div>
+<div class="studio-note"><strong>Try it:</strong><p>Enable the environmental light, then move focus between links. Use the site's “Reduce site motion” control and verify that the cards remain understandable when the flourish stops.</p></div></section>
+<section id="svg" class="studio-section" aria-labelledby="svg-heading"><div class="studio-section-head"><p class="section-kicker">02 / VECTORS AS LIVE DOCUMENTS</p><h2 id="svg-heading">An SVG doesn't need a video timeline.</h2><p>SVG describes shapes and paths. CSS can animate a path's stroke without a video file, canvas renderer or JavaScript animation loop. This original orbital composition is a decorative learning study, not a live loading indicator.</p></div>
+<div class="studio-badges"><span>Inline SVG</span><span>Stroke-dashoffset</span><span>Keyframes</span><span>Semantic alternative</span></div>
+<div class="svg-exhibit"><div class="svg-illustration"><svg viewBox="0 0 300 255" role="img" aria-labelledby="orbit-title orbit-desc"><title id="orbit-title">An abstract orbital illustration</title><desc id="orbit-desc">Concentric copper and mint rings, a diamond at the center and a curved orbit stroke</desc>
+<circle cx="150" cy="128" r="95" fill="#28494a" stroke="#628582"/><circle cx="150" cy="128" r="66" fill="none" stroke="#d1bca1" stroke-width="2"/><circle cx="150" cy="128" r="46" fill="none" stroke="#7aafa2" stroke-width="4"/><path d="M150 99 174 128 150 157 126 128Z" fill="#ddae87" stroke="#f1e2c8" stroke-width="2"/>
+<path class="trace" d="M62 126 C73 61 140 21 193 55 C247 89 239 172 184 201" fill="none" stroke="#f0d5a3" stroke-width="6" stroke-linecap="round" pathLength="180"/>
+<g class="satellite"><circle cx="221" cy="70" r="8" fill="#cad6be"/><circle cx="221" cy="70" r="16" fill="none" stroke="#cad6be" opacity=".5"/></g></svg></div>
+<div><p class="stage-topline">VECTOR STUDY / SELF-CONTAINED</p><label class="svg-switch"><input id="svg-trace-toggle" type="checkbox"> Draw the orbit line</label><p>Enable the trace and watch the line draw once, then settle. Disable and re-enable it to replay. With reduced motion, the completed path remains visible without movement.</p><p><strong>SVG is an image format.</strong> Inline SVG is especially convenient when the browser should be able to style individual shapes as part of a document.</p></div></div>
+<pre><code>&lt;svg viewBox="0 0 300 255"&gt;
+  &lt;path class="trace" d="M62 126 C73 61 ..." /&gt;
+&lt;/svg&gt;
+.trace { stroke-dasharray: 180; stroke-dashoffset: 180; }
+.scene:has(input:checked) .trace {
+  animation: draw-trace 1.6s ease-out 1 both;
+}
+@keyframes draw-trace { to { stroke-dashoffset: 0; } }</code></pre>
+<div class="studio-note"><strong>Accessibility and performance:</strong><p>The meaningful illustration has an accessible title and description. Complex charts still need text data. SVG filters, hundreds of paths and continuous animation can be costly; prefer restrained, finite motion.</p></div></section>
+<section id="chart" class="studio-section" aria-labelledby="chart-heading"><div class="studio-section-head"><p class="section-kicker">03 / DATA WITHOUT A CHART ENGINE</p><h2 id="chart-heading">A chart can start as ordinary boxes.</h2><p>For four illustrative values, CSS Grid aligns bars and CSS custom properties represent each height. The checkbox changes the displayed period; it does not fetch, aggregate or compute real measurements.</p></div>
+<div class="studio-badges"><span>CSS Grid</span><span>Custom properties</span><span>Native checkbox</span><span>Readable table</span></div>
+<div class="chart-exhibit"><label class="chart-switch"><input id="chart-period" type="checkbox"> Show comparison period</label>
+<div class="chart-board" aria-hidden="true"><div class="chart-bar" style="--a:42%;--b:65%"></div><div class="chart-bar" style="--a:72%;--b:53%"></div><div class="chart-bar" style="--a:50%;--b:86%"></div><div class="chart-bar" style="--a:86%;--b:70%"></div></div>
+<div class="chart-x" aria-hidden="true"><span>North</span><span>East</span><span>South</span><span>West</span></div>
+<table><caption>Illustrative regional index, 0–100. Values are available for both periods independent of the visualization.</caption><thead><tr><th scope="col">Region</th><th scope="col">First period</th><th scope="col">Comparison</th></tr></thead>
+<tbody><tr><th scope="row">North</th><td>42</td><td>65</td></tr><tr><th scope="row">East</th><td>72</td><td>53</td></tr><tr><th scope="row">South</th><td>50</td><td>86</td></tr><tr><th scope="row">West</th><td>86</td><td>70</td></tr></tbody></table></div>
+<p>The bars are hidden from the accessibility tree because the adjacent table provides precise values. A production chart with filtering, live updates, statistical calculations, tooltips and data transformations needs additional programming and tested accessible interactions.</p></section>
+<section id="game" class="studio-section" aria-labelledby="game-heading"><div class="studio-section-head"><p class="section-kicker">04 / A MINIATURE GAME</p><h2 id="game-heading">Find the accessible path.</h2><p>A tiny quiz can be built from ordinary radio buttons and CSS state selectors. This is a choice-and-feedback activity, not a timed game or a score engine.</p></div>
+<div class="studio-badges"><span>Radio inputs</span><span>Fieldset and legend</span><span>:has()</span><span>CSS-only feedback</span></div>
+<div class="mini-game"><fieldset><legend>You're building a “read more” interaction. Which option gives visitors the most reliable starting point?</legend>
+<div class="game-options"><label><input id="option-a" type="radio" name="path-choice"><span>A. A clickable div that works only on hover</span></label><label><input id="option-b" type="radio" name="path-choice"><span>B. A real link with a destination and visible focus</span></label><label><input id="option-c" type="radio" name="path-choice"><span>C. A CSS animation that looks like a button</span></label></div>
+<div class="game-response response-a"><strong>Not quite.</strong>A hover-only div needs extra functionality for keyboard, touch and assistive-technology use.</div>
+<div class="game-response response-b"><strong>Yes. A reliable starting point.</strong>A real link supports focus, navigation, open-in-new-tab and direct destinations. You can style it however you like.</div>
+<div class="game-response response-c"><strong>Looks can mislead.</strong>An animation can suggest a control, but cannot replace its meaning or action.</div>
+<details><summary>Read the answer without playing</summary><p>Choose B. For navigation, use a real anchor with an <code>href</code>. For actions, use a button.</p></details></fieldset></div>
+<p><strong>Important limitation:</strong> CSS-only feedback text may not be automatically announced when a radio selection changes. The native inputs themselves are keyboard-accessible, and the disclosure gives an explicit accessible answer. A production quiz requiring reliable result announcements, persistence or scoring should use carefully implemented JavaScript.</p></section>
+<section id="decisions" class="studio-section" aria-labelledby="decisions-heading"><div class="studio-section-head"><p class="section-kicker">05 / ENGINEERING JUDGMENT</p><h2 id="decisions-heading">The impressive part isn't the trick.</h2><p>The useful lesson is knowing where CSS is a better abstraction and where it isn't. Modern CSS can handle layout, motion, stylistic state and small interaction experiments elegantly. It cannot replace business logic, trustworthy data validation or every accessible interaction pattern.</p></div>
+<div class="editorial-sections">
+<article><h3>Reach for CSS</h3><p>Light, depth, masks, finite focus effects, small state changes and diagrams that need no computation.</p></article>
+<article><h3>Reach for JavaScript or a library</h3><p>Complex game rules, analytics, live data, persistent choices, accurate announcements and application state.</p></article>
+<article><h3>Respect motion choices</h3><p>Stop optional movement when users prefer less. Keep the content and state meaningful without transitions.</p></article>
+<article><h3>Measure the output</h3><p>Blur, masks and compositing can still strain a GPU. Test slow devices, zoom, contrast and forced-colors mode.</p></article>
+</div><p><a class="studio-footer-link" href="../pages/traditional/traditional.html">See the reimagined CSS mountain scene ↗</a> · <a class="studio-footer-link" href="./toolkit.html">When to reuse a library ↗</a></p></section>
+</div></main>
+<footer class="site-footer"><div class="section-wrap footer-inner"><div><a class="footer-brand" href="../index.html">HTML<span>/</span>CSS</a><p>Small primitives. Surprising possibilities.</p></div><div><p class="footer-label">LEARN</p><a href="../index.html#explore">All lessons</a><a href="../archive.html">Origins studio</a></div><div><p class="footer-label">PROMISE</p><p>Every experiment on this page is HTML and CSS only. The global motion toggle is optional enhancement.</p></div></div></footer></body></html>

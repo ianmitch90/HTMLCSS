@@ -7,7 +7,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const lessons = ['browser','structure','grid','flex','interaction','color','media','effects','spatial','modern','toolkit','growing'];
+const lessons = ['browser','structure','grid','flex','interaction','color','media','effects','spatial','modern','toolkit','growing','css-only'];
 const exhibits = ['pages/grid/grid.html','pages/flex/flex.html','pages/bootstrap/bootstrap.html','pages/traditional/traditional.html'];
 const pages = ['index.html','archive.html','accessibility.html',...lessons.map(name => 'lessons/' + name + '.html'), ...exhibits];
 const read = name => readFile(path.join(root,name),'utf8');
@@ -100,4 +100,41 @@ test('accessibility foundations and origins remain discoverable', async () => {
   assert.match(exhibitsCSS,/:has\(#depth-toggle:checked\)/);
   assert.match(origins,/github\.com\/ianmitch90\/HTMLCSS\/tree\/3f31dbedf70553d919d1a55de04cf175d8d75372/);
   for (const name of ['Bootstrap','Tailwind','Material UI','Fluent','jQuery','Radix']) assert.ok(toolkit.includes(name),name);
+});
+
+test('creative CSS-only studio provides explicit accessible alternatives', async () => {
+  const html = await read('lessons/css-only.html');
+  const css = await read('styles/css-only.css');
+  for (const id of ['cards','svg','chart','game','decisions']) assert.ok(html.includes('id="' + id + '"'),id);
+  assert.match(html, /<fieldset>/);
+  assert.match(html, /<legend>/);
+  assert.match(html, /<table>/);
+  assert.match(html, /<svg[^>]*role="img"/);
+  assert.match(html, /id="ambient-enabled"/);
+  assert.doesNotMatch(html, /<script[^>]*src="https?:\/\//);
+  assert.doesNotMatch(html, /<img[^>]*src="https?:\/\//);
+  assert.match(css, /prefers-reduced-motion/);
+  assert.match(css, /forced-colors/);
+  assert.match(css, /focus-within/);
+  assert.match(css, /:has\(/);
+});
+
+test('Bootstrap is real only inside an isolated optional document', async () => {
+  const example = await read('examples/bootstrap-live.html');
+  const origins = await read('pages/bootstrap/bootstrap.html');
+  assert.match(example,/bootstrap@5\.3\.8\/dist\/css\/bootstrap\.min\.css/);
+  assert.match(example,/bootstrap@5\.3\.8\/dist\/js\/bootstrap\.bundle\.min\.js/);
+  assert.match(example,/integrity="sha384-/);
+  assert.match(example,/class="row g-3"/);
+  assert.match(example,/data-bs-toggle="collapse"/);
+  assert.match(origins,/examples\/bootstrap-live\.html/);
+  assert.doesNotMatch(origins,/<script[^>]*src="https?:\/\//);
+});
+
+test('home mosaic uses non-overlapping CSS Grid tracks and includes the creative studio', async () => {
+  const html = await read('index.html');
+  const styles = await read('styles/site.css');
+  assert.match(styles,/\.tile-a \{ background: #e7b855; grid-area: 1\/1\/3\/3; \}/);
+  assert.match(html,/href="\.\/lessons\/css-only\.html"/);
+  assert.match(html,/13 experiments to explore/);
 });

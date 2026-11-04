@@ -48,10 +48,10 @@
   .depth-scene .mountain-mid { background: #305c59; clip-path: polygon(0 86%, 15% 70%, 37% 80%, 56% 53%, 76% 79%, 88% 65%, 100% 78%, 100% 100%, 0 100%); }
   .depth-scene .mountain-front { background: #163f3c; clip-path: polygon(0 90%, 19% 78%, 38% 91%, 64% 68%, 82% 91%, 100% 72%, 100% 100%, 0 100%); }
   .depth-scene .mist { inset: 51% -15% 13%; background: linear-gradient(180deg,transparent 0%,#f4dec45f 38%,transparent 100%); filter: blur(12px); }
-  .exhibit-studio:has(#depth-toggle:checked) .depth-scene .mountain-back { transform: scale(1.05) translateY(-1.5%); }
-  .exhibit-studio:has(#depth-toggle:checked) .depth-scene .mountain-mid { transform: scale(1.12) translateY(2%); }
-  .exhibit-studio:has(#depth-toggle:checked) .depth-scene .mountain-front { transform: scale(1.2) translateY(5%); }
-  .exhibit-studio:has(#depth-toggle:checked) .depth-scene .mist { transform: translateX(9%); }
+  .exhibit-studio:has(#depth-toggle:checked) .depth-scene .mountain-back { transform: scale(1.13) translateY(-2%); }
+  .exhibit-studio:has(#depth-toggle:checked) .depth-scene .mountain-mid { transform: scale(1.35) translateY(7%); }
+  .exhibit-studio:has(#depth-toggle:checked) .depth-scene .mountain-front { transform: scale(1.58) translateY(14%); }
+  .exhibit-studio:has(#depth-toggle:checked) .depth-scene .mist { transform: translateX(25%); opacity: 0; }
   .exhibit-ui-demo { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.2rem; }
   .exhibit-ui-demo article { border: 1px solid #b4bdb1; background: #e9eee5; padding: 1.4rem; }
   .exhibit-ui-demo h3 { font-size: 1.4rem; margin-bottom: 1rem; }
@@ -76,3 +76,10 @@
   .exhibit-flex-art > a, .exhibit-ui-demo article { border: 2px solid CanvasText; }
   .depth-scene { border: 2px solid CanvasText; }
 }
+/* A checkbox drives the zoom and cloud fade entirely through CSS. */
+.depth-label-out{display:none}
+.exhibit-studio:has(#depth-toggle:checked) .depth-label-in{display:none}
+.exhibit-studio:has(#depth-toggle:checked) .depth-label-out{display:inline}
+.depth-scene>span{transform-origin:50% 80%;transition:transform 1.25s ease,filter 1.1s ease,opacity 1.1s ease}
+@media(prefers-reduced-motion:reduce){.depth-scene>span{transition:none!important}}
+:root[data-reduce-motion="true"] .depth-scene>span{transition:none!important}
