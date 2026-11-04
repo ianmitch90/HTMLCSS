@@ -254,3 +254,43 @@
   .tile { border: 1px solid CanvasText; }
   .button, .pathway-card, .lesson-card { border: 2px solid CanvasText; }
 }
+/* Reusable presentation patterns for toolkit and "growing" lessons.
+   The comparison content is HTML, available to keyboard and screen readers. */
+@layer components {
+  .toolkit-spotlight { display: grid; grid-template-columns: 1.2fr .8fr; align-items: center; gap: 3rem; border-block: 1px solid var(--line); padding-block: clamp(3rem,5vw,5.5rem); }
+  .toolkit-spotlight h2 { max-width: 650px; margin-bottom: 1rem; }
+  .toolkit-spotlight p:not(.section-kicker) { max-width: 610px; color: var(--muted); font-size: 1.06rem; }
+  .toolkit-spotlight-links { display: flex; flex-direction: column; align-items: stretch; gap: .9rem; }
+  .toolkit-spotlight-links > p { font-size: .82rem !important; }
+  .toolkit-demo { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: .8rem; margin-block: 1.8rem; }
+  .toolkit-demo article { padding: 1.2rem; border: 1px solid #aab9ac; background: #fffdf7; display: flex; flex-direction: column; align-items: start; gap: .85rem; min-width: 0; }
+  .toolkit-demo h3 { margin: 0; font-family: var(--display); font-size: 1.55rem; font-weight: 500; }
+  .toolkit-demo p { margin: 0; }
+  .toolkit-demo pre { margin-top: auto; width: 100%; font-size: .8rem; }
+  .toolkit-sample-bootstrap, .toolkit-sample-utility { display: inline-block; padding: .65rem .9rem; text-decoration: none; font-size: .88rem; font-weight: 700; }
+  .toolkit-sample-bootstrap { background: #0d6efd; color: white; border: 1px solid #0d6efd; border-radius: .35rem; }
+  .toolkit-sample-bootstrap:hover { color: white; background: #074fab; }
+  .toolkit-sample-utility { background: #115e59; color: white; border-radius: .25rem; }
+  .toolkit-sample-utility:hover { color: white; background: #0a4340; }
+  .table-scroll { margin-block: 1.6rem; overflow-x: auto; border: 1px solid #a0aca1; background: #fffdf7; }
+  .comparison-table { width: 100%; border-collapse: collapse; font-size: .89rem; text-align: left; min-width: 615px; }
+  .comparison-table th, .comparison-table td { padding: .9rem .85rem; vertical-align: top; border-bottom: 1px solid #d0d7ce; }
+  .comparison-table thead th { color: #fff; background: #1c443f; }
+  .comparison-table tbody th { color: #21473f; font-weight: 800; min-width: 125px; }
+  .comparison-table tbody tr:nth-child(even) { background: #edf1e9; }
+  .toolkit-systems, .toolkit-choices { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .85rem; margin-block: 1.5rem; }
+  .toolkit-systems article, .toolkit-choices article { padding: 1.25rem; border: 1px solid #b7c4b6; background: #e9eee7; }
+  .toolkit-systems h3, .toolkit-choices h3 { margin: 0 0 .75rem; }
+  .toolkit-systems article p, .toolkit-choices article p { margin-block: .5rem; }
+  .toolkit-systems article a { overflow-wrap: anywhere; }
+}
+@media (max-width:900px) {
+  .toolkit-spotlight { grid-template-columns: 1fr; }
+  .toolkit-demo { grid-template-columns: 1fr; }
+}
+@media (max-width:620px) {
+  .toolkit-systems, .toolkit-choices { grid-template-columns: 1fr; }
+}
+@media (forced-colors:active) {
+  .toolkit-demo article, .toolkit-systems article, .toolkit-choices article { border: 2px solid CanvasText; }
+}

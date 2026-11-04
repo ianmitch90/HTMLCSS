@@ -1,87 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Bubbler+One|Monoton|Rozha+One"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../../reset.css" />
-    <link rel="stylesheet" href="../../main.css" />
-    <link rel="stylesheet" href="./traditional.css" />
-
-    <title>HTML & CSS</title>
-  </head>
-
-  <body>
-    <header class="navigation">
-      <nav>
-        <div class="logo">
-          <span>FLOAT</span>
-        </div>
-        <span>
-          HTML & CSS <br />
-          ONLY
-        </span>
-        <ul class="links">
-          <li>
-            <a href="../../index.html" class="navlink">Home</a>
-          </li>
-          <li>
-            <a href="../grid/grid.html" class="navlink">CSS Grid</a>
-          </li>
-          <li>
-            <a href="../flex/flex.html" class="navlink">Flex/Media</a>
-          </li>
-          <li>
-            <a href="../bootstrap/bootstrap.html" class="navlink">Bootstrap</a>
-          </li>
-          <li>
-            <a href="./traditional.html" class="navlink">Traditional</a>
-          </li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-      <div class="frame">
-        <img
-          src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/41114/plan1.png"
-          alt="sky"
-          class="pic1"
-        />
-        <img
-          src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/41114/2.png"
-          alt="sky"
-          class="pic2"
-        />
-        <img
-          src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/41114/3.png"
-          alt="sky"
-          class="pic3"
-        />
-        <img
-          src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/41114/mist.png"
-          alt="sky"
-          class="mist2"
-        />
-        <img
-          src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/41114/4.png"
-          alt="sky"
-          class="pic4"
-        />
-        <img
-          src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/41114/mist.png"
-          alt="sky"
-          class="mist"
-        />
-        <img
-          src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/41114/5.png"
-          alt="sky"
-          class="pic5"
-        />
-      </div>
-    </main>
-  </body>
-</html>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="A self-contained reinterpretation of the old parallax experiment. Mountains, atmosphere and depth are shaped with CSS rather than fetched from someone else's image server."><title>Layers create a world. · The Web Is a Material</title><meta name="theme-color" content="#f5f2e9">
+<!-- No remote fonts, photos, animation assets, libraries or CDN dependencies. -->
+<link rel="stylesheet" href="../../styles/site.css"><link rel="stylesheet" href="../../styles/exhibits.css"><script type="module" src="../../scripts/site.js"></script></head><body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header"><div class="header-inner"><a class="brand" href="../../index.html" aria-label="The Web Is a Material, home"><span class="brand-mark" aria-hidden="true">h<span>/</span>c</span><span class="brand-copy">THE WEB IS<br>A MATERIAL<span class="brand-period">.</span></span></a><nav class="main-nav" aria-label="Main navigation"><a href="../../index.html">Discover</a><a href="../../index.html#explore">Lessons</a><a href="../../lessons/toolkit.html">Tools &amp; libraries</a><a href="../../accessibility.html">Accessibility</a><a href="../../archive.html">Origins</a></nav><button class="motion-button" type="button" data-motion-toggle aria-pressed="false">Reduce site motion</button></div></header><main id="main" class="section-wrap exhibit-page"><nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span aria-hidden="true">/</span><a href="../../archive.html">Origins studio</a><span aria-hidden="true">/</span>Layered effects</nav><div class="exhibit-intro"><div><p class="section-kicker">ORIGINS STUDIO / LAYERED EFFECTS</p><h1 class="exhibit-heading">Layers create a world.</h1><p class="exhibit-lead">A self-contained reinterpretation of the old parallax experiment. Mountains, atmosphere and depth are shaped with CSS rather than fetched from someone else's image server.</p></div><aside class="exhibit-side"><strong>Made new, not erased.</strong><p>This exhibit reinterprets one of the original experiments in native HTML and CSS. No external photos, fonts or runtime libraries are required.</p><p><a href="../../lessons/effects.html">Read the full modern lesson ↗</a></p><p><a href="https://github.com/ianmitch90/HTMLCSS/blob/3f31dbedf70553d919d1a55de04cf175d8d75372/pages/traditional/traditional.html">Inspect the original source ↗</a></p></aside></div>
+<section class="exhibit-studio" aria-labelledby="scene-heading"><h2 id="scene-heading">A landscape made of CSS.</h2><p>Try the optional depth effect, then switch it off. Every layer is a shaped surface painted by the browser. The mountains are simple polygons; the haze uses a gradient and a small blur. There's no dependency on external graphics, and the scene is decorative rather than a required source of information.</p>
+<div class="depth-settings"><input type="checkbox" id="depth-toggle"><label for="depth-toggle">Explore the layered depth effect</label></div>
+<div class="depth-scene" role="img" aria-label="Abstract mountain landscape with three overlapping dark green ridges, a pale golden sun and mist"><span class="sun"></span><span class="mountain-back"></span><span class="mountain-mid"></span><span class="mist"></span><span class="mountain-front"></span></div>
+<details style="margin-top:1.3rem"><summary>Which CSS properties make the illusion?</summary><pre><code>.scene { position: relative; overflow: hidden; }
+.mountain {
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(/* mountain silhouette */);
+}
+.scene:has(.toggle:checked) .mountain {
+  transform: scale(1.08) translateY(2%);
+}</code></pre><p>The actual page uses a native checkbox with <code>:has()</code> to select the scene. In older browsers without that relational selector the static illustration still works. A transform changes the apparent position or scale without changing the underlying document order. A filtered gradient adds atmosphere—but filters may increase paint or compositing costs.</p></details></section><section class="exhibit-footnotes" aria-label="What to learn"><article><h3>Why this experiment matters</h3><p>The earlier scene assembled remotely hosted image layers into a delightful parallax illusion. This version reveals the same principle without the broken-dependency risk.</p></article><article><h3>What to consider before using it</h3><p>Continuous parallax, heavy blurs and large fixed-size surfaces can harm comfort and performance. This page requires an explicit toggle, follows motion preferences and retains a useful static composition.</p></article></section><nav class="exhibit-navigation" aria-label="More exhibits"><a href="../bootstrap/bootstrap.html">← Previous exhibit</a><a href="../grid/grid.html">Next exhibit →</a></nav></main><footer class="site-footer"><div class="section-wrap footer-inner"><div><a class="footer-brand" href="../../index.html">HTML<span>/</span>CSS</a><p>A field guide for curious people.</p></div><div><p class="footer-label">LEARN</p><a href="../../index.html#explore">All experiments</a><a href="../../lessons/toolkit.html">Tools &amp; libraries</a><a href="../../accessibility.html">Accessibility</a></div><div><p class="footer-label">THE ORIGINAL WORK</p><p>The archived 2018–2020 source is available in Git history. These exhibits are modern, self-contained reinterpretations.</p></div></div></footer></body></html>

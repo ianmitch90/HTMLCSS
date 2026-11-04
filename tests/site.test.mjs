@@ -1,5 +1,5 @@
-/* Dependency-free structural guardrails.
-   Not a browser renderer, WCAG audit, or substitute for manual testing. */
+/* Dependency-free checks for the static educational site. They cannot certify
+   WCAG compliance or replace real-browser/performance verification. */
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile, access } from 'node:fs/promises';
@@ -7,82 +7,97 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const lessonNames = ['browser','structure','grid','flex','interaction','color','media','effects','spatial','modern'];
-const pages = ['index.html','archive.html','accessibility.html', ...lessonNames.map(name => 'lessons/' + name + '.html')];
+const lessons = ['browser','structure','grid','flex','interaction','color','media','effects','spatial','modern','toolkit','growing'];
+const exhibits = ['pages/grid/grid.html','pages/flex/flex.html','pages/bootstrap/bootstrap.html','pages/traditional/traditional.html'];
+const pages = ['index.html','archive.html','accessibility.html',...lessons.map(name => 'lessons/' + name + '.html'), ...exhibits];
 const read = name => readFile(path.join(root,name),'utf8');
 const exists = async name => { try { await access(path.join(root,name)); return true; } catch { return false; } };
 
-test('each new page is a complete, directly navigable HTML document', async () => {
+test('all pages are complete semantic documents with directly reachable navigation', async () => {
   for (const file of pages) {
     const html = await read(file);
-    assert.match(html, /<!doctype html>/i, file + ' doctype');
-    assert.match(html, /<html lang="en">/, file + ' language');
-    assert.match(html, /<meta name="viewport"/, file + ' viewport');
-    assert.match(html, /<title>[^<]+<\/title>/, file + ' title');
-    assert.match(html, /<main id="main"/, file + ' main landmark');
-    assert.match(html, /<h1[ >]/, file + ' h1');
-    assert.match(html, /class="skip-link" href="#main"/, file + ' skip link');
-    assert.match(html, /<nav[^>]+aria-label="Main navigation"/, file + ' navigation');
-    assert.doesNotMatch(html, /(?:onclick|onmouseover)="|javascript:/i, file + ' must avoid inline script handlers');
+    assert.match(html,/<!doctype html>/i,file + ' doctype');
+    assert.match(html,/<html lang="en">/,file + ' language');
+    assert.match(html,/<meta name="viewport"/,file + ' viewport');
+    assert.match(html,/<title>[^<]+<\/title>/,file + ' title');
+    assert.match(html,/<main id="main"/,file + ' main landmark');
+    assert.match(html,/<h1[ >]/,file + ' h1');
+    assert.match(html,/class="skip-link" href="#main"/,file + ' skip link');
+    assert.match(html,/<nav[^>]+aria-label="Main navigation"/,file + ' top navigation');
+    assert.match(html,/<a\b[^>]*href="[^"]*toolkit\.html"/,file + ' toolkit discovery');
+    assert.doesNotMatch(html,/(?:onclick|onmouseover)="|javascript:/i,file + ' avoid unsafe inline handlers');
   }
 });
 
-test('all local anchor routes and link/script/style resources resolve to real files', async () => {
+test('every local route, script, style and anchor points to a file or section', async () => {
   const missing = [];
   for (const file of pages) {
     const html = await read(file);
-    const references = [
-      ...[...html.matchAll(/<a\b[^>]*\bhref="([^"]+)"/g)].map(m => m[1]),
-      ...[...html.matchAll(/<link\b[^>]*\bhref="([^"]+)"/g)].map(m => m[1]),
-      ...[...html.matchAll(/<script\b[^>]*\bsrc="([^"]+)"/g)].map(m => m[1])
+    const refs = [
+      ...[...html.matchAll(/<a\b[^>]*\bhref="([^"]+)"/g)].map(m=>m[1]),
+      ...[...html.matchAll(/<link\b[^>]*\bhref="([^"]+)"/g)].map(m=>m[1]),
+      ...[...html.matchAll(/<script\b[^>]*\bsrc="([^"]+)"/g)].map(m=>m[1])
     ];
-    for (const ref of references) {
-      if (/^(?:https?:|mailto:|tel:|#|data:)/.test(ref)) continue;
-      const [pathname,hash] = ref.split('#');
-      const target = path.normalize(path.join(path.dirname(file),pathname));
+    for (const ref of refs) {
+      if (/^(?:https?:|mailto:|tel:|data:)/.test(ref)) continue;
+      const [url,hash] = ref.split('#');
+      const target = url ? path.normalize(path.join(path.dirname(file),url)) : file;
       if (!target || target.startsWith('..') || !(await exists(target))) {
-        missing.push(file + ': ' + ref);
+        missing.push(file + ': ' + ref + ' (missing resource)');
         continue;
       }
-      if (hash && (target.endsWith('.html'))) {
-        const other = await read(target);
-        const id = decodeURIComponent(hash);
-        if (!other.includes('id="' + id + '"')) missing.push(file + ': missing #' + id + ' in ' + target);
+      if (hash && target.endsWith('.html')) {
+        const source = await read(target);
+        if (!source.includes('id="' + decodeURIComponent(hash) + '"')) {
+          missing.push(file + ': ' + ref + ' (missing section)');
+        }
       }
     }
   }
   assert.deepEqual(missing,[]);
 });
 
-test('gallery uses ordinary lesson links and stays meaningful without JavaScript', async () => {
-  const html = await read('index.html');
-  for (const name of lessonNames) assert.ok(html.includes('href="./lessons/' + name + '.html"'), name);
-  assert.match(html, /class="lesson-grid"/);
-  assert.match(html, /id="results-count"[^>]*aria-live="polite"/);
+test('the complete lesson catalogue exists in source HTML, not generated by JS', async () => {
+  const home = await read('index.html');
+  for (const slug of lessons) assert.ok(home.includes('href="./lessons/' + slug + '.html"'),slug);
+  assert.match(home,/class="lesson-grid"/);
+  assert.match(home,/id="results-count"[^>]*aria-live="polite"/);
+  assert.match(home,/Tools &amp; systems/);
 });
 
-test('interactive pages load lab assets; informational pages do not', async () => {
-  const labRoutes = ['grid','flex','interaction','color','effects','spatial'];
-  for (const name of lessonNames) {
-    const html = await read('lessons/' + name + '.html');
-    if (labRoutes.includes(name)) {
-      assert.match(html, /<script\b[^>]*src="\.\.\/scripts\/labs\.js"/, name);
-    } else {
-      assert.doesNotMatch(html, /<script\b[^>]*src="\.\.\/scripts\/labs\.js"/, name);
-    }
+test('interactive lessons load only their own lab enhancements', async () => {
+  const labPages = ['grid','flex','interaction','color','effects','spatial'];
+  for (const slug of lessons) {
+    const html = await read('lessons/' + slug + '.html');
+    const realImport = /<script\b[^>]*src="\.\.\/scripts\/labs\.js"/.test(html);
+    assert.equal(realImport,labPages.includes(slug),slug + ' expected script policy');
   }
 });
 
-test('shared styles contain essential access preferences', async () => {
-  const css = await read('styles/site.css');
-  assert.match(css, /:focus-visible/);
-  assert.match(css, /prefers-reduced-motion/);
-  assert.match(css, /forced-colors/);
-  assert.match(css, /@layer/);
+test('self-contained historical exhibit URLs load local CSS instead of remote assets', async () => {
+  for (const file of exhibits) {
+    const html = await read(file);
+    assert.match(html,/href="\.\.\/\.\.\/styles\/exhibits\.css"/,file);
+    assert.doesNotMatch(html,/<(?:img|source|video)\b[^>]+src="https?:\/\//i,file + ' remote image/video');
+    assert.doesNotMatch(html,/<(?:script|link)\b[^>]+(?:src|href)="https?:\/\//i,file + ' remote JS/CSS');
+    assert.doesNotMatch(html,/bootstrap\/4\.0\.0|source\.unsplash\.com|s\.cdpn\.io|fonts\.googleapis\.com/i,file + ' stale embed');
+    assert.match(html,/3f31dbedf70553d919d1a55de04cf175d8d75372/,file + ' history reference');
+  }
+  for (const style of ['styles/site.css','styles/labs.css','styles/exhibits.css']) {
+    assert.doesNotMatch(await read(style),/url\(\s*['"]?https?:\/\//i,style + ' remote CSS dependency');
+  }
 });
 
-test('the original teaching experiments remain in their historical paths', async () => {
-  for (const file of ['pages/grid/grid.html','pages/flex/flex.html','pages/bootstrap/bootstrap.html','pages/traditional/traditional.html']) {
-    assert.ok(await exists(file),file);
-  }
+test('accessibility foundations and origins remain discoverable', async () => {
+  const site = await read('styles/site.css');
+  const exhibitsCSS = await read('styles/exhibits.css');
+  const origins = await read('archive.html');
+  const toolkit = await read('lessons/toolkit.html');
+  assert.match(site,/:focus-visible/);
+  assert.match(site,/prefers-reduced-motion/);
+  assert.match(site,/forced-colors/);
+  assert.match(site,/@layer/);
+  assert.match(exhibitsCSS,/:has\(#depth-toggle:checked\)/);
+  assert.match(origins,/github\.com\/ianmitch90\/HTMLCSS\/tree\/3f31dbedf70553d919d1a55de04cf175d8d75372/);
+  for (const name of ['Bootstrap','Tailwind','Material UI','Fluent','jQuery','Radix']) assert.ok(toolkit.includes(name),name);
 });

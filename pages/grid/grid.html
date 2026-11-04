@@ -1,127 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Bubbler+One|Monoton|Rozha+One"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../../reset.css" />
-    <link rel="stylesheet" href="../../main.css" />
-    <link rel="stylesheet" href="./grid.css" />
-
-    <title>HTML & CSS: Grid</title>
-  </head>
-
-  <body>
-    <header class="navigation">
-      <nav>
-        <div class="logo">
-          <span>GRID</span>
-        </div>
-        <span>
-          HTML & CSS <br />
-          ONLY
-        </span>
-        <ul class="links">
-          <li>
-            <a href="../../index.html" class="navlink">Home</a>
-          </li>
-          <li>
-            <a href="./grid.html" class="navlink">CSS Grid</a>
-          </li>
-          <li>
-            <a href="../flex/flex.html" class="navlink">Flex/Media</a>
-          </li>
-          <li>
-            <a href="../bootstrap/bootstrap.html" class="navlink">Bootstrap</a>
-          </li>
-          <li>
-            <a href="../traditional/traditional.html" class="navlink"
-              >Traditional</a
-            >
-          </li>
-        </ul>
-      </nav>
-    </header>
-    <main class="mainGrid">
-      <section class="gridHero">
-        <h1>Piet Mondrian</h1>
-        <h2>A Textured Interpretation</h2>
-      </section>
-      <section class="mondrianGrid">
-        <ul>
-          <li class="item1"><img src="./colors/blue.jpeg" alt="" /></li>
-          <li class="item2"><img src="./colors/green.jpeg" alt="" /></li>
-          <li class="item3"><img src="./colors/pink.jpeg" alt="" /></li>
-          <li class="item4"><img src="./colors/grey.jpeg" alt="" /></li>
-          <li class="item5"><img src="./colors/white.jpeg" alt="" /></li>
-          <li class="item6"><img src="./colors/grey.jpeg" alt="" /></li>
-          <li class="item7"><img src="./colors/white.jpeg" alt="" /></li>
-          <li class="item8"><img src="./colors/white.jpeg" alt="" /></li>
-          <li class="item9"><img src="./colors/blue.jpeg" alt="" /></li>
-          <li class="item10"><img src="./colors/green.jpeg" alt="" /></li>
-          <li class="item11 hovereffect">
-            <img src="./colors/pink.jpeg" alt="" />
-            <div class="overlay">
-              <h2>LIFE</h2>
-              <p>
-                03 07 1872 <br />
-                02 01 1944
-              </p>
-            </div>
-          </li>
-          <li class="item12"><img src="./colors/yellow.jpeg" alt="" /></li>
-          <li class="item13"><img src="./colors/white.jpeg" alt="" /></li>
-          <li class="item14"><img src="./colors/blue.jpeg" alt="" /></li>
-          <li class="item15"><img src="./colors/white.jpeg" alt="" /></li>
-          <li class="item16 hovereffect">
-            <img src="./colors/grey.jpeg" alt="" />
-            <div class="overlay">
-              <h2>Inspiration</h2>
-              <p>
-                Composition II in Red, Blue, and Yellow, 1930
-              </p>
-            </div>
-          </li>
-          <li class="item17"><img src="./colors/green.jpeg" alt="" /></li>
-          <li class="item18 hovereffect">
-            <img src="./colors/blue.jpeg" alt="" />
-            <div class="overlay">
-              <h2>The Artist</h2>
-              <p>
-                Pieter Cornelis Mondriaan, after 1906 Piet Mondrian, was a Dutch
-                painter and theoretician who is regarded as one of the greatest
-                artists of the 20th century.
-              </p>
-            </div>
-          </li>
-          <li class="item19"><img src="./colors/yellow.jpeg" alt="" /></li>
-          <li class="item20"><img src="./colors/yellow.jpeg" alt="" /></li>
-          <li class="item21"><img src="./colors/pink.jpeg" alt="" /></li>
-          <li class="item22"><img src="./colors/white.jpeg" alt="" /></li>
-          <li class="item23"><img src="./colors/green.jpeg" alt="" /></li>
-          <li class="item24"><img src="./colors/grey.jpeg" alt="" /></li>
-          <li class="item25"><img src="./colors/white.jpeg" alt="" /></li>
-          <li class="item26"><img src="./colors/white.jpeg" alt="" /></li>
-          <li class="item27 hovereffect">
-            <img src="./colors/yellow.jpeg" alt="" />
-            <div class="overlay">
-              <h2>Design Pattern</h2>
-              <p>
-                Cubism is an early-20th-century art movement which brought
-                European painting and sculpture historically forward toward 20th
-                century Modern art.
-              </p>
-            </div>
-          </li>
-          <li class="item28"><img src="./colors/pink.jpeg" alt="" /></li>
-          <li class="item29"><img src="./colors/green.jpeg" alt="" /></li>
-          <li class="item30"><img src="./colors/blue.jpeg" alt="" /></li>
-        </ul>
-      </section>
-    </main>
-  </body>
-</html>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="A modern, CSS-only reconstruction of the original Mondrian-inspired layout. The visual effect no longer depends on an external image host or a hover-only reveal."><title>Composition is a relationship. · The Web Is a Material</title><meta name="theme-color" content="#f5f2e9">
+<!-- No remote fonts, photos, animation assets, libraries or CDN dependencies. -->
+<link rel="stylesheet" href="../../styles/site.css"><link rel="stylesheet" href="../../styles/exhibits.css"><script type="module" src="../../scripts/site.js"></script></head><body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header"><div class="header-inner"><a class="brand" href="../../index.html" aria-label="The Web Is a Material, home"><span class="brand-mark" aria-hidden="true">h<span>/</span>c</span><span class="brand-copy">THE WEB IS<br>A MATERIAL<span class="brand-period">.</span></span></a><nav class="main-nav" aria-label="Main navigation"><a href="../../index.html">Discover</a><a href="../../index.html#explore">Lessons</a><a href="../../lessons/toolkit.html">Tools &amp; libraries</a><a href="../../accessibility.html">Accessibility</a><a href="../../archive.html">Origins</a></nav><button class="motion-button" type="button" data-motion-toggle aria-pressed="false">Reduce site motion</button></div></header><main id="main" class="section-wrap exhibit-page"><nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span aria-hidden="true">/</span><a href="../../archive.html">Origins studio</a><span aria-hidden="true">/</span>CSS Grid</nav><div class="exhibit-intro"><div><p class="section-kicker">ORIGINS STUDIO / CSS GRID</p><h1 class="exhibit-heading">Composition is a relationship.</h1><p class="exhibit-lead">A modern, CSS-only reconstruction of the original Mondrian-inspired layout. The visual effect no longer depends on an external image host or a hover-only reveal.</p></div><aside class="exhibit-side"><strong>Made new, not erased.</strong><p>This exhibit reinterprets one of the original experiments in native HTML and CSS. No external photos, fonts or runtime libraries are required.</p><p><a href="../../lessons/grid.html">Read the full modern lesson ↗</a></p><p><a href="https://github.com/ianmitch90/HTMLCSS/blob/3f31dbedf70553d919d1a55de04cf175d8d75372/pages/grid/grid.html">Inspect the original source ↗</a></p></aside></div>
+<section class="exhibit-studio" aria-labelledby="artwork-heading"><h2 id="artwork-heading">Nine fields. One grid.</h2><p>Each colored region is an HTML element occupying defined Grid tracks. There are no bitmap assets: resizing the page recalculates the composition rather than stretching a screenshot. The work is an original geometric interpretation, not a reproduction of a specific copyrighted image.</p>
+<div class="exhibit-artwork" role="img" aria-label="A nine-part geometric composition of cream, mustard, coral, sage and slate-blue rectangular fields separated by deep green lines"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<details style="margin-top:1.4rem"><summary>How the art stays aligned</summary><p>CSS Grid defines eight equal column tracks and six row tracks. Individual spans use <code>grid-area: row-start / column-start / row-end / column-end</code>. This gives precise composition without positioning each tile absolutely.</p><pre><code>.artwork {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  gap: 8px;
+}
+.artwork > span:first-child {
+  grid-area: 1 / 1 / 4 / 3;
+}</code></pre></details></section><section class="exhibit-footnotes" aria-label="What to learn"><article><h3>Why this experiment matters</h3><p>The original site explored Grid before it was commonplace in beginner projects. Keeping this exhibit demonstrates how two-dimensional layout can carry expressive meaning.</p></article><article><h3>What to consider before using it</h3><p>The grid is decorative, so it has one concise accessible description rather than nine meaningless focus targets. Keep meaningful content in logical source order, and test reflow and zoom.</p></article></section><nav class="exhibit-navigation" aria-label="More exhibits"><a href="../traditional/traditional.html">← Previous exhibit</a><a href="../flex/flex.html">Next exhibit →</a></nav></main><footer class="site-footer"><div class="section-wrap footer-inner"><div><a class="footer-brand" href="../../index.html">HTML<span>/</span>CSS</a><p>A field guide for curious people.</p></div><div><p class="footer-label">LEARN</p><a href="../../index.html#explore">All experiments</a><a href="../../lessons/toolkit.html">Tools &amp; libraries</a><a href="../../accessibility.html">Accessibility</a></div><div><p class="footer-label">THE ORIGINAL WORK</p><p>The archived 2018–2020 source is available in Git history. These exhibits are modern, self-contained reinterpretations.</p></div></div></footer></body></html>

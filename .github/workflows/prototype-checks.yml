@@ -1,4 +1,4 @@
-# Static checks only. Browser-level accessibility and performance audits are still needed.
+# No runtime dependencies. These tests are structural, not WCAG certification.
 name: Prototype structural checks
 on:
   push:
@@ -13,5 +13,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Check static routes, document structure and resources
+      - name: Check JavaScript syntax
+        run: |
+          node --check scripts/site.js
+          node --check scripts/catalogue.js
+          node --check scripts/labs.js
+      - name: Check document routes, asset independence and learning content
         run: node --test tests/site.test.mjs
