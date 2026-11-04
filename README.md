@@ -47,6 +47,8 @@ git pull --ff-only origin master
 
 The educational site is intentionally a collection of real HTML documents. If opening `index.html` directly with a `file://` URL causes module or origin restrictions, use the local HTTP server above.
 
+The atmospheric landscape uses smooth inline SVG contours (rather than angular clipped polygons) while CSS alone drives the zoom and staggered drifting clouds. The second card shows stationary, gently pulsing double-color rims; the larger third card defaults to a multicolor gloss with an on/off checkbox. The original Ember runner remains unchanged.
+
 ## Choose your own learning path
 
 There is no required order. These suggested paths are just ways to find the next useful question.
@@ -197,7 +199,7 @@ The original project explored CSS at a time when many of today's layout and inte
 - Creating the *illusion* of scripted zoom and atmospheric effects with HTML and CSS.
 - Encouraging readers to inspect the source instead of treating a visual effect as magic.
 
-The modern Origins studio revisits those ideas as self-contained examples. **It is not a verbatim reproduction of the 2018 site.**
+The modern Origins studio revisits those ideas as self-contained examples. Its new atmospheric illustration uses inline SVG paths for smooth contours and CSS for cloud motion and zoom. **It is not a verbatim reproduction of the 2018 site.**
 
 If you want the original code as it stood immediately before the revival, go directly to:
 

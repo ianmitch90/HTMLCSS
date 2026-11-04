@@ -157,7 +157,7 @@ test('all site documents expose the CSS-only studio and the brand stays containe
 test('luminous runner uses independent non-rotating edge surface', async () => {
   const html = await read('lessons/css-only.html');
   const css = await read('styles/css-only.css');
-  assert.equal((html.match(/class="edge-track"/g) ?? []).length, 2);
+  assert.equal((html.match(/class="edge-track"/g) ?? []).length, 3);
   assert.match(css, /@property --runner-angle/);
   assert.match(css, /\.luminous-card \.edge-track/);
   assert.match(css, /@keyframes edge-run/);
@@ -249,17 +249,24 @@ test('CSS studio provides three independent luminous material studies', async ()
   assert.doesNotMatch(css,/transform:rotate\(360deg\)/);
 });
 
-test('CSS atmosphere has staggered cloud wisps and motion-safe fallbacks', async () => {
+test('smooth vector landscape keeps staggered CSS-only clouds and zoom', async () => {
   const html=await read('pages/traditional/traditional.html');
   const css=await read('styles/exhibits.css');
-  assert.match(html,/class="cloud cloud-far"/);
-  assert.match(html,/class="cloud cloud-near"/);
-  assert.match(html,/class="dune"/);
-  assert.match(css,/@keyframes cloud-traverse/);
-  assert.match(css,/@keyframes cloud-breathe/);
+  assert.match(html,/class="scene-art"/);
+  assert.match(html,/viewBox="0 0 1200 680"/);
+  assert.ok((html.match(/<path\b/g)||[]).length>=12);
+  assert.match(html,/class="scene-cloud scene-cloud-back"/);
+  assert.match(html,/class="scene-cloud scene-cloud-front"/);
+  assert.match(html,/id="depth-toggle"/);
+  assert.match(css,/@keyframes scene-cloud-drift/);
+  assert.match(css,/scene-cloud-back \{ animation-duration:34s/);
+  assert.match(css,/scene-cloud-front \{ animation-duration:27s/);
+  assert.match(css,/:has\(#depth-toggle:checked\) \.scene-layer-near/);
+  assert.match(css,/:has\(#depth-toggle:checked\) \.scene-cloud/);
   assert.match(css,/prefers-reduced-motion:reduce/);
   assert.match(css,/data-reduce-motion="true"/);
-  assert.match(css,/:has\(#depth-toggle:checked\)/);
+  assert.doesNotMatch(css,/clip-path:polygon/);
+  assert.doesNotMatch(html,/<(?:img|script)\b[^>]+src="https?:\/\//i);
 });
 
 
@@ -276,4 +283,24 @@ test('hero motes add subtle background and foreground motion without moving Mond
   assert.match(css,/\.hero::after,\.hero-art::after \{ animation:none!important/);
   assert.match(css,/data-reduce-motion="true"\] \.hero::after/);
   assert.doesNotMatch(css,/@keyframes hero-mosaic-drift/);
+});
+
+
+test('two newer card styles have persistent rims and a default-on toggle', async () => {
+  const html=await read('lessons/css-only.html');
+  const css=await read('styles/css-only.css');
+  assert.equal((html.match(/<article class="luminous-card/g)||[]).length,3);
+  assert.match(html,/<article class="luminous-card"><span class="edge-track"/);
+  assert.match(html,/class="luminous-card alt dual-edge"/);
+  assert.match(html,/class="luminous-card glass-study"/);
+  assert.match(html,/id="glass-glow-toggle" type="checkbox" checked/);
+  assert.match(css,/\.luminous-card\.dual-edge \.inner-edge/);
+  assert.match(css,/@keyframes dual-edge-breathe/);
+  assert.match(css,/@keyframes dual-inner-breathe/);
+  assert.match(css,/@keyframes glass-edge-breathe/);
+  assert.match(css,/@keyframes glass-sheen/);
+  assert.match(css,/glass-glow-toggle:not\(:checked\)/);
+  assert.match(css,/prefers-reduced-motion:reduce/);
+  assert.match(css,/data-reduce-motion="true"/);
+  assert.doesNotMatch(css,/@keyframes perimeter-pass/);
 });
