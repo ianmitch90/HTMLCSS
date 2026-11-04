@@ -12,6 +12,11 @@
   .exhibit-studio { margin-block: 3rem; padding: clamp(1rem,3vw,2.4rem); background: #fffdf8; border: 1px solid var(--line); }
   .exhibit-studio h2 { margin-bottom: .75rem; }
   .exhibit-studio > p { max-width: 760px; margin-bottom: 1.5rem; }
+  .scene-guide { margin-top:2rem; padding-top:1.5rem; border-top:1px solid var(--line); }
+  .scene-guide > p { max-width:78ch; margin-block:.85rem; }
+  .scene-guide-layers { display:grid; grid-template-columns:9rem minmax(0,1fr); gap:.85rem 1.5rem; margin-block:1.25rem; max-width:85ch; }
+  .scene-guide-layers dt { font-weight:750; }
+  .scene-guide-layers dd { margin:0; color:var(--muted); }
   .exhibit-footnotes { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.5rem; margin-bottom: 4rem; }
   .exhibit-footnotes article { padding: 1.6rem; border: 1px solid #b7c1b7; background: #e7ebe3; }
   .exhibit-footnotes h3 { font-size: 1.3rem; margin-bottom: .6rem; }
@@ -139,4 +144,9 @@
 @media (forced-colors:active) {
   .depth-scene { border:2px solid CanvasText; }
   .depth-scene :is(.scene-cloud,.scene-stars) { display:none; }
+}
+
+@media (max-width:600px) {
+  .scene-guide-layers { grid-template-columns:minmax(0,1fr); gap:.3rem; }
+  .scene-guide-layers dd { margin-bottom:.9rem; }
 }

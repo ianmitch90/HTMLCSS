@@ -150,11 +150,29 @@
     </g>
   </svg>
 </div>
-<details style="margin-top:1.3rem"><summary>Which CSS properties make the illusion?</summary><pre><code>/* A vector path supplies the smooth outline. */
-&lt;svg viewBox="0 0 1200 680"&gt;
-  &lt;path class="scene-layer-wave-a" d="M-40 431 C86 375 ..." /&gt;
-&lt;/svg&gt;
-/* CSS alone drives the depth and cloud motion. */
-.scene:has(input:checked) .scene-layer-near {
-  transform: scale(1.18) translateY(3%);
-}</code></pre><p>The actual page uses a native checkbox and <code>:has()</code> to control the CSS transitions. The inline SVG defines only the vector shapes; it does not run scripts. With an unsupported selector or reduced-motion setting, the illustration remains a useful static composition. CSS transforms alter the apparent depth without changing document structure.</p></details></section><section class="exhibit-footnotes" aria-label="What to learn"><article><h3>Why this experiment matters</h3><p>The original point was that a reversible zoom-and-clouds illusion could look like a JavaScript interaction even when it was entirely CSS-driven. This version preserves that intent without externally hosted assets.</p></article><article><h3>What to consider before using it</h3><p>Complex parallax and filters can affect comfort and performance. The foreground zoom remains opt-in; only small decorative clouds drift and stars shimmer slowly by default. Reduced-motion settings stop both effects and retain the full illustration.</p></article></section><nav class="exhibit-navigation" aria-label="More exhibits"><a href="../bootstrap/bootstrap.html">← Previous exhibit</a><a href="../grid/grid.html">Next exhibit →</a></nav></main><footer class="site-footer"><div class="section-wrap footer-inner"><div><a class="footer-brand" href="../../index.html">HTML<span>/</span>CSS</a><p>A field guide for curious people.</p></div><div><p class="footer-label">LEARN</p><a href="../../index.html#explore">All experiments</a><a href="../../lessons/toolkit.html">Tools &amp; libraries</a><a href="../../accessibility.html">Accessibility</a></div><div><p class="footer-label">THE ORIGINAL WORK</p><p>The archived 2018–2020 source is available in Git history. These exhibits are modern, self-contained reinterpretations.</p></div></div></footer></body></html>
+<section class="scene-guide" aria-labelledby="scene-guide-heading">
+  <h3 id="scene-guide-heading">Read the scene, back to front.</h3>
+  <p>SVG supplies the shapes and paints them in document order. CSS brings them to life. Here is what you are seeing:</p>
+  <dl class="scene-guide-layers">
+    <dt>Sky &amp; sunlight</dt>
+    <dd>A full-size SVG rectangle uses a <code>linearGradient</code>, from deep petrol teal to pale green. A warm circle is the sun; a transparent <code>radialGradient</code> spreads its light.</dd>
+    <dt>Distant stars</dt>
+    <dd>Small circles and three cross-shaped paths form one SVG <code>mask</code>. CSS moves a gradient across that mask, brightening only the stars. The dots themselves stay still.</dd>
+    <dt>Ridges &amp; valleys</dt>
+    <dd>Curved SVG <code>path</code> shapes overlap in groups. Lighter distant ridges, darker near slopes and pale gradient facets suggest depth.</dd>
+    <dt>Mist &amp; clouds</dt>
+    <dd>Transparent gradients soften the valleys. Three cloud paths use SVG <code>feGaussianBlur</code>; CSS keyframes drift them slightly and ease their <code>opacity</code> from zero to visible and back. Different durations and delays keep them out of step.</dd>
+    <dt>Foreground</dt>
+    <dd>The last, darkest paths cover the lower scene. On zoom, CSS <code>scale()</code> and <code>translateY()</code> move these layers more than the distant ones, creating the depth illusion.</dd>
+    <dt>Lookout light</dt>
+    <dd>A tiny warm window sits on the far ridge. Zoom increases the tower group’s scale and reveals its frame with <code>opacity</code>, turning a point of light into a recognizable landmark.</dd>
+  </dl>
+  <p><strong>The trigger is HTML, too.</strong> The checkbox holds its own checked state. CSS <code>:has(#depth-toggle:checked)</code> selects the zoomed scene, reveals the tower and hides the clouds. No JavaScript runs these effects. Reduced motion keeps the scene still and makes the toggle change states without a transition.</p>
+  <p>Follow a layer into the source: <a href="https://github.com/ianmitch90/HTMLCSS/blob/214544aa00f07e94e653c7ad4ecadd72add865e6/pages/traditional/traditional.html">explore the SVG shapes and gradients</a> or <a href="https://github.com/ianmitch90/HTMLCSS/blob/214544aa00f07e94e653c7ad4ecadd72add865e6/styles/exhibits.css">inspect the CSS motion and states</a>. Try changing one curve, color stop or duration and watch what it does.</p>
+</section>
+<details style="margin-top:1.3rem"><summary>See the CSS behind the zoom trigger</summary><pre><code>/* The checkbox is inside .exhibit-studio.
+   :has() lets that parent respond to its state. */
+.exhibit-studio:has(#depth-toggle:checked)
+.scene-layer-near {
+  transform: translateY(7%) scale(1.19);
+}</code></pre><p>The actual rule above moves a group of SVG paths without changing document layout. Each depth group has its own transform. Browsers without <code>:has()</code> still show the base illustration; the zoom is an enhancement.</p></details></section><section class="exhibit-footnotes" aria-label="What to learn"><article><h3>Why this experiment matters</h3><p>The original point was that a reversible zoom-and-clouds illusion could look like a JavaScript interaction even when it was entirely CSS-driven. This version preserves that intent without externally hosted assets.</p></article><article><h3>What to consider before using it</h3><p>Complex parallax and filters can affect comfort and performance. The foreground zoom remains opt-in; only small decorative clouds drift and stars shimmer slowly by default. Reduced-motion settings stop both effects and retain the full illustration.</p></article></section><nav class="exhibit-navigation" aria-label="More exhibits"><a href="../bootstrap/bootstrap.html">← Previous exhibit</a><a href="../grid/grid.html">Next exhibit →</a></nav></main><footer class="site-footer"><div class="section-wrap footer-inner"><div><a class="footer-brand" href="../../index.html">HTML<span>/</span>CSS</a><p>A field guide for curious people.</p></div><div><p class="footer-label">LEARN</p><a href="../../index.html#explore">All experiments</a><a href="../../lessons/toolkit.html">Tools &amp; libraries</a><a href="../../accessibility.html">Accessibility</a></div><div><p class="footer-label">THE ORIGINAL WORK</p><p>The archived 2018–2020 source is available in Git history. These exhibits are modern, self-contained reinterpretations.</p></div></div></footer></body></html>
