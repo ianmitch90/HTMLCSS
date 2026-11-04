@@ -1,3 +1,6 @@
+/* Register an angle so the conic-gradient's highlight interpolates smoothly.
+   The registered angle animates: the card and its fixed border never rotate. */
+@property --runner-angle { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
 /* Modern CSS-only studio
    Original, generic educational demonstrations; no imported assets or Atlas-specific
    source, design tokens or proprietary components. No JavaScript is loaded here except
@@ -27,9 +30,16 @@
   .luminous-card.alt{--edge:#dda77e;background:linear-gradient(155deg,#46424a,#263638 75%)}
   .luminous-card::before{content:"";position:absolute;inset:-11px;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 30% 90%,var(--edge),transparent 55%);opacity:0;filter:blur(15px);transition:opacity .23s ease}
   .luminous-card:hover::before,.luminous-card:focus-within::before,.studio-card-stage:has(#ambient-enabled:checked) .luminous-card::before{opacity:.35}
-  .luminous-card::after{content:"";position:absolute;inset:-2px;z-index:0;border:2px solid transparent;border-radius:20px;background:conic-gradient(from 0deg,transparent 0deg,transparent 245deg,var(--edge) 294deg,transparent 335deg) border-box;pointer-events:none;opacity:0;-webkit-mask:linear-gradient(#000 0 0) padding-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) padding-box,linear-gradient(#000 0 0);mask-composite:exclude}
-  .luminous-card:hover::after,.luminous-card:focus-within::after{opacity:1;animation:perimeter-pass 1.15s ease-out 1 both}
-  @keyframes perimeter-pass{0%{transform:rotate(0deg);opacity:0}18%{opacity:1}80%{opacity:1}100%{transform:rotate(360deg);opacity:.5}}
+  /* Two independent surfaces: the card stays fixed, while a light segment
+     travels around an unchanging edge track. Never rotate the border box. */
+  .luminous-card .edge-track{position:absolute;inset:-2px;z-index:2;border:2px solid transparent;border-radius:20px;pointer-events:none;opacity:0;--runner-angle:0deg;background:conic-gradient(from var(--runner-angle),transparent 0deg,transparent 263deg,var(--edge) 324deg,transparent 357deg) border-box;-webkit-mask:linear-gradient(#000 0 0) padding-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) padding-box,linear-gradient(#000 0 0);mask-composite:exclude}
+  .luminous-card:hover .edge-track,.luminous-card:focus-within .edge-track{animation:edge-run 1.6s ease-in-out 1 both}
+  @keyframes edge-run{
+    0%{--runner-angle:-140deg;opacity:0}
+    12%{opacity:1}
+    86%{opacity:1}
+    100%{--runner-angle:220deg;opacity:0}
+  }
   .luminous-card>*{position:relative;z-index:1}
   .luminous-card .card-kicker{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#c4e4d8;font-weight:800}
   .luminous-card h3{font:500 clamp(1.8rem,3vw,2.4rem)/1.12 var(--display);letter-spacing:-.02em}
@@ -47,11 +57,10 @@
   .svg-exhibit p{color:#d8e9e5}
   .svg-switch{display:flex;align-items:center;gap:.65rem;min-height:44px;margin-bottom:1rem}
   .svg-switch input{width:21px;height:21px;accent-color:#cfe9c4}
-  .svg-exhibit .svg-illustration .trace{stroke-dasharray:180;stroke-dashoffset:180}
+  .svg-exhibit .svg-illustration .trace{stroke-dasharray:100;stroke-dashoffset:0}
   .svg-exhibit:has(#svg-trace-toggle:checked) .trace{animation:draw-trace 1.6s ease-out 1 both}
-  .svg-exhibit:has(#svg-trace-toggle:checked) .satellite{animation:turn-satellite 1.6s ease-out 1 both;transform-origin:center}
-  @keyframes draw-trace{to{stroke-dashoffset:0}}
-  @keyframes turn-satellite{to{transform:rotate(125deg)}}
+  
+  @keyframes draw-trace{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
   .chart-exhibit{background:#f8f6ee;border:1px solid var(--line);padding:clamp(1.1rem,3vw,2rem);margin-block:1.8rem}
   .chart-exhibit .chart-switch{display:flex;align-items:center;gap:.55rem;margin-bottom:1.4rem;min-height:44px;font-weight:750}
   .chart-switch input{width:20px;height:20px}
@@ -81,19 +90,19 @@
 }
 @media(max-width:800px){.ambient-shelf,.svg-exhibit,.studio-code-grid{grid-template-columns:1fr}.game-options{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){
- .luminous-card::before,.ambient-shelf::before,.luminous-card::after,.chart-bar{animation:none!important;transition:none!important}
+ .luminous-card::before,.ambient-shelf::before,.luminous-card .edge-track,.chart-bar{animation:none!important;transition:none!important}
  .svg-exhibit .trace{stroke-dashoffset:0}
  .svg-exhibit:has(#svg-trace-toggle:checked) .trace,
  .svg-exhibit:has(#svg-trace-toggle:checked) .satellite{animation:none!important}
 }
 :root[data-reduce-motion="true"] .luminous-card::before,
 :root[data-reduce-motion="true"] .ambient-shelf::before,
-:root[data-reduce-motion="true"] .luminous-card::after,
+:root[data-reduce-motion="true"] .luminous-card .edge-track,
 :root[data-reduce-motion="true"] .chart-bar,
 :root[data-reduce-motion="true"] .svg-exhibit .trace,
 :root[data-reduce-motion="true"] .svg-exhibit .satellite{animation:none!important;transition:none!important}
 :root[data-reduce-motion="true"] .svg-exhibit .trace{stroke-dashoffset:0}
 @media(forced-colors:active){
  .luminous-card,.game-options label,.chart-bar{forced-color-adjust:auto;border:2px solid CanvasText}
- .luminous-card::before,.luminous-card::after,.ambient-shelf::before{display:none}
+ .luminous-card::before,.luminous-card .edge-track,.ambient-shelf::before{display:none}
 }

@@ -138,3 +138,31 @@ test('home mosaic uses non-overlapping CSS Grid tracks and includes the creative
   assert.match(html,/href="\.\/lessons\/css-only\.html"/);
   assert.match(html,/13 experiments to explore/);
 });
+
+test('all site documents expose the CSS-only studio and the brand stays contained', async () => {
+  const pagesWithNav = pages.filter(file => file !== 'examples/bootstrap-live.html');
+  for (const file of pagesWithNav) {
+    const html = await read(file);
+    const nav = html.match(/<nav class="main-nav"[^>]*>[\s\S]*?<\/nav>/)?.[0];
+    assert.ok(nav, file + ' missing primary nav');
+    assert.match(nav, /href="[^"]*lessons\/css-only\.html"/, file + ' missing CSS-only studio');
+  }
+  const isolated = await read('examples/bootstrap-live.html');
+  assert.match(isolated,/href="\.\.\/lessons\/css-only\.html"/);
+  const css = await read('styles/site.css');
+  assert.match(css,/\.brand-mark \{ display: inline-flex;/);
+  assert.match(css, /max-width: 1240px/);
+});
+
+test('luminous runner uses independent non-rotating edge surface', async () => {
+  const html = await read('lessons/css-only.html');
+  const css = await read('styles/css-only.css');
+  assert.equal((html.match(/class="edge-track"/g) ?? []).length, 2);
+  assert.match(css, /@property --runner-angle/);
+  assert.match(css, /\.luminous-card \.edge-track/);
+  assert.match(css, /@keyframes edge-run/);
+  assert.doesNotMatch(css, /@keyframes perimeter-pass/);
+  assert.doesNotMatch(css, /transform:rotate\(360deg\)/);
+  assert.match(html,/pathLength="100"/);
+  assert.match(css,/stroke-dasharray:100/);
+});
