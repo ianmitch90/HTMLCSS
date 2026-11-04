@@ -75,7 +75,7 @@
 
 /* Painterly contours are inline SVG paths. CSS, not JavaScript, controls
    their depth transforms and two very light cloud animations.
-   Fixed color bands avoid the old polygon-and-dune visual discontinuity. */
+   Unequal contours and pale facets keep the depth planes visually distinct. */
 .depth-label-out{display:none}
 .exhibit-studio:has(#depth-toggle:checked) .depth-label-in{display:none}
 .exhibit-studio:has(#depth-toggle:checked) .depth-label-out{display:inline}
@@ -97,9 +97,9 @@
   .depth-scene .scene-cloud-back { animation-duration:34s; animation-delay:-13s; opacity:.65; }
   .depth-scene .scene-cloud-front { animation-duration:27s; animation-delay:-7s; opacity:.72; }
   @keyframes scene-cloud-drift {
-    0% { transform:translate(-18px,1px); opacity:.18; }
-    46% { opacity:.75; }
-    100% { transform:translate(23px,-9px); opacity:.32; }
+    0% { transform:translate(-12px,1px); opacity:.3; }
+    46% { opacity:.62; }
+    100% { transform:translate(16px,-5px); opacity:.4; }
   }
   .exhibit-studio:has(#depth-toggle:checked) .scene-layer-far { transform:translateY(-1%) scale(1.05); }
   .exhibit-studio:has(#depth-toggle:checked) .scene-layer-mid { transform:translateY(1%) scale(1.09); }
@@ -107,7 +107,7 @@
   .exhibit-studio:has(#depth-toggle:checked) .scene-layer-wave-b { transform:translateY(4%) scale(1.14); }
   .exhibit-studio:has(#depth-toggle:checked) .scene-layer-wave-c { transform:translateY(6%) scale(1.16); }
   .exhibit-studio:has(#depth-toggle:checked) .scene-layer-near { transform:translateY(7%) scale(1.19); }
-  .exhibit-studio:has(#depth-toggle:checked) .scene-cloud { opacity:0; animation-play-state:paused; }
+  .exhibit-studio:has(#depth-toggle:checked) .scene-cloud { opacity:0; animation:none; }
 }
 @media (prefers-reduced-motion:reduce) {
   .depth-scene .scene-layer { transition:none!important; }

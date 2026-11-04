@@ -11,6 +11,12 @@
        the shapes; CSS alone handles the parallax, the clouds and the zoom. -->
   <svg class="scene-art" viewBox="0 0 1200 680" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
     <defs>
+      <!-- Light is concentrated at ridge crests, fading into the shaded face. -->
+      <linearGradient id="scene-facet" x1="0" y1="0" x2=".35" y2="1">
+        <stop stop-color="#e2efcf"/><stop offset=".4" stop-color="#a4d3c2"/>
+        <stop offset="1" stop-color="#4a8f8f" stop-opacity=".1"/>
+      </linearGradient>
+
       <linearGradient id="scene-sky" x1="0" x2="0" y1="0" y2="1">
         <stop offset="0" stop-color="#082e38"/>
         <stop offset=".45" stop-color="#135260"/>
@@ -23,28 +29,28 @@
         <stop offset="1" stop-color="#ffdaa7" stop-opacity="0"/>
       </radialGradient>
       <linearGradient id="scene-far-green" x1="0" x2="0" y1="0" y2="1">
-        <stop stop-color="#32747a"/><stop offset="1" stop-color="#0c4654"/>
+        <stop stop-color="#568c91"/><stop offset="1" stop-color="#286375"/>
       </linearGradient>
       <linearGradient id="scene-ridge-blue" x1="0" x2="0" y1="0" y2="1">
-        <stop stop-color="#276b77"/><stop offset=".9" stop-color="#124752"/>
+        <stop stop-color="#1b5d6a"/><stop offset=".9" stop-color="#124752"/>
       </linearGradient>
       <linearGradient id="scene-ridge-mint" x1="0" x2="0" y1="0" y2="1">
-        <stop stop-color="#65aaa2"/><stop offset=".5" stop-color="#378987"/><stop offset="1" stop-color="#1e6068"/>
+        <stop stop-color="#317e83"/><stop offset=".5" stop-color="#216976"/><stop offset="1" stop-color="#1e6068"/>
       </linearGradient>
       <linearGradient id="scene-wave-a" x1=".1" x2=".9" y1="0" y2="1">
-        <stop stop-color="#9bc6b5"/><stop offset=".4" stop-color="#5aaba4"/><stop offset="1" stop-color="#1a7075"/>
+        <stop stop-color="#86bcb0"/><stop offset=".4" stop-color="#438e90"/><stop offset="1" stop-color="#1a7075"/>
       </linearGradient>
       <linearGradient id="scene-wave-b" x1="0" x2=".95" y1="0" y2="1">
         <stop stop-color="#478f8f"/><stop offset=".45" stop-color="#216e78"/><stop offset="1" stop-color="#104d5b"/>
       </linearGradient>
       <linearGradient id="scene-wave-c" x1="0" x2="1" y1="0" y2="1">
-        <stop stop-color="#70afa3"/><stop offset=".27" stop-color="#3b908d"/><stop offset="1" stop-color="#0e515d"/>
+        <stop stop-color="#76b2a5"/><stop offset=".27" stop-color="#3b908d"/><stop offset="1" stop-color="#0e515d"/>
       </linearGradient>
       <linearGradient id="scene-wave-deep" x1="0" x2="1" y1="0" y2="1">
-        <stop stop-color="#246e73"/><stop offset=".7" stop-color="#0c444f"/><stop offset="1" stop-color="#092e3c"/>
+        <stop stop-color="#164e58"/><stop offset=".7" stop-color="#0c444f"/><stop offset="1" stop-color="#092e3c"/>
       </linearGradient>
       <linearGradient id="scene-foreground" x1="0" x2=".65" y1="0" y2="1">
-        <stop stop-color="#2c8481"/><stop offset=".35" stop-color="#195c63"/><stop offset=".75" stop-color="#0d414b"/><stop offset="1" stop-color="#082f3c"/>
+        <stop stop-color="#124952"/><stop offset=".35" stop-color="#195c63"/><stop offset=".75" stop-color="#0d414b"/><stop offset="1" stop-color="#082f3c"/>
       </linearGradient>
       <linearGradient id="scene-haze" x1="0" x2="0" y1="0" y2="1">
         <stop stop-color="#cde9d0" stop-opacity="0"/>
@@ -57,49 +63,46 @@
     </defs>
 
     <rect width="1200" height="680" fill="url(#scene-sky)"/>
-    <rect width="1200" height="480" fill="url(#scene-sunlight)" opacity=".8"/>
-    <circle cx="840" cy="122" r="112" fill="url(#scene-sunlight)"/>
-    <circle cx="840" cy="122" r="55" fill="#ffddad"/>
-    <circle cx="824" cy="106" r="25" fill="#fff0d0" opacity=".33"/>
+    <ellipse cx="850" cy="140" rx="450" ry="290" fill="url(#scene-sunlight)" opacity=".6"/>
+    <circle cx="850" cy="92" r="43" fill="#ffdfb7"/>
 
+    <!-- Unequal peaks and alternating slopes open a winding corridor of light.
+         Each group is one depth plane; the pale facets belong to its ridge. -->
     <g class="scene-layer scene-layer-far">
-      <path d="M-40 265 C57 211 103 240 189 197 C271 153 347 233 442 196 C549 147 629 220 709 174 C790 131 870 188 950 166 C1050 143 1126 200 1240 166 L1240 700 L-40 700 Z" fill="url(#scene-far-green)"/>
-      <path d="M-30 295 C80 256 130 278 226 237 C300 211 371 279 472 235 C552 197 642 276 738 223 C838 184 906 239 1022 207 C1123 178 1185 216 1230 204 L1230 700 L-30 700 Z" fill="url(#scene-ridge-blue)" opacity=".84"/>
+      <path d="M-80 220 Q35 181 95 205 Q160 230 238 154 Q266 133 279 138 Q293 151 325 160 Q379 209 427 175 Q493 133 535 105 Q552 87 569 103 Q590 128 615 133 Q690 207 749 171 Q810 135 868 149 Q925 168 982 112 Q1023 82 1037 88 Q1050 102 1069 116 Q1145 190 1280 111 L1280 760 H-80Z" fill="url(#scene-far-green)"/>
+      <path d="M-80 246 Q73 188 157 251 Q231 303 305 243 Q360 195 416 226 Q493 276 559 244 Q633 213 708 247 Q789 288 872 217 Q938 159 1000 200 Q1115 267 1280 165 L1280 760 H-80Z" fill="url(#scene-ridge-blue)"/>
+      <path d="M427 175 Q493 133 535 105 Q552 87 569 103 Q590 128 615 133 Q657 177 749 171 Q665 196 608 161 Q567 125 550 123 Q501 161 427 175Z" fill="url(#scene-facet)" opacity=".25"/>
+      <path d="M600 248 Q770 270 872 217 Q938 159 1000 200 Q944 180 905 236 Q826 290 600 248Z" fill="#8fc3bd" opacity=".3"/>
     </g>
     <g class="scene-cloud scene-cloud-back" filter="url(#scene-soft-cloud)">
-      <ellipse cx="274" cy="239" rx="148" ry="23" fill="#d2efe2" opacity=".45"/>
-      <ellipse cx="367" cy="238" rx="100" ry="14" fill="#fff1cc" opacity=".37"/>
+      <path d="M105 255 Q270 224 453 267 Q575 285 751 255 Q581 307 411 283 Q258 258 105 273Z" fill="#d2efe2" opacity=".6"/>
     </g>
-
     <g class="scene-layer scene-layer-mid">
-      <path d="M-40 345 C66 305 163 329 261 289 C340 252 411 325 523 295 C624 260 687 308 790 273 C885 237 960 293 1043 260 C1144 229 1194 258 1240 245 L1240 700 L-40 700 Z" fill="url(#scene-ridge-mint)"/>
-      <path d="M-40 372 C88 340 151 380 271 342 C392 304 471 368 577 332 C671 299 778 348 890 308 C1023 261 1148 326 1240 288" fill="none" stroke="#a9d9c2" stroke-width="8" opacity=".32"/>
+      <path d="M-80 283 Q28 220 119 275 Q189 321 288 304 Q384 287 467 315 Q577 354 698 307 Q790 271 849 231 Q897 195 951 241 Q1000 278 1054 215 Q1103 157 1155 201 Q1211 241 1280 183 L1280 760 H-80Z" fill="url(#scene-ridge-mint)"/>
+      <path d="M-80 283 Q28 220 119 275 Q189 321 288 304 Q370 290 467 315 Q326 316 249 340 Q165 352 104 299 Q41 253 -80 314Z" fill="url(#scene-facet)" opacity=".65"/>
+      <path d="M198 343 Q431 308 570 340 Q710 350 849 284 Q756 359 574 372 Q374 348 198 343Z" fill="url(#scene-haze)"/>
     </g>
-    <path d="M-40 339 C155 321 243 323 369 319 C494 315 557 324 714 313 C858 302 1002 298 1240 281 L1240 440 L-40 450Z" fill="url(#scene-haze)" opacity=".9"/>
-
     <g class="scene-layer scene-layer-wave-a">
-      <path d="M-40 431 C86 375 167 407 276 373 C394 337 484 379 601 354 C730 320 805 396 929 351 C1042 314 1141 345 1240 317 L1240 700 L-40 700 Z" fill="url(#scene-wave-a)"/>
-      <path d="M-30 431 C90 377 157 407 276 375 C396 340 485 382 601 356 C721 322 804 397 929 353 C1037 314 1151 350 1230 321" fill="none" stroke="#e5f0d1" stroke-width="10" opacity=".25"/>
+      <path d="M-80 344 Q9 299 81 337 Q155 383 268 395 Q391 419 520 367 Q642 319 747 355 Q827 383 930 305 Q1012 247 1080 302 Q1158 361 1280 249 L1280 760 H-80Z" fill="url(#scene-wave-a)"/>
+      <path d="M-80 344 Q9 299 81 337 Q155 383 268 395 Q391 419 520 367 Q431 433 302 439 Q173 420 86 376 Q17 333 -80 376Z" fill="url(#scene-facet)" opacity=".8"/>
+      <path d="M470 400 Q637 342 747 355 Q827 383 930 305 Q870 384 790 404 Q643 380 470 400Z" fill="url(#scene-facet)" opacity=".63"/>
     </g>
-
     <g class="scene-cloud scene-cloud-front" filter="url(#scene-soft-cloud)">
-      <ellipse cx="670" cy="358" rx="169" ry="18" fill="#c1e6d4" opacity=".42"/>
-      <ellipse cx="799" cy="345" rx="114" ry="13" fill="#f3e8c7" opacity=".25"/>
+      <path d="M351 404 Q540 364 696 386 Q795 399 899 365 Q825 419 657 405 Q494 391 351 422Z" fill="#e2f1cf" opacity=".65"/>
     </g>
-
     <g class="scene-layer scene-layer-wave-b">
-      <path d="M-40 484 C96 434 204 477 299 437 C403 394 476 443 584 414 C719 380 788 456 908 420 C1035 382 1150 423 1240 393 L1240 700 L-40 700 Z" fill="url(#scene-wave-b)"/>
-      <path d="M-20 481 C104 435 207 479 299 438 C416 392 480 445 587 414 C710 378 795 457 915 419 C1036 383 1143 423 1232 395" fill="none" stroke="#c8dfbb" stroke-width="5" opacity=".2"/>
+      <path d="M-80 379 Q39 350 149 428 Q257 508 424 449 Q551 402 656 433 Q750 460 874 389 Q990 321 1082 362 Q1174 403 1280 323 L1280 760 H-80Z" fill="url(#scene-wave-b)"/>
+      <path d="M302 475 Q432 435 513 428 Q576 413 656 433 Q750 460 874 389 Q790 477 670 477 Q513 442 302 475Z" fill="url(#scene-facet)" opacity=".65"/>
     </g>
     <g class="scene-layer scene-layer-wave-c">
-      <path d="M-40 548 C94 492 174 527 285 489 C388 452 473 512 583 474 C680 440 764 495 886 465 C1025 430 1132 473 1240 445 L1240 700 L-40 700 Z" fill="url(#scene-wave-c)"/>
-      <path d="M-40 546 C104 494 178 527 284 491 C390 451 475 513 586 475 C682 439 763 496 885 466 C1020 431 1137 472 1240 447" fill="none" stroke="#cde3c0" stroke-width="5" opacity=".19"/>
+      <path d="M-80 505 Q86 438 212 500 Q366 575 518 491 Q633 429 744 460 Q845 493 968 406 Q1088 329 1151 377 Q1204 413 1280 368 L1280 760 H-80Z" fill="url(#scene-wave-c)"/>
+      <path d="M204 501 Q366 575 518 491 Q633 429 744 460 Q845 493 968 406 Q898 498 778 520 Q644 466 540 524 Q370 601 204 501Z" fill="url(#scene-facet)" opacity=".85"/>
+      <path d="M828 491 Q941 446 1006 402 Q1053 370 1096 369 Q1060 392 1044 445 Q968 446 912 492Z" fill="url(#scene-facet)" opacity=".66"/>
     </g>
     <g class="scene-layer scene-layer-near">
-      <path d="M-40 601 C88 543 181 583 300 543 C413 506 519 569 639 536 C738 508 862 570 982 520 C1106 474 1185 536 1240 508 L1240 700 L-40 700 Z" fill="url(#scene-wave-deep)"/>
-      <path d="M-40 641 C120 574 228 617 342 584 C476 548 561 611 691 575 C833 532 917 609 1057 566 C1137 539 1193 570 1240 553 L1240 700 L-40 700 Z" fill="url(#scene-foreground)"/>
-      <path d="M-40 642 C103 579 229 617 343 586 C473 550 555 609 690 577 C833 535 918 607 1058 568 C1146 538 1188 570 1240 554" fill="none" stroke="#81c1ad" stroke-width="5" opacity=".28"/>
-      <path d="M-40 675 C167 641 261 662 423 637 C595 606 732 670 879 631 C1009 595 1133 635 1240 604 L1240 700 L-40 700 Z" fill="#072f3b" opacity=".84"/>
+      <path d="M-80 460 Q32 397 139 481 Q209 546 333 572 Q455 604 578 557 Q699 511 789 541 Q913 577 1024 476 Q1111 395 1194 433 Q1235 452 1280 416 L1280 780 H-80Z" fill="url(#scene-wave-deep)"/>
+      <path d="M-80 611 Q112 533 251 609 Q387 677 561 611 Q737 539 861 587 Q982 626 1106 520 Q1181 463 1280 486 L1280 780 H-80Z" fill="url(#scene-foreground)"/>
+      <path d="M502 632 Q721 540 861 587 Q982 626 1106 520 Q1020 637 886 648 Q705 588 502 632Z" fill="#52948c" opacity=".35"/>
     </g>
   </svg>
 </div>
